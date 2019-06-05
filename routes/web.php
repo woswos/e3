@@ -15,6 +15,8 @@ Route::get('/', 'PagesController@index')->name('index');
 Route::get('/submit', 'PagesController@submitNewScheme')->name('submitNewScheme');
 Route::get('/about', 'PagesController@about')->name('about');
 
+Route::resource('scheme', 'SchemesController');
+
 /*
 Route::get('/user/{id}', function ($id) {
     return "This is user ".$id;

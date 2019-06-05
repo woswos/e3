@@ -12,6 +12,7 @@
     <body>
         <div class="container">
           @include('partials/navbar')
+          @include('partials/messages')
           @yield('content')
           @include('partials/footer')
         </div>

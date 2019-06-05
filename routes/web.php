@@ -11,19 +11,14 @@
 |
 */
 
+// Normal pages
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/submit', 'PagesController@submitNewScheme')->name('submitNewScheme');
 Route::get('/about', 'PagesController@about')->name('about');
 
+// Schemes
 Route::resource('scheme', 'SchemesController');
 
-/*
-Route::get('/user/{id}', function ($id) {
-    return "This is user ".$id;
-});
-
-
-Route::get('/user/{id}/{name}', function ($id, $name) {
-    return "This is user ".$id." and name is ".$name;
-});
-*/
+// Challenges
+Route::get('/challenge/create/{scheme_id}', 'ChallengesController@create')->name('challenge.create.id');
+Route::resource('challenge', 'ChallengesController');

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// Include the namespace from scheme
+// Include the namespace from scheme and challenge for accesing to database
 use App\Scheme;
+use App\Challenge;
 
 class SchemesController extends Controller
 {
@@ -30,7 +31,6 @@ class SchemesController extends Controller
     public function create()
     {
         //
-
         return view('schemes/create');
     }
 
@@ -48,7 +48,8 @@ class SchemesController extends Controller
             'title' => 'required',
             'authors' => 'required',
             'abstract' => 'required',
-            'attached_files' => 'nullable|max:10000'
+            'institutions' => 'required',
+            'attached_files' => 'required|max:50000'
         ]);
 
         // Handle File Upload
@@ -71,11 +72,16 @@ class SchemesController extends Controller
         $scheme = new Scheme;
         $scheme->title = $request->input('title');
         $scheme->authors = $request->input('authors');
+        $scheme->institutions = $request->input('institutions');
         $scheme->abstract = $request->input('abstract');
         $scheme->attached_files = $fileNameToStore;
         $scheme->save();
 
-        return redirect('scheme')->with('success', 'Scheme Created');
+        // Get latest submitted scheme's id
+        $lastSchemes = Scheme::orderBy('id','DESC')->take(1)->get();
+        $scheme_id = $lastSchemes[0];
+
+        return redirect()->route('scheme.show', ['id' => $scheme_id])->with('success', 'Encryption Scheme Submitted');
 
     }
 
@@ -90,7 +96,15 @@ class SchemesController extends Controller
         //Find the scheme by id which is given in the url
         $scheme = Scheme::find($id);
 
-        return view('schemes/show')->with('scheme', $scheme);
+        //Find the challenges by id which is given in the url
+        $challenges = Challenge::where('scheme_id', $id)->get();
+
+        $data = array(
+          'scheme' => $scheme,
+          'challenges' => $challenges
+          );
+
+        return view('schemes/show')->with($data);
     }
 
     /**

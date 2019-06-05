@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
+<footer class="page-footer font-small blue mt-5 pt-4">
 
   <!-- Footer Links -->
   <div class="container-fluid text-center text-md-left">
@@ -11,8 +11,8 @@
       <div class="col-md-6 mt-md-0 mt-3">
 
         <!-- Content -->
-        <h5 class="text-uppercase">Footer Content</h5>
-        <p>Here you can use rows and columns to organize your footer content.</p>
+        <h5 class="text-uppercase">{{ config('app.name') }}</h5>
+        <p>Some explanation</p>
 
       </div>
       <!-- Grid column -->
@@ -74,7 +74,7 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2018 Copyright
+  <div class="footer-copyright text-center py-3">© 2019 MoMA lab
   </div>
   <!-- Copyright -->
 

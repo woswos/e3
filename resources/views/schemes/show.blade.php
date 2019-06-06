@@ -9,7 +9,9 @@
         {{ $scheme->abstract }}
     </div>
     <br>
-    <a href="{{ route('index') }}/storage/attached_files/{{ $scheme->attached_files }}" target="_blank">Download the paper [PDF]</a>
+    @if ($scheme->attached_files != "none")
+      <a href="{{ route('index') }}/storage/attached_files/{{ $scheme->attached_files }}" target="_blank">Download attached files</a>
+    @endif
   </div>
 
 
@@ -18,13 +20,17 @@
     <h5><a href='{{ route('challenge.create') }}/{{ $scheme->id }}'>Create a challenge!</a></h5>
 
     @if(count($challenges) > 0)
+
         <ul class="list-group">
             @foreach($challenges as $challenge)
-                <li class="list-group-item">
-                  <a href="{{ route('challenge.index') }}/{{ $challenge->id }}" class="card-link">{{ $challenge->title }}</a>,
-                  Prize: ${{ $challenge->prize }},
-                  Total number of attempts: {{ $challenge->attempts }}
-                </li>
+                <a href="{{ route('challenge.index') }}/{{ $challenge->id }}" class="link">
+                  <li class="list-group-item mt-1">
+                    {{ $challenge->title }},
+                    Difficulty: {{ ucfirst(str_replace('_', ' ', $challenge->difficulty)) }},
+                    Prize: ${{ $challenge->prize }},
+                    Total number of attempts: {{ $challenge->attempts }}
+                  </li>
+                </a>
             @endforeach
         </ul>
     @else

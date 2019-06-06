@@ -13,6 +13,9 @@ class PagesController extends Controller
 
     public function index(){
 
+      // Get all schemes
+      $schemes = Scheme::all();
+
       // Get top 5 schemes from db
       $topSchemes = Scheme::all()->take(5);
 
@@ -30,6 +33,7 @@ class PagesController extends Controller
       $recentlySubmittedSchemes = Scheme::orderBy('id','DESC')->take(3)->get();
 
       $data = array(
+          'schemes' => $schemes,
           'totalPrizeAvailable' => $totalPrizeAvailable,
           'totalPrizeChallenges' => $totalPrizeChallenges,
           'topSchemes' => $topSchemes,
@@ -42,5 +46,34 @@ class PagesController extends Controller
     public function about(){
       $data = array();
       return view('pages/about')->with($data);
+    }
+
+    public function ranking(){
+      // Get all schemes from db
+      $schemes = Scheme::all();
+
+      $data = array(
+        'schemes' => $schemes
+      );
+
+      // Convert array to string
+      /*
+      $chart_X = json_encode($chart_schemes_X);
+      $chart_Y = json_encode($chart_schemes_Y);
+      $chart_l = json_encode($chart_labels);
+
+      $data = array(
+        'chart_X' => $chart_X,
+        'chart_Y' => $chart_Y,
+        'chart_l' => $chart_l
+      );
+*/
+
+      return view('pages/ranking')->with($data);
+    }
+
+    public function faq(){
+      $data = array();
+      return view('pages/faq')->with($data);
     }
 }

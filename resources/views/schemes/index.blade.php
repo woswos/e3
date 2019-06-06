@@ -12,9 +12,9 @@
                 <div class="row mt-4">
                     <div class="col-md col-sm">
                         <h3><a href="{{ route('scheme.index') }}/{{$scheme->id}}">{{$scheme->title}}</a></h3>
-                        <h5 class="text-muted">{{ $scheme->authors }}</h5>
-                        <h5 class="text-muted">{{ $scheme->institutions }}</h5>
-                        <small>Submitted on {{$scheme->created_at}}</small>
+                        <h5>{{ $scheme->authors }}</h5>
+                        <h5>{{ $scheme->institutions }}</h5>
+                        <small class="text-muted">Submitted on {{$scheme->created_at}}</small>
                     </div>
                 </div>
             </div>

@@ -11,22 +11,27 @@
 </div>
 
 <div class="container">
-  <a class="btn btn-outline-secondary btn-lg" role="button" href='{{ route('scheme.create') }}'>Submit a scheme!</a>
-  <a class="btn btn-outline-secondary btn-lg" role="button" href='{{ route('challenge.index') }}'>Break a scheme!</a>
+  <a class="btn btn-outline-primary btn-lg" role="button" href='{{ route('scheme.create') }}'>Submit a scheme!</a>
+  <a class="btn btn-outline-primary btn-lg" role="button" href='{{ route('challenge.index') }}'>Break a scheme!</a>
 </div>
 
-<div class="container  mt-4">
+<div class="container  mt-5">
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12">
-      <h3>Total available prize: ${{ $totalPrizeAvailable }}</h3>
+      <h3>Total unclaimed prize: $<span id="counter_1">{{ $totalPrizeAvailable }}</span></h3>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
-      <h3>Total available challenges: {{ $totalPrizeChallenges }}</h3>
+      <h3>Total available challenges: <span id="counter_2">{{ $totalPrizeChallenges }}</span></h3>
     </div>
   </div>
 </div>
 
-<div class="container mt-4">
+<div class="container mt-5">
+  <canvas id="ranking_chart" width="%100" height="100px" class="mt-4"></canvas>
+  @include('partials/chart')
+</div>
+
+<div class="container mt-5">
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12">
 
@@ -35,7 +40,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
+            <th scope="col">Scheme Title</th>
             <th scope="col">Institution</th>
             <th scope="col">Prize</th>
             <th scope="col">Attempts</th>
@@ -46,10 +51,10 @@
             @foreach($topSchemes as $scheme)
             <tr>
               <th scope="row">{{ $scheme->id }}</th>
-              <td>{{ $scheme->title }}</td>
+              <td><a href="{{ route('scheme.index') }}/{{$scheme->id}}">{{$scheme->title}}</a></td>
               <td>{{ $scheme->institutions }}</td>
-              <td>0</td> <!-- Total prize -->
-              <td>0</td> <!-- Total number of attemps -->
+              <td>{{ $scheme->total_prize }}</td>
+              <td>{{ $scheme->total_attempts }}</td>
             </tr>
             @endforeach
           @endif
@@ -66,7 +71,7 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
+              <th scope="col">Hacker Name</th>
               <th scope="col">Institution</th>
               <th scope="col">Broken Challenges</th>
             </tr>
@@ -76,7 +81,7 @@
               @foreach($topHackers as $hacker)
               <tr>
                 <th scope="row">{{ $hacker->id }}</th>
-                <td>{{ $hacker->title }}</td> <!-- name -->
+                <td>Test Name</td> <!-- name -->
                 <td>0</td> <!-- Institution -->
                 <td>0</td> <!-- Number of Broken Challenges -->
               </tr>
@@ -89,7 +94,7 @@
     </div>
   </div>
 
-  <div class="container mt-1">
+  <div class="container mt-4">
     <h3>Recently submitted schemes</h3>
   </div>
 
@@ -111,4 +116,15 @@
     </div>
   </div>
 
+  <script type="text/javascript">
+      const options = {
+        duration: 1.5,
+      };
+
+      let counter_1 = new CountUp('counter_1', {{ $totalPrizeAvailable }}, options);
+      let counter_2 = new CountUp('counter_2', {{ $totalPrizeChallenges }}, options);
+      counter_1.start();
+      counter_2.start();
+  </script>
+  
   @endsection

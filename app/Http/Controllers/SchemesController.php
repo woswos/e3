@@ -74,6 +74,9 @@ class SchemesController extends Controller
         $scheme->authors = $request->input('authors');
         $scheme->institutions = $request->input('institutions');
         $scheme->abstract = $request->input('abstract');
+        $scheme->total_prize = 0;
+        $scheme->total_attempts = 0;
+        $scheme->speed = 0;
         $scheme->attached_files = $fileNameToStore;
         $scheme->save();
 
@@ -81,7 +84,7 @@ class SchemesController extends Controller
         $lastSchemes = Scheme::orderBy('id','DESC')->take(1)->get();
         $scheme_id = $lastSchemes[0];
 
-        return redirect()->route('scheme.show', ['id' => $scheme_id])->with('success', 'Encryption Scheme Submitted');
+        return redirect()->route('scheme.show', ['id' => $scheme_id])->with('success', 'Challenge Submitted');
 
     }
 

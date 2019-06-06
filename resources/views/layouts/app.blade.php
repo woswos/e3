@@ -10,7 +10,17 @@
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    </head>
+
+        <!-- chart.js script, needs to be loaded before the chart -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+        <!-- Text editor script -->
+        <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+
+        <!-- Stat counter script -->
+        <script src="{{ asset('js/countUp.js') }}"></script>
+
+  </head>
     <body>
         <div class="container">
           @include('partials/navbar')
@@ -19,7 +29,6 @@
           @include('partials/footer')
         </div>
 
-        <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
         <script>
             CKEDITOR.replace( 'article-ckeditor' );
         </script>

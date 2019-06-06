@@ -9,10 +9,7 @@ use App\Scheme;
 use App\Challenge;
 use App\Solution;
 
-// Access all tables
-use DB;
-
-class ChallengesController extends Controller
+class SolutionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,30 +18,7 @@ class ChallengesController extends Controller
      */
     public function index()
     {
-      // Get all challenges from db
-      $challenges = Challenge::orderBy('id', 'DESC')->get();
-
-      // Not efficient at all but fastest way to do this for now
-      // For counting submitted solutions per challenge
-      $challenges_solution_counts = array();
-      foreach ($challenges as $challenge) {
-        // Count number of submitted solutions
-        $solutions = Solution::where('challenge_id', $challenge->id)->get();
-        $solution_count = $solutions->count();
-        $challenges_solution_counts[$challenge->id] = $solution_count;
-      }
-
-      // Do some relational db stuff for counting submitted solutions per challenge
-      //$solutions = DB::table('challenges')
-      //                 ->join('solutions', 'solutions.challenge_id','=','challenges.id')
-      //                 ->tosql();
-
-      $data = array(
-        'challenges' => $challenges,
-        'challenges_solution_counts' => $challenges_solution_counts
-        );
-
-      return view('challenges/index')->with($data);
+        return redirect()->route('index');
     }
 
     /**
@@ -52,16 +26,22 @@ class ChallengesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($scheme_id = 0)
+    public function create($challenge_id = 0)
     {
-        // If url was manually changed, redirect to challenge listing page
-        if($scheme_id == 0){
+        // If url was manually added, redirect to challenge listing page
+        if($challenge_id == 0){
           return redirect('challenge');
         } else {
-          $scheme = Scheme::find($scheme_id);
-          return view('challenges/create')->with('scheme', $scheme);
-        }
+          $challenge = Challenge::find($challenge_id);
+          $scheme = Scheme::find($challenge->scheme_id);
 
+          $data = array(
+            'challenge' => $challenge,
+            'scheme' => $scheme
+          );
+
+          return view('solutions/create')->with($data);
+        }
     }
 
     /**
@@ -72,12 +52,13 @@ class ChallengesController extends Controller
      */
     public function store(Request $request)
     {
+
       // Check if all values are entered
       $this->validate($request, [
           'title' => 'required',
-          'prize' => 'required',
           'explanation' => 'required',
           'scheme_id' => 'required',
+          'challenge_id' => 'required',
           'attached_files' => 'nullable|max:50000'
       ]);
 
@@ -98,20 +79,36 @@ class ChallengesController extends Controller
       }
 
       // Create a scheme
-      $challenge = new Challenge;
-      $challenge->scheme_id = $request->input('scheme_id');
-      $challenge->title = $request->input('title');
-      $challenge->prize = $request->input('prize');
-      $challenge->explanation = $request->input('explanation');
-      $challenge->difficulty = $request->input('difficulty');
-      $challenge->attempts = 0;
-      $challenge->solved = false;
-      $challenge->attached_files = $fileNameToStore;
-        // Update total prize of the corresponding scheme, before finalizing the query
-        Scheme::where('id', $request->input('scheme_id'))->increment('total_prize', $request->input('prize'));
-      $challenge->save();
+      $solution = new Solution;
+      $solution->scheme_id = $request->input('scheme_id');
+      $solution->challenge_id = $request->input('challenge_id');
+      $solution->title = $request->input('title');
+      $solution->explanation = $request->input('explanation');
+      $solution->attached_files = $fileNameToStore;
+      $solution->save();
 
-      return redirect()->route('scheme.show', ['id' => $request->input('scheme_id')])->with('success', 'Encryption Scheme Submitted');
+      return redirect()->route('challenge.show', ['id' => $request->input('challenge_id')])->with('success', 'Solution Submitted');
+
+    }
+
+    /**
+     * Increase number of attempts counter
+     * then redirect to the destination
+     */
+    public function attempt($destination, $parameter)
+    {
+      //Find the scheme by id which is given in the url
+      //$solution = Solution::find($id);
+
+      // DOESN'T WORK RIGHT NOW
+      if($destination == "create"){
+        return route('challenge.create', $parameter);
+      } elseif ($destination == "download") {
+        return redirect()->route('challenge.create', $parameter);
+      } else {
+        return redirect()->route('index');
+      }
+
 
     }
 
@@ -123,19 +120,14 @@ class ChallengesController extends Controller
      */
     public function show($id)
     {
-
       //Find the scheme by id which is given in the url
-      $challenge = Challenge::find($id);
-
-      //Find the solutions by id which is given in the url
-      $solutions = Solution::where('challenge_id', $id)->get();
+      $solution = Solution::find($id);
 
       $data = array(
-        'challenge' => $challenge,
-        'solutions' => $solutions
+        'solution' => $solution
         );
 
-      return view('challenges/show')->with($data);
+      return view('solutions/show')->with($data);
     }
 
     /**

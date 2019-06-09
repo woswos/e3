@@ -45,7 +45,7 @@
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!">Link 1</a>
+            <a href="">Link 1</a>
           </li>
           <li>
             <a href="#!">Link 2</a>
@@ -62,7 +62,7 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2019 MoMA lab
+  <div class="footer-copyright text-center py-3">© 2019 <a href="https://wp.nyu.edu/momalab/">MoMA lab</a>
   </div>
   <!-- Copyright -->
 

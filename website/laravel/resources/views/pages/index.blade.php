@@ -42,7 +42,7 @@
             <th scope="col">#</th>
             <th scope="col">Scheme Title</th>
             <th scope="col">Institution</th>
-            <th scope="col">Prize</th>
+            <th scope="col">Prize($)</th>
             <th scope="col">Attempts</th>
           </tr>
         </thead>
@@ -118,7 +118,7 @@
 
   <script type="text/javascript">
       const options = {
-        duration: 1.5,
+        duration: 5,
       };
 
       let counter_1 = new CountUp('counter_1', {{ $totalPrizeAvailable }}, options);
@@ -126,5 +126,5 @@
       counter_1.start();
       counter_2.start();
   </script>
-  
+
   @endsection

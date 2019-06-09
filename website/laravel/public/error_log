@@ -2,3 +2,8 @@
 [05-Jun-2019 23:10:42 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/bsimsekc/public_html/addons/obw.barkin.io/app/Http/Controllers/ChallengesController.php on line 32
 [05-Jun-2019 23:11:01 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/bsimsekc/public_html/addons/obw.barkin.io/app/Http/Controllers/ChallengesController.php on line 32
 [05-Jun-2019 23:33:37 UTC] PHP Fatal error:  Method App\Challenge::__toString() must not throw an exception, caught ErrorException: Undefined variable: challenges_solution_counts in /home/bsimsekc/public_html/addons/obw.barkin.io/storage/framework/views/f249a06be74f4fd3625e6be863aecdb180b4c68e.php on line 0
+[09-Jun-2019 00:49:38 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/bsimsekc/public_html/addons/obw.barkin.io/vendor/laravel/framework/src/Illuminate/Support/Arr.php on line 380
+[09-Jun-2019 00:49:44 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/bsimsekc/public_html/addons/obw.barkin.io/vendor/laravel/framework/src/Illuminate/Support/Arr.php on line 380
+[09-Jun-2019 00:49:46 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/bsimsekc/public_html/addons/obw.barkin.io/vendor/laravel/framework/src/Illuminate/Support/Arr.php on line 380
+[09-Jun-2019 09:46:19 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/bsimsekc/public_html/addons/obw.barkin.io/laravel/vendor/laravel/framework/src/Illuminate/Support/Arr.php on line 380
+[09-Jun-2019 09:49:11 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/bsimsekc/public_html/addons/obw.barkin.io/laravel/vendor/laravel/framework/src/Illuminate/Support/Arr.php on line 380

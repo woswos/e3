@@ -53,20 +53,39 @@ use Symfony\Component\Process\Process;
 
 // Run commands is there is something to process or debugging is enabled
 if((!$nothingToProcess)||($debug)){
-    $process = new Process('ls');
+
+    // Compile first
+    echo "Compiling \n";
+    $compile = new Process('g++ -std=c++14 -Itfhe_unx/inc/tfhe api.cpp tfhe_unx/libtfhe.a tfhe_unx/libfftw3.a -o api.exe');
+    $compile->run();
+
+    // executes after the command finishes
+    if (!$compile->isSuccessful()) {
+        // Show compilation errors
+        throw new ProcessFailedException($compile);
+    } else {
+    	echo "Compiled successfully \n \n";
+    }
+
+
+    // No run the code
+    echo "Executing \n";
+    $process = new Process('./api.exe');
     $process->run();
 
     // executes after the command finishes
     if (!$process->isSuccessful()) {
         throw new ProcessFailedException($process);
+    } else {
+    	echo "Executed successfully \n \n";
     }
 
     $output = $process->getOutput();
 
-    if($debug){
-      echo $output;
-    }
-
+    echo "Here is the output: \n";
+    echo $output;
+  
+ 
     /////////////////////////////////
     // Send results back to the DB //
     /////////////////////////////////

@@ -55,7 +55,7 @@ use Symfony\Component\Process\Process;
 if((!$nothingToProcess)||($debug)){
 
     // Compile first
-    echo "Compiling \n";
+    echo "Compiling api.cpp file \n";
     $compile = new Process('g++ -std=c++14 -Itfhe_unx/inc/tfhe api.cpp tfhe_unx/libtfhe.a tfhe_unx/libfftw3.a -o api.exe');
     $compile->run();
 
@@ -65,17 +65,15 @@ if((!$nothingToProcess)||($debug)){
         throw new ProcessFailedException($compile);
     } else {
     	echo "Compiled successfully \n \n";
-    }
 
-
-    // No run the code
-    echo "Executing \n";
+	// Now run the code if there are no errors
+    echo "Executing api.exe file \n";
     $process = new Process('./api.exe');
     $process->run();
 
     // executes after the command finishes
     if (!$process->isSuccessful()) {
-        throw new ProcessFailedException($process);
+	throw new ProcessFailedException($process);
     } else {
     	echo "Executed successfully \n \n";
     }
@@ -84,6 +82,10 @@ if((!$nothingToProcess)||($debug)){
 
     echo "Here is the output: \n";
     echo $output;
+    }
+
+
+
   
  
     /////////////////////////////////

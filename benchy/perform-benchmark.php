@@ -3,6 +3,15 @@
 // var_dump($argv);
 
 if(in_array("--help", $argv, TRUE)){
+echo "    
+    ____                  __         
+   / __ \                / /
+  / /_/ /__  ____  _____/ /_  __  __
+ / __  / _ \/ __ \/ ___/ __ \/ / / /
+/ /_/ /  __/ / / / /__/ / / / /_/ / 
+\____/\___/_/ /_/\___/_/ /_/\__, /  
+	                   /____/  ";
+    echo "\n";
     echo "Welcome to benchy v0.1! \n";
     echo "\n";
     echo "By default, benchy will try to use make file inside of the scheme folder \n";

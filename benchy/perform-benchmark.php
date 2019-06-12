@@ -9,7 +9,7 @@ if(in_array("--help", $argv, TRUE)){
     echo "	and will try to execute scheme.exe inside of the scheme folder. \n";
     echo "	Otherwise, you can specify these files as shown below: \n"; 
     echo "\n";
-    echo "Usage: benchy [options] [absolute/path/to/make-file] [absolute/path/to/executable-file] \n";
+    echo "Usage: benchy [absolute/path/to/make-file] [absolute/path/to/executable-file] [options] \n";
     echo "       -v	verbose \n";
     echo "       -nodb	don't submit results to the database";
     echo "       -d	debugging mode for bechmarking files manually, without connecting to the database";

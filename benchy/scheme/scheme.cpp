@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <chrono>
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
@@ -6,103 +7,128 @@
 #include <sys/time.h>
 #include "tfhe.h"
 #include "polynomials.h"
+#include "lwesamples.h"
+#include "lwekey.h"
+#include "lweparams.h"
+#include "tlwe.h"
+#include "tgsw.h"
 
 using namespace std;
+using namespace std::chrono; 
 
+extern const TLweKey *debug_accum_key;
+extern const LweKey *debug_extract_key;
+extern const LweKey *debug_in_key;
 
-
-// **********************************************************************************
-// ********************************* MAIN *******************************************
-// **********************************************************************************
-
-
-void dieDramatically(string message) {
-    cerr << message << endl;
-    abort();
-}
-
+// /** bootstrapped Nand Gate */ 
+// void bootsNAND(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
 
 int32_t main(int32_t argc, char **argv) {
-    const int32_t count = 1000; //number of tests to compare the 3 types of multiplication
 
-    const int32_t N = 1024;
-    IntPolynomial *a = new_IntPolynomial(N);
-    TorusPolynomial *b = new_TorusPolynomial(N);
-    TorusPolynomial *resNaive = new_TorusPolynomial(N);
-    TorusPolynomial *resFFT = new_TorusPolynomial(N);
-    TorusPolynomial *resKaratsuba = new_TorusPolynomial(N);
-    //LagrangeHalfCPolynomial* test_fft = new_LagrangeHalfCPolynomial(N);
+    const int32_t nb_samples = 64;
+    const int32_t nb_trials = 1;
 
-    double cycles_naive[count];
-    double cycles_karatsuba[count];
-    double cycles_fft[count];
+    /** generate default gate bootstrapping parameters */
+    int32_t minimum_lambda = 100;
+    const TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
 
-    for (int32_t i = 0; i < count; ++i) {
-        for (int32_t i = 0; i < N; i++) {
-            a->coefs[i] = (rand() % (4 * N)) - (2 * N);
-            b->coefsT[i] = rand();
+
+    /** generate a random gate bootstrapping secret key */
+    const TFheGateBootstrappingSecretKeySet *keyset = new_random_gate_bootstrapping_secret_keyset(params);
+
+    /** generate a new unititialized ciphertext (or an array of ciphertexts) */
+    const LweSample *cipher_text_a = new_gate_bootstrapping_ciphertext(params);
+    const LweSample *cipher_text_b = new_gate_bootstrapping_ciphertext(params);
+    LweSample *cipher_text_result = new_gate_bootstrapping_ciphertext(params);
+
+
+    /** bootstrapped Nand Gate */ 
+    cout << "starting bootstrapping NAND" << endl;
+	
+    auto start = high_resolution_clock::now(); 
+    bootsNAND(cipher_text_result, cipher_text_a, cipher_text_a, &keyset->cloud);
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << "finished bootstrappings NAND" << endl;
+    cout << "time per bootNAND gate (microsecs)... " << duration.count() << endl;
+
+
+/*
+    const int32_t nb_samples = 64;
+    const int32_t nb_trials = 1;
+
+    // generate params 
+    int32_t minimum_lambda = 100;
+    TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
+
+    // generate the secret keyset
+    TFheGateBootstrappingSecretKeySet *keyset = new_random_gate_bootstrapping_secret_keyset(params);
+
+    // generate samples
+    const LweSample *cipher_text_a = new_gate_bootstrapping_ciphertext(params);
+    const LweSample *cipher_text_b = new_gate_bootstrapping_ciphertext(params);
+    LweSample *cipher_text_result = new_gate_bootstrapping_ciphertext(params);
+
+    bootsNAND(cipher_text_result, cipher_text_a, cipher_text_b, &keyset->cloud);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    const int32_t nb_samples = 64;
+    const int32_t nb_trials = 1;
+
+    // generate params 
+    int32_t minimum_lambda = 100;
+    TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
+    const LweParams *in_out_params = params->in_out_params;
+
+    // generate the secret keyset
+    TFheGateBootstrappingSecretKeySet *keyset = new_random_gate_bootstrapping_secret_keyset(params);
+
+
+    for (int32_t trial = 0; trial < nb_trials; ++trial) {
+
+        // generate samples
+        LweSample *test_in = new_LweSample_array(2 * nb_samples, in_out_params);
+
+        // generate inputs (64-->127)
+        for (int32_t i = nb_samples; i < 2 * nb_samples; ++i) {
+            bootsSymEncrypt(test_in + i, rand() % 2, keyset);
         }
 
-        //measure the execution time
-        clock_t cstart, cend;
+        // fake encrypt
+        bootsSymEncrypt(test_in + 0, rand() % 2, keyset);
 
-        cstart = clock();
-        torusPolynomialMultNaive(resNaive, a, b);
-        cend = clock();
-        cycles_naive[i] = cend - cstart;
+        // evaluate the NAND tree
+        cout << "starting bootstrapping NAND tree...trial " << trial << endl;
+        clock_t begin = clock();
+        for (int32_t i = nb_samples - 1; i > 0; --i) {
+            bootsNAND(test_in + i, test_in + (2 * i), test_in + (2 * i + 1), &keyset->cloud);
+        }
+        clock_t end = clock();
+        cout << "finished bootstrappings NAND tree" << endl;
+        cout << "time per bootNAND gate (microsecs)... " << (end - begin) / double(nb_samples - 1) << endl;
 
-        cstart = clock();
-        torusPolynomialMultKaratsuba(resKaratsuba, a, b);
-        cend = clock();
-        cycles_karatsuba[i] = cend - cstart;
+        // verification
+        for (int32_t i = nb_samples - 1; i > 0; --i) {
+            bool mess1 = bootsSymDecrypt(test_in + (2 * i), keyset);
+            bool mess2 = bootsSymDecrypt(test_in + (2 * i + 1), keyset);
+            bool out = bootsSymDecrypt(test_in + i, keyset);
 
-        cstart = clock();
-        torusPolynomialMultFFT(resFFT, a, b);
-        //TorusPolynomial_ifft(test_fft,resNaive);
-        //TorusPolynomial_fft(resFFT,test_fft);
-        cend = clock();
-        cycles_fft[i] = cend - cstart;
-
-        for (int32_t i = 0; i < N; i++) {
-            if (abs(int32_t(resNaive->coefsT[i] - resFFT->coefsT[i])) > 1) {
-                cerr << i << " " << resNaive->coefsT[i] << " vs. " << resFFT->coefsT[i] << endl;
-                dieDramatically("Naive != FFT\n");
+            if (out != 1 - (mess1 * mess2)) {
+                cout << "ERROR!!! " << trial << "," << i << " - ";
+                cout << t32tod(lwePhase(test_in + i, keyset->lwe_key)) << " - ";
+                cout << t32tod(lwePhase(test_in + (2 * i), keyset->lwe_key)) << " - ";
+                cout << t32tod(lwePhase(test_in + (2 * i + 1), keyset->lwe_key)) << endl;
             }
+
         }
-        for (int32_t i = 0; i < N; i++) {
-            if (abs(int32_t(resNaive->coefsT[i] - resKaratsuba->coefsT[i])) > 1) {
-                cerr << i << " " << resNaive->coefsT[i] << " vs. " << resKaratsuba->coefsT[i] << endl;
-                dieDramatically("Naive != Karatsuba\n");
-            }
-        }
+
+        delete_LweSample_array(2 * nb_samples, test_in);
     }
 
-    // computing the average number of cycles per type of multiplication
-    double cyc_naive = 0;
-    double cyc_karatsuba = 0;
-    double cyc_fft = 0;
-    for (int32_t i = 0; i < count; ++i) {
-        cyc_naive += cycles_naive[i];
-        cyc_karatsuba += cycles_karatsuba[i];
-        cyc_fft += cycles_fft[i];
-    }
-    cyc_naive = cyc_naive / count;
-    cyc_karatsuba = cyc_karatsuba / count;
-    cyc_fft = cyc_fft / count;
-
-    cout << "torusPolynomialMultNaive: " << cyc_naive << " clock cycles (average)" << endl;
-    cout << "torusPolynomialMultNaive time: " << (cyc_naive / CLOCKS_PER_SEC) << " seconds" << endl;
-    cout << endl;
-    cout << "torusPolynomialMultKaratsuba: " << cyc_karatsuba << " clock cycles (average)" << endl;
-    cout << "torusPolynomialMultKaratsuba time: " << (cyc_karatsuba / CLOCKS_PER_SEC) << " seconds" << endl;
-    cout << endl;
-    cout << "torusPolynomialMultFFT: " << cyc_fft << " clock cycles (average)" << endl;
-    cout << "torusPolynomialMultFFT time: " << (cyc_fft / CLOCKS_PER_SEC) << " seconds" << endl;
-    cout << endl;
-
-    delete_IntPolynomial(a);
-    delete_TorusPolynomial(b);
-    delete_TorusPolynomial(resNaive);
-    delete_TorusPolynomial(resKaratsuba);
+    delete_gate_bootstrapping_secret_keyset(keyset);
+    delete_gate_bootstrapping_parameters(params);
+*/
     return 0;
 }

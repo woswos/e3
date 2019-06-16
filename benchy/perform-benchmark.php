@@ -20,7 +20,7 @@ echo "
     echo "\n";
     echo "Usage: benchy [absolute/path/to/make-file] [absolute/path/to/executable-file] [options] \n";
     echo "       -v	verbose \n";
-    echo "       -nodb	don't submit results to the database";
+    echo "       -nodb	don't submit results to the database \n";
     echo "       -d	debugging mode for bechmarking files manually, without connecting to the database";
 
     echo "\n \n";
@@ -119,6 +119,7 @@ if((!$nothingToProcess)||($debug)){
     // Compile first
     if($verbose){ echo "-- Compiling scheme -- \n";}
     $compile = new Process('cd scheme && make');
+    $compile->setTimeout(6000); // in seconds
     $compile->run();
 
     // executes after the command finishes
@@ -130,8 +131,9 @@ if((!$nothingToProcess)||($debug)){
 
 
 	    // Now run the code if there are no errors
-	    if($verbose){ echo "-- Executing scheme -- \n";}
+	    if($verbose){ echo "-- Executing scheme (might take a while) -- \n";}
 	    $process = new Process('cd scheme && ./scheme.exe');
+            $process->setTimeout(6000); // in seconds
 	    $process->run();
 
 	    // executes after the command finishes
@@ -145,6 +147,7 @@ if((!$nothingToProcess)||($debug)){
 
 	    echo "--> Here is the output: \n";
 	    echo $output;
+            echo "\n";
  
     }
 

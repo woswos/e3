@@ -77,7 +77,7 @@ void Benchy::calculateAverage(){
   if(currentOperationIndex == -1){
     benchmarkAverageTimeDuration.push_back(duration);
 
-
+    
     cout << "first time for '" << testName.back() << "' operation" << endl;
     cout << "current value: " << duration.count() << " ms" << endl << endl;
 

@@ -66,9 +66,19 @@ if(in_array("-r", $argv, TRUE)){
 
 }
 
+$error = FALSE;
+
 echo "\n";
 
-include 'benchmark-creator.php';
+// https://symfony.com/doc/current/components/process.html
+// https://github.com/cocur/background-process
+// composer require symfony/process
+
+// Include Symfony Process
+require_once 'vendor/autoload.php';
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+
 
 /////////////////////////////////////////////
 // Get list of unprocessed schemes from DB //
@@ -79,133 +89,177 @@ $username = "bsimsekc_obw";
 $password = "e3obw123**";
 $database = "bsimsekc_obw";
 
-// Connect to database if debugging is not enabled
-if(!$debug){
-	// Create connection
-	if($verbose){ echo "-- Connecting to database -- \n";}
-	$conn = mysqli_connect($servername, $username, $password, $database);
+while(TRUE){
+    // Connect to database if debugging is not enabled
+    if(!$debug){
+    	// Create connection
+    	if($verbose){ echo "-- Connecting to database -- \n";}
+    	$conn = mysqli_connect($servername, $username, $password, $database);
 
-	// Check connection
-	if (!$conn) {
-	    die("Connection failed: " . mysqli_connect_error());
-	}
+    	// Check connection
+    	if (!$conn) {
+    	    die("Connection failed: " . mysqli_connect_error());
+    	}
 
-	$sql = "SELECT DISTINCT schemes.id, schemes.title, schemes.attached_files, queue.processed
-		FROM schemes
-		INNER JOIN queue on schemes.id = queue.scheme_id
-		WHERE queue.processed = '0'
-		ORDER BY queue.updated_at ASC";
+    	$sql = "SELECT DISTINCT schemes.id, schemes.title, schemes.attached_files, queue.processed
+    		FROM schemes
+    		INNER JOIN queue on schemes.id = queue.scheme_id
+    		WHERE queue.processed = '0'
+    		ORDER BY queue.updated_at ASC";
 
-	if($verbose){ echo "-- Retrieving queue from the database -- \n";}
-	$result = $conn->query($sql);
+    	if($verbose){ echo "-- Retrieving queue from the database -- \n";}
+    	$result = $conn->query($sql);
 
-	if (mysqli_num_rows($result) > 0) {
-	  $row = $result->fetch_assoc();
-	  $nothingToProcess = False;
-	  if($verbose){ echo "-- Found unproccessed schemes in the queue -- \n";}
+    	if (mysqli_num_rows($result) > 0) {
+    	  $row = $result->fetch_assoc();
+    	  $nothingToProcess = False;
+    	  if($verbose){ echo "-- Found unproccessed schemes in the queue -- \n";}
 
-	} else {
-	  if($verbose){ echo "-- There are no unproccessed schemes in the queue -- \n";}
-	  $nothingToProcess = True;
+    	} else {
+    	  if($verbose){ echo "-- There are no unproccessed schemes in the queue -- \n";}
+    	  $nothingToProcess = True;
 
-	}
+    	}
 
-	$conn->close();
-	  if($verbose){ echo "-- Closed database connection -- \n";}
+    	$conn->close();
+    	  if($verbose){ echo "-- Closed database connection -- \n";}
 
-	//echo "<pre>";
-	//print_r($row);
+    	//echo "<pre>";
+    	//print_r($row);
 
-} else {
-	$nothingToProcess = FALSE;
-}
-
-
-
-//////////////////////////
-// Do the benchmarkings //
-//////////////////////////
-// https://symfony.com/doc/current/components/process.html
-// https://github.com/cocur/background-process
-// composer require symfony/process
-
-// Include Symfony Process
-require_once 'vendor/autoload.php';
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
-
-// Don't process anything if there is nothing in the queue
-if((!$nothingToProcess)||($debug)){
-
-    // Compile first
-    if($verbose){ echo "-- Compiling scheme -- \n";}
-    $compile = new Process('cd scheme && make');
-    $compile->setTimeout(6000); // in seconds
-    $compile->run();
-
-    // executes after the command finishes
-    if (!$compile->isSuccessful()) {
-        // Show compilation errors
-        throw new ProcessFailedException($compile);
     } else {
-        if($verbose){ echo "-- Compiled successfully -- \n \n";}
-
-
-	    // Now run the code if there are no errors
-	    if($verbose){ echo "-- Executing scheme (might take a while) -- \n";}
-	    $process = new Process('cd scheme && ./scheme.exe');
-      $process->setTimeout(6000); // in seconds
-	    $process->run();
-
-	    // executes after the command finishes
-	    if (!$process->isSuccessful()) {
-		      throw new ProcessFailedException($process);
-
-	    } else {
-	       if($verbose){ echo "-- Executed successfully -- \n \n";}
-
-	    }
-
-	    $output = $process->getOutput();
-
-      if($verbose){ echo "--> Here is the output \n".$output."\n";}
-      if($verbose){ echo "--> Here is the decoded output \n";}
-      if($verbose){ var_dump(json_decode($output, true));}
-
-      $benchmark_results = json_decode($output, true);
+    	$nothingToProcess = FALSE;
     }
 
 
-    /////////////////////////////////
-    // Send results back to the DB //
-    /////////////////////////////////
-    // Don't try messing with DB unless -nodb enabled or debugging is not enabled
-    if((!$nodb)||(!$debug)){
-      // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $database);
 
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
+    //////////////////////////
+    // Do the benchmarkings //
+    //////////////////////////
+    // Don't process anything if there is nothing in the queue
+    if((!$nothingToProcess)||($debug)){
+
+        while(TRUE){
+
+            // Compile first
+            if($verbose){ echo "-- Compiling scheme -- \n";}
+            $compile = new Process('cd scheme && make');
+            $compile->setTimeout(6000); // in seconds
+            $compile->run();
+
+            // executes after the command finishes
+            if (!$compile->isSuccessful()) {
+                $error = TRUE;
+                // Show compilation errors
+                //throw new ProcessFailedException($compile);
+                if($verbose){
+                  echo "#######################\n";
+                  echo "## COMPILATION ERROR ##\n";
+                  echo "#######################\n";
+                  echo (new ProcessFailedException($compile));
+                  echo "\n";
+
+                  echo "###########################\n";
+                  echo "## RETRYING IN 3 SECONDS ##\n";
+                  echo "###########################\n";
+                  echo "\n";
+                  sleep(3);
+                }
+
+            } else {
+                $error = FALSE;
+                if($verbose){ echo "-- Compiled successfully -- \n \n";}
+
+          	    // Now run the code if there are no errors
+          	    if($verbose){ echo "-- Executing scheme (might take a while) -- \n";}
+          	    $process = new Process('cd scheme && ./scheme.exe');
+                $process->setTimeout(6000); // in seconds
+          	    $process->run();
+
+          	    // executes after the command finishes
+          	    if (!$process->isSuccessful()) {
+                    $error = TRUE;
+          		      //throw new ProcessFailedException($process);
+                    if($verbose){
+                      echo "###################\n";
+                      echo "## RUNTIME ERROR ##\n";
+                      echo "###################\n";
+                      echo (new ProcessFailedException($process));
+                      echo "\n";
+
+                      echo "###########################\n";
+                      echo "## RETRYING IN 3 SECONDS ##\n";
+                      echo "###########################\n";
+                      echo "\n";
+                      sleep(3);
+                    }
+
+          	    } else {
+                    $error = FALSE;
+                    if($verbose){ echo "-- Executed successfully -- \n \n";}
+
+                    $output = $process->getOutput();
+
+                    if($verbose){ echo "--> Here is the output \n".$output."\n";}
+                    if($verbose){ echo "--> Here is the decoded output \n";}
+                    if($verbose){ var_dump(json_decode($output, true));}
+
+                    $benchmark_results = json_decode($output, true);
+
+                    echo "\n";
+          	    }
+
+            }
+
+            // Break out of the while loop if there are no errors
+            if((!$development)||(!$error)){break;}
         }
 
-        // Update benchmark values
-        $sql = "UPDATE schemes SET speed = $output WHERE id = "."'".$row['id']."'";
-        $conn->query($sql);
+        /////////////////////////////////
+        // Send results back to the DB //
+        /////////////////////////////////
+        // Don't try messing with DB unless -nodb enabled or debugging is not enabled
+        if((!$nodb)||(!$debug)){
+          // Create connection
+            $conn = mysqli_connect($servername, $username, $password, $database);
 
-        // Mark this scheme as processed in the queue
-        $sql = "UPDATE queue SET processed = '1' WHERE scheme_id = "."'".$row['id']."'";
-        $conn->query($sql);
+            // Check connection
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
 
-        $conn->close();
+            // Update benchmark values
+            $sql = "UPDATE schemes SET speed = $output WHERE id = "."'".$row['id']."'";
+            $conn->query($sql);
 
-        echo "processed ".$row['id'].", aka".$row['title']."\n";
+            // Mark this scheme as processed in the queue
+            $sql = "UPDATE queue SET processed = '1' WHERE scheme_id = "."'".$row['id']."'";
+            $conn->query($sql);
 
+            $conn->close();
 
-      }
+            echo "processed ".$row['id'].", aka".$row['title']."\n";
 
-} else {
-  echo "-- Nothing is processed or submitted to the database -- \n";
+          }
+
+    } else {
+      echo "-- Nothing is processed or submitted to the database -- \n";
+    }
+
+    if(!$development){
+      break;
+
+    } else {
+      echo "#########################################\n";
+      echo "##            YIKES, WORKS!            ##\n";
+      echo "#########################################\n";
+      echo "##      RUNNING AGAIN IN 3 SECONDS     ##\n";
+      echo "#########################################\n";
+      echo "## USE CTRL+C TO EXIT DEVELOPMENT MODE ##\n";
+      echo "#########################################\n";
+      echo "\n \n";
+      sleep(3);
+
+    }
 }
-
 ?>

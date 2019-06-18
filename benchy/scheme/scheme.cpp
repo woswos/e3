@@ -47,14 +47,7 @@ int32_t main(int32_t argc, char **argv) {
     bootsNAND(cipher_text_result, cipher_text_a, cipher_text_b, &keyset->cloud);
     scheme.stopTimer();
 
-    delete_gate_bootstrapping_secret_keyset(&keyset);
-    delete_gate_bootstrapping_parameters(&params);
-
     scheme.finalizeBenchmark();
-
-
-
-
 
 
 /*

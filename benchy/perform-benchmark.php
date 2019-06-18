@@ -12,7 +12,7 @@ if(in_array("--help", $argv, TRUE)){
     \____/\___/_/ /_/\___/_/ /_/\__, /
                                /____/  ";
     echo "\n";
-    echo "Welcome to benchy v0.1! \n";
+    echo "Welcome to Benchy v0.1! \n";
     echo "\n";
     echo "By default, benchy will try to use make file inside of the scheme folder \n";
     echo "	and will try to execute scheme.exe inside of the scheme folder. \n";
@@ -21,7 +21,9 @@ if(in_array("--help", $argv, TRUE)){
     echo "Usage: benchy [absolute/path/to/make-file] [absolute/path/to/executable-file] [options] \n";
     echo "       -v	verbose \n";
     echo "       -nodb	don't submit results to the database \n";
-    echo "       -d	debugging mode for bechmarking files manually, without connecting to the database";
+    echo "       -d	debugging mode for bechmarking files manually, without connecting to the database \n";
+    echo "       -r	development mode (retry compiling and/or executing after 3 seconds if an error occures.";
+    echo "                  It is useful for developing and not having to run benchy over and over again.) \n";
 
     echo "\n \n";
     die();
@@ -52,6 +54,15 @@ if(in_array("-d", $argv, TRUE)){
 
 } else {
     $debug = FALSE;
+
+}
+
+if(in_array("-r", $argv, TRUE)){
+    $development = TRUE;
+    echo "# Development mode enabled # \n";
+
+} else {
+    $development = FALSE;
 
 }
 

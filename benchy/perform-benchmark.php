@@ -3,20 +3,20 @@
 // var_dump($argv);
 
 if(in_array("--help", $argv, TRUE)){
-echo "    
-    ____                  __         
-   / __ \                / /
-  / /_/ /__  ____  _____/ /_  __  __
- / __  / _ \/ __ \/ ___/ __ \/ / / /
-/ /_/ /  __/ / / / /__/ / / / /_/ / 
-\____/\___/_/ /_/\___/_/ /_/\__, /  
-	                   /____/  ";
+    echo "
+        ____                  __
+       / __ \                / /
+      / /_/ /__  ____  _____/ /_  __  __
+     / __  / _ \/ __ \/ ___/ __ \/ / / /
+    / /_/ /  __/ / / / /__/ / / / /_/ /
+    \____/\___/_/ /_/\___/_/ /_/\__, /
+    	                   /____/  ";
     echo "\n";
     echo "Welcome to benchy v0.1! \n";
     echo "\n";
     echo "By default, benchy will try to use make file inside of the scheme folder \n";
     echo "	and will try to execute scheme.exe inside of the scheme folder. \n";
-    echo "	Otherwise, you can specify these files as shown below: \n"; 
+    echo "	Otherwise, you can specify these files as shown below: \n";
     echo "\n";
     echo "Usage: benchy [absolute/path/to/make-file] [absolute/path/to/executable-file] [options] \n";
     echo "       -v	verbose \n";
@@ -30,26 +30,34 @@ echo "
 if(in_array("-v", $argv, TRUE)){
     $verbose = TRUE;
     echo "# Verbose mode enabled # \n";
+
 } else {
     $verbose = FALSE;
+
 }
 
 if(in_array("-nodb", $argv, TRUE)){
     $nodb = TRUE;
     echo "# Database submission disabled # \n";
+
 } else {
     $nodb = FALSE;
+
 }
 
 if(in_array("-d", $argv, TRUE)){
     $debug = TRUE;
     $nodb = TRUE;
     echo "# Debugging mode enabled # \n";
+
 } else {
     $debug = FALSE;
+
 }
 
 echo "\n";
+
+include 'benchmark-creator.php';
 
 /////////////////////////////////////////////
 // Get list of unprocessed schemes from DB //
@@ -84,9 +92,11 @@ if(!$debug){
 	  $row = $result->fetch_assoc();
 	  $nothingToProcess = False;
 	  if($verbose){ echo "-- Found unproccessed schemes in the queue -- \n";}
+
 	} else {
 	  if($verbose){ echo "-- There are no unproccessed schemes in the queue -- \n";}
 	  $nothingToProcess = True;
+
 	}
 
 	$conn->close();
@@ -133,7 +143,7 @@ if((!$nothingToProcess)||($debug)){
 	    // Now run the code if there are no errors
 	    if($verbose){ echo "-- Executing scheme (might take a while) -- \n";}
 	    $process = new Process('cd scheme && ./scheme.exe');
-            $process->setTimeout(6000); // in seconds
+      $process->setTimeout(6000); // in seconds
 	    $process->run();
 
 	    // executes after the command finishes
@@ -147,12 +157,12 @@ if((!$nothingToProcess)||($debug)){
 
 	    echo "--> Here is the output: \n";
 	    echo $output;
-            echo "\n";
- 
+      echo "\n";
+
     }
 
 
- 
+
     /////////////////////////////////
     // Send results back to the DB //
     /////////////////////////////////

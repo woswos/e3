@@ -13,52 +13,98 @@
 #include "tlwe.h"
 #include "tgsw.h"
 
+#include "Benchy.h"
+
 using namespace std;
-using namespace std::chrono; 
+using namespace std::chrono;
 
 extern const TLweKey *debug_accum_key;
 extern const LweKey *debug_extract_key;
 extern const LweKey *debug_in_key;
-
-// /** bootstrapped Nand Gate */ 
-// void bootsNAND(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
 
 int32_t main(int32_t argc, char **argv) {
 
     const int32_t nb_samples = 64;
     const int32_t nb_trials = 1;
 
-    /** generate default gate bootstrapping parameters */
+    // generate default gate bootstrapping parameters
     int32_t minimum_lambda = 100;
     const TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
 
 
-    /** generate a random gate bootstrapping secret key */
+    // generate a random gate bootstrapping secret key
     const TFheGateBootstrappingSecretKeySet *keyset = new_random_gate_bootstrapping_secret_keyset(params);
 
-    /** generate a new unititialized ciphertext (or an array of ciphertexts) */
+    // generate a new unititialized ciphertext (or an array of ciphertexts)
     const LweSample *cipher_text_a = new_gate_bootstrapping_ciphertext(params);
     const LweSample *cipher_text_b = new_gate_bootstrapping_ciphertext(params);
     LweSample *cipher_text_result = new_gate_bootstrapping_ciphertext(params);
 
+    Benchy scheme;
 
-    /** bootstrapped Nand Gate */ 
-    cout << "starting bootstrapping NAND" << endl;
-	
-    auto start = high_resolution_clock::now(); 
+    scheme.startTimer("add");
+    scheme.stopTimer();
+
+    scheme.startTimer("add");
+    scheme.stopTimer();
+
+    scheme.finalizeBenchmark();
+
+/*
+    // bootstrapped Nand Gate
+    auto start1 = high_resolution_clock::now();
     bootsNAND(cipher_text_result, cipher_text_a, cipher_text_a, &keyset->cloud);
-    auto stop = high_resolution_clock::now();
+    auto stop1 = high_resolution_clock::now();
+    auto duration1 = duration_cast<microseconds>(stop1 - start1);
+    cout << "time per bootNAND gate (microsecs)... " << duration1.count() << endl;
 
-    auto duration = duration_cast<microseconds>(stop - start);
-    cout << "finished bootstrappings NAND" << endl;
-    cout << "time per bootNAND gate (microsecs)... " << duration.count() << endl;
+
+    // bootstrapped Constant (true or false) trivial Gate
+    auto start2 = high_resolution_clock::now();
+    bootsCONSTANT(cipher_text_result, 1, &keyset->cloud);
+    auto stop2 = high_resolution_clock::now();
+    auto duration2 = duration_cast<microseconds>(stop2 - start2);
+    cout << "time per bootsCONSTANT gate (microsecs)... " << duration2.count() << endl;
+*/
+
+
+/*
+// bootstrapped Not Gate: result = not(a)
+bootsNOT(LweSample* result, const LweSample* ca, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped Copy Gate: result = a
+bootsCOPY(LweSample* result, const LweSample* ca, const TFheGateBootstrappingCloudKeySet* bk);
+
+// bootstrapped Nand Gate
+bootsNAND(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped Or Gate:
+bootsOR(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped And Gate: result = a and b
+bootsAND(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped Xor Gate: result = a xor b
+bootsXOR(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped Xnor Gate: result = (a==b)
+bootsXNOR(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped Nor Gate: result = not(a or b)
+bootsNOR(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped AndNY Gate: not(a) and b
+bootsANDNY(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped AndYN Gate: a and not(b)
+bootsANDYN(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped OrNY Gate: not(a) or b
+bootsORNY(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+// bootstrapped OrYN Gate: a or not(b)
+bootsORYN(LweSample* result, const LweSample* ca, const LweSample* cb, const TFheGateBootstrappingCloudKeySet* bk);
+
+// bootstrapped Mux(a,b,c) = a?b:c
+void bootsMUX(LweSample* result, const LweSample* a, const LweSample* b, const LweSample* c, const TFheGateBootstrappingCloudKeySet* bk);
+
 
 
 /*
     const int32_t nb_samples = 64;
     const int32_t nb_trials = 1;
 
-    // generate params 
+    // generate params
     int32_t minimum_lambda = 100;
     TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
 
@@ -77,7 +123,7 @@ int32_t main(int32_t argc, char **argv) {
     const int32_t nb_samples = 64;
     const int32_t nb_trials = 1;
 
-    // generate params 
+    // generate params
     int32_t minimum_lambda = 100;
     TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
     const LweParams *in_out_params = params->in_out_params;

@@ -148,9 +148,11 @@ if((!$nothingToProcess)||($debug)){
 
 	    // executes after the command finishes
 	    if (!$process->isSuccessful()) {
-		throw new ProcessFailedException($process);
+		      throw new ProcessFailedException($process);
+
 	    } else {
-	    	if($verbose){ echo "-- Executed successfully -- \n \n";}
+	       if($verbose){ echo "-- Executed successfully -- \n \n";}
+
 	    }
 
 	    $output = $process->getOutput();

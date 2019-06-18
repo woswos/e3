@@ -24,47 +24,38 @@ extern const LweKey *debug_in_key;
 
 int32_t main(int32_t argc, char **argv) {
 
-
-
-    const int32_t nb_samples = 64;
-    const int32_t nb_trials = 1;
-
     // generate default gate bootstrapping parameters
     int32_t minimum_lambda = 100;
     const TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
 
-
     // generate a random gate bootstrapping secret key
     const TFheGateBootstrappingSecretKeySet *keyset = new_random_gate_bootstrapping_secret_keyset(params);
-
-    // generate a new unititialized ciphertext (or an array of ciphertexts)
-    const LweSample *cipher_text_a = new_gate_bootstrapping_ciphertext(params);
-    const LweSample *cipher_text_b = new_gate_bootstrapping_ciphertext(params);
-    LweSample *cipher_text_result = new_gate_bootstrapping_ciphertext(params);
 
 
     Benchy scheme;
 
 
-  for(int x = 0; x < 50; x++){
-    scheme.startTimer("NAND");
-    bootsNAND(cipher_text_result, cipher_text_a, cipher_text_a, &keyset->cloud);
-    scheme.stopTimer();
-  }
+    // generate a new unititialized ciphertext (or an array of ciphertexts)
+    const LweSample *cipher_text_aa = new_gate_bootstrapping_ciphertext(params);
+    const LweSample *cipher_text_bb = new_gate_bootstrapping_ciphertext(params);
+    LweSample *cipher_text_resultt = new_gate_bootstrapping_ciphertext(params);
 
-  for(int x = 0; x < 50; x++){
-    scheme.startTimer("CONSTANT");
-    bootsCONSTANT(cipher_text_result, 1, &keyset->cloud);
-    scheme.stopTimer();
-  }
 
-  for(int x = 0; x < 50; x++){
-    scheme.startTimer("AND");
-    bootsAND(cipher_text_result, cipher_text_a, cipher_text_a, &keyset->cloud);
-    scheme.stopTimer();
-  }
+    const LweSample *cipher_text_a = new_gate_bootstrapping_ciphertext(params);
+    const LweSample *cipher_text_b = new_gate_bootstrapping_ciphertext(params);
+    LweSample *cipher_text_result = new_gate_bootstrapping_ciphertext(params);
 
-  scheme.finalizeBenchmark();
+
+    scheme.startTimer("nand_1");
+    bootsNAND(cipher_text_result, cipher_text_a, cipher_text_b, &keyset->cloud);
+    scheme.stopTimer();
+
+
+    scheme.startTimer("nand_2");
+    bootsNAND(cipher_text_resultt, cipher_text_aa, cipher_text_bb, &keyset->cloud);
+    scheme.stopTimer();
+
+    scheme.finalizeBenchmark();
 
 
 

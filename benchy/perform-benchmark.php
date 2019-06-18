@@ -155,12 +155,12 @@ if((!$nothingToProcess)||($debug)){
 
 	    $output = $process->getOutput();
 
-	    echo "--> Here is the output: \n";
-	    echo $output;
-      echo "\n";
+      if($verbose){ echo "--> Here is the output \n".$output."\n";}
+      if($verbose){ echo "--> Here is the decoded output \n";}
+      if($verbose){ var_dump(json_decode($output, true));}
 
+      $benchmark_results = json_decode($output, true);
     }
-
 
 
     /////////////////////////////////

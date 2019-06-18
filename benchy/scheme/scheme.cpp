@@ -24,6 +24,8 @@ extern const LweKey *debug_in_key;
 
 int32_t main(int32_t argc, char **argv) {
 
+
+
     const int32_t nb_samples = 64;
     const int32_t nb_trials = 1;
 
@@ -40,24 +42,33 @@ int32_t main(int32_t argc, char **argv) {
     const LweSample *cipher_text_b = new_gate_bootstrapping_ciphertext(params);
     LweSample *cipher_text_result = new_gate_bootstrapping_ciphertext(params);
 
+
     Benchy scheme;
 
-    scheme.startTimer("add");
-    scheme.stopTimer();
 
-    scheme.startTimer("add");
+  for(int x = 0; x < 50; x++){
+    scheme.startTimer("NAND");
+    bootsNAND(cipher_text_result, cipher_text_a, cipher_text_a, &keyset->cloud);
     scheme.stopTimer();
+  }
 
-    scheme.finalizeBenchmark();
+  for(int x = 0; x < 50; x++){
+    scheme.startTimer("CONSTANT");
+    bootsCONSTANT(cipher_text_result, 1, &keyset->cloud);
+    scheme.stopTimer();
+  }
+
+  for(int x = 0; x < 50; x++){
+    scheme.startTimer("AND");
+    bootsAND(cipher_text_result, cipher_text_a, cipher_text_a, &keyset->cloud);
+    scheme.stopTimer();
+  }
+
+  scheme.finalizeBenchmark();
+
+
 
 /*
-    // bootstrapped Nand Gate
-    auto start1 = high_resolution_clock::now();
-    bootsNAND(cipher_text_result, cipher_text_a, cipher_text_a, &keyset->cloud);
-    auto stop1 = high_resolution_clock::now();
-    auto duration1 = duration_cast<microseconds>(stop1 - start1);
-    cout << "time per bootNAND gate (microsecs)... " << duration1.count() << endl;
-
 
     // bootstrapped Constant (true or false) trivial Gate
     auto start2 = high_resolution_clock::now();
@@ -65,7 +76,7 @@ int32_t main(int32_t argc, char **argv) {
     auto stop2 = high_resolution_clock::now();
     auto duration2 = duration_cast<microseconds>(stop2 - start2);
     cout << "time per bootsCONSTANT gate (microsecs)... " << duration2.count() << endl;
-*/
+
 
 
 /*

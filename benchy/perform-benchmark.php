@@ -1,6 +1,6 @@
 <?php
 
-// var_dump($argv);
+//var_dump($argv);
 
 if(in_array("--help", $argv, TRUE)){
     echo "
@@ -18,7 +18,8 @@ if(in_array("--help", $argv, TRUE)){
     echo "	and will try to execute scheme.exe inside of the scheme folder. \n";
     echo "	Otherwise, you can specify these files as shown below: \n";
     echo "\n";
-    echo "Usage: benchy [absolute/path/to/make-file] [absolute/path/to/executable-file] [options] \n";
+    echo "Usage: benchy [absolute/path/to/project/folder] [name-of-executable-file] [options] \n";
+    echo "Example usage: benchy /home/user/scheme scheme.exe -v \n \n";
     echo "       -v	verbose \n";
     echo "       -nodb	don't submit results to the database \n";
     echo "       -d	debugging mode for bechmarking files manually, without connecting to the database \n";
@@ -28,6 +29,44 @@ if(in_array("--help", $argv, TRUE)){
     echo "\n \n";
     die();
 }
+
+$currentDirectory = getcwd().'/';
+
+// Check for given file paths
+// Get the first character of the first given argument
+if(mb_substr($argv[1], 0, 1, "UTF-8") != "-"){
+  // So this is a file path, not option
+
+  // Get the second character of the first given argument
+  if(mb_substr($argv[1], 0, 1, "UTF-8") == "/"){
+    // Get the path if it is absolute
+    $projectFolderPath = $argv[1];
+
+  } else {
+    echo ("Please enter an absolute path for project folder \n \n");
+    die();
+  }
+
+}
+
+// Check for given file paths
+// Get the first character of the second given argument
+if(mb_substr($argv[2], 0, 1, "UTF-8") != "-"){
+  // So this is a file path, not option
+
+  // Get the second character of the second given argument
+  if(mb_substr($argv[2], 0, 1, "UTF-8") != "/"){
+    // Get the path if it is absolute
+    $executableFile = $argv[2];
+
+  } else {
+    echo ("Please the name of the executable file, not a path \n");
+    echo ("For example -> benchy /path/to/project/folder scheme.exe \n \n");
+    die();
+  }
+
+}
+
 
 if(in_array("-v", $argv, TRUE)){
     $verbose = TRUE;
@@ -131,8 +170,6 @@ while(TRUE){
     	$nothingToProcess = FALSE;
     }
 
-
-
     //////////////////////////
     // Do the benchmarkings //
     //////////////////////////
@@ -143,7 +180,7 @@ while(TRUE){
 
             // Compile first
             if($verbose){ echo "-- Compiling scheme -- \n";}
-            $compile = new Process('cd scheme && make');
+            $compile = new Process('cd '.$projectFolderPath.' && make');
             $compile->setTimeout(6000); // in seconds
             $compile->run();
 
@@ -158,7 +195,9 @@ while(TRUE){
                   echo "#######################\n";
                   echo (new ProcessFailedException($compile));
                   echo "\n";
+                }
 
+                if($development){
                   echo "###########################\n";
                   echo "## RETRYING IN 3 SECONDS ##\n";
                   echo "###########################\n";
@@ -172,7 +211,7 @@ while(TRUE){
 
           	    // Now run the code if there are no errors
           	    if($verbose){ echo "-- Executing scheme (might take a while) -- \n";}
-          	    $process = new Process('cd scheme && ./scheme.exe');
+          	    $process = new Process('cd '.$projectFolderPath.' && ./'.$executableFile);
                 $process->setTimeout(6000); // in seconds
           	    $process->run();
 
@@ -186,7 +225,9 @@ while(TRUE){
                       echo "###################\n";
                       echo (new ProcessFailedException($process));
                       echo "\n";
+                    }
 
+                    if($development){
                       echo "###########################\n";
                       echo "## RETRYING IN 3 SECONDS ##\n";
                       echo "###########################\n";

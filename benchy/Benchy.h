@@ -78,21 +78,21 @@ void Benchy::calculateAverage(){
     benchmarkAverageTimeDuration.push_back(duration);
 
 
-    cout << "first time for '" << testName.back() << "' operation" << endl;
-    cout << "current value: " << duration.count() << " ms" << endl << endl;
+    //cout << "first time for '" << testName.back() << "' operation" << endl;
+    //cout << "current value: " << duration.count() << " ms" << endl << endl;
 
 
   } else {
     previousAverage = benchmarkAverageTimeDuration[currentOperationIndex];
     benchmarkAverageTimeDuration[currentOperationIndex] = ((duration + previousAverage)/2);
 
-
+/*
     cout << "operation index: " << currentOperationIndex << endl;
     cout << "'NOT' first time for '" << testName[currentOperationIndex] << "' operation" << endl;
     cout << "previous average: " << previousAverage.count() << " ms" << endl;
     cout << "current value: " << duration.count() << " ms" << endl;
     cout << "current average: " << benchmarkAverageTimeDuration[currentOperationIndex].count() << " ms" << endl << endl;
-
+*/
 
   }
 }
@@ -119,7 +119,7 @@ int Benchy::checkIfOperationAlreadyExists(string operationName){
 
 void Benchy::finalizeBenchmark(){
   cout << "{ ";
-  for(int i=0; i < benchmarkAverageTimeDuration.size(); ++i){
+  for(int i=0; i < benchmarkAverageTimeDuration.size() ; i++){
     cout << '"' << testName[i] << '"' << " : " << benchmarkAverageTimeDuration[i].count();
       if(i != (benchmarkAverageTimeDuration.size() - 1)){
         cout << ", ";
@@ -133,7 +133,7 @@ void Benchy::finalizeBenchmark(){
 void Benchy::jsonify(){
   cout << "{ 'results': [ [";
 
-  for(int i=0; i < benchmarkAverageTimeDuration.size(); ++i){
+  for(int i=0; i < benchmarkAverageTimeDuration.size(); i++){
     cout << "'" << testName[i] << "'";
       if(i != (benchmarkAverageTimeDuration.size() - 1)){
         cout << ", ";
@@ -142,7 +142,7 @@ void Benchy::jsonify(){
   cout << " ], ";
 
   cout << " [ ";
-  for(int i=0; i < benchmarkAverageTimeDuration.size(); ++i){
+  for(int i=0; i < benchmarkAverageTimeDuration.size(); i++){
     cout << benchmarkAverageTimeDuration[i].count();
       if(i != (benchmarkAverageTimeDuration.size() - 1)){
         cout << ", ";

@@ -2,7 +2,7 @@
 
 //var_dump($argv);
 
-if(in_array("--help", $argv, TRUE)){
+if(in_array("--help", $argv, TRUE) || !isset($argv[1])){
     echo "
         ____                  __
        / __ \                / /
@@ -298,9 +298,9 @@ while(TRUE){
 
                     $output = $process->getOutput();
 
-                    if($verbose){ echo ">>> Here is the output: \n \n".$output."\n";}
-                    //if($verbose){ echo "--> Here is the decoded output \n";}
-                    //if($verbose){ var_dump(json_decode($output, true));}
+                    //if($verbose){ echo ">>> Here is the output: \n \n".$output."\n";}
+                    if($verbose){ echo "--> Here is the decoded output \n";}
+                    if($verbose){ var_dump(json_decode($output, true));}
 
                     $benchmark_results = json_decode($output, true);
 

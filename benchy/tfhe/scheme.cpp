@@ -1,13 +1,3 @@
-#include <stdio.h>
-#include <chrono>
-#include <iostream>
-#include <iomanip>
-#include <cstdlib>
-#include <cmath>
-#include <sys/time.h>
-#include "Benchy.h"
-
-
 #include "tfhe.h"
 #include "polynomials.h"
 #include "lwesamples.h"
@@ -16,9 +6,11 @@
 #include "tlwe.h"
 #include "tgsw.h"
 
+#include <stdio.h>
+#include "Benchy.h"
+
 
 using namespace std;
-using namespace std::chrono;
 
 extern const TLweKey *debug_accum_key;
 extern const LweKey *debug_extract_key;

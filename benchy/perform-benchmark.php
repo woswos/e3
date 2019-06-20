@@ -20,55 +20,71 @@ if(in_array("--help", $argv, TRUE)){
     echo "\n";
     echo "Usage: benchy [absolute/path/to/project/folder] [name-of-executable-file] [options] \n";
     echo "Example usage: benchy /home/user/scheme scheme.exe -v \n \n";
-    echo "       -v	verbose \n";
-    echo "       -nodb	don't submit results to the database \n";
-    echo "       -d	debugging mode for bechmarking files manually, without connecting to the database \n";
-    echo "       -r	development mode (retry compiling and/or executing after 3 seconds if an error occures.";
+    echo "       -v	--verbose \n";
+    echo "       -n --nodb	don't submit results to the database \n";
+    echo "       -c	--cmake run cmake first if needed \n";
+    echo "       -d	--debug debugging mode for bechmarking files manually, without connecting to the database \n";
+    echo "       -r	--retry development mode (retry compiling and/or executing after 3 seconds if an error occures.";
     echo "                  It is useful for developing and not having to run benchy over and over again.) \n";
 
     echo "\n \n";
     die();
 }
 
+
 $currentDirectory = getcwd().'/';
 
-// Check for given file paths
-// Get the first character of the first given argument
+// Check if file paths are given, otherwise just assume scheme and scheme.exe
 if(mb_substr($argv[1], 0, 1, "UTF-8") != "-"){
-  // So this is a file path, not option
 
-  // Get the second character of the first given argument
-  if(mb_substr($argv[1], 0, 1, "UTF-8") == "/"){
-    // Get the path if it is absolute
-    $projectFolderPath = $argv[1];
+  // Check for given file paths
+  // Get the first character of the first given argument
+  if(mb_substr($argv[1], 0, 1, "UTF-8") != "-"){
+    // So this is a file path, not option
 
-  } else {
-    echo ("Please enter an absolute path for project folder \n \n");
-    die();
+    // Get the second character of the first given argument
+    if(mb_substr($argv[1], 0, 1, "UTF-8") == "/"){
+      // Get the path if it is absolute
+      $projectFolderPath = $argv[1];
+
+    } else {
+      echo ("Please enter an absolute path for project folder \n \n");
+      die();
+
+    }
+
   }
+
+  // Check for given file paths
+  // Get the first character of the second given argument
+  if(mb_substr($argv[2], 0, 1, "UTF-8") != "-"){
+    // So this is a file path, not option
+
+    // Get the second character of the second given argument
+    if(mb_substr($argv[2], 0, 1, "UTF-8") != "/"){
+      // Get the path if it is absolute
+      $executableFile = $argv[2];
+
+    } else {
+      echo ("Please the name of the executable file, not a path \n");
+      echo ("For example -> benchy /path/to/project/folder scheme.exe \n \n");
+      die();
+
+    }
+
+  }
+
+} else {
+  $projectFolderPath = $currentDirectory."scheme";
+  $executableFile = "scheme.exe";
+
+  echo "# Assuming 'scheme' as the project folder # \n";
+  echo "# Assuming 'scheme.exe' as the executable file # \n \n";
 
 }
 
-// Check for given file paths
-// Get the first character of the second given argument
-if(mb_substr($argv[2], 0, 1, "UTF-8") != "-"){
-  // So this is a file path, not option
 
-  // Get the second character of the second given argument
-  if(mb_substr($argv[2], 0, 1, "UTF-8") != "/"){
-    // Get the path if it is absolute
-    $executableFile = $argv[2];
-
-  } else {
-    echo ("Please the name of the executable file, not a path \n");
-    echo ("For example -> benchy /path/to/project/folder scheme.exe \n \n");
-    die();
-  }
-
-}
-
-
-if(in_array("-v", $argv, TRUE)){
+if(in_array("-v", $argv, TRUE) || in_array("--verbose", $argv, TRUE)){
     $verbose = TRUE;
     echo "# Verbose mode enabled # \n";
 
@@ -77,7 +93,7 @@ if(in_array("-v", $argv, TRUE)){
 
 }
 
-if(in_array("-nodb", $argv, TRUE)){
+if(in_array("-n", $argv, TRUE) || in_array("--nodb", $argv, TRUE)){
     $nodb = TRUE;
     echo "# Database submission disabled # \n";
 
@@ -86,7 +102,7 @@ if(in_array("-nodb", $argv, TRUE)){
 
 }
 
-if(in_array("-d", $argv, TRUE)){
+if(in_array("-d", $argv, TRUE) || in_array("--debug", $argv, TRUE)){
     $debug = TRUE;
     $nodb = TRUE;
     echo "# Debugging mode enabled # \n";
@@ -96,7 +112,7 @@ if(in_array("-d", $argv, TRUE)){
 
 }
 
-if(in_array("-r", $argv, TRUE)){
+if(in_array("-r", $argv, TRUE) || in_array("--retry", $argv, TRUE)){
     $development = TRUE;
     echo "# Development mode enabled # \n";
 
@@ -105,9 +121,21 @@ if(in_array("-r", $argv, TRUE)){
 
 }
 
-$error = FALSE;
+if(in_array("-c", $argv, TRUE) || in_array("--cmake", $argv, TRUE)){
+    $cmake = TRUE;
+    echo "# Will run cmake first # \n";
 
-echo "\n";
+} else {
+    $cmake = FALSE;
+
+}
+
+if($development || $debug || $nodb || $verbose || $cmake){
+  // For better aesthetic on terminal
+  echo "\n";
+}
+
+$error = FALSE;
 
 // https://symfony.com/doc/current/components/process.html
 // https://github.com/cocur/background-process
@@ -178,8 +206,37 @@ while(TRUE){
 
         while(TRUE){
 
-            // Compile first
-            if($verbose){ echo "-- Compiling scheme -- \n";}
+            // Run cmake first, if needed
+            if($cmake){
+              // Compile first
+              if($verbose){ echo "-- Running 'cmake .' -- \n";}
+              $cmake = new Process('cd '.$projectFolderPath.' && cmake .');
+              $cmake->setTimeout(6000); // in seconds
+              $cmake->run();
+
+              // executes after the command finishes
+              if (!$cmake->isSuccessful()) {
+                if($verbose){
+                  echo "##########################\n";
+                  echo "## CHECK CMAKE SETTINGS ##\n";
+                  echo "##########################\n";
+                  echo "##  PROBLEM WITH CMAKE  ##\n";
+                  echo "##########################\n";
+                  echo (new ProcessFailedException($compile));
+                  echo "\n";
+                }
+
+                die();
+
+              } else {
+                if($verbose){ echo "-- Make file created successfully -- \n \n";}
+              }
+
+
+            }
+
+            // Compile the code
+            if($verbose){ echo "-- Compiling ".$projectFolderPath." -- \n";}
             $compile = new Process('cd '.$projectFolderPath.' && make');
             $compile->setTimeout(6000); // in seconds
             $compile->run();
@@ -210,7 +267,7 @@ while(TRUE){
                 if($verbose){ echo "-- Compiled successfully -- \n \n";}
 
           	    // Now run the code if there are no errors
-          	    if($verbose){ echo "-- Executing scheme (might take a while) -- \n";}
+          	    if($verbose){ echo "-- Executing ".$executableFile." (might take a while) -- \n";}
           	    $process = new Process('cd '.$projectFolderPath.' && ./'.$executableFile);
                 $process->setTimeout(6000); // in seconds
           	    $process->run();
@@ -241,9 +298,9 @@ while(TRUE){
 
                     $output = $process->getOutput();
 
-                    if($verbose){ echo "--> Here is the output \n".$output."\n";}
-                    if($verbose){ echo "--> Here is the decoded output \n";}
-                    if($verbose){ var_dump(json_decode($output, true));}
+                    if($verbose){ echo ">>> Here is the output: \n \n".$output."\n";}
+                    //if($verbose){ echo "--> Here is the decoded output \n";}
+                    //if($verbose){ var_dump(json_decode($output, true));}
 
                     $benchmark_results = json_decode($output, true);
 

@@ -36,7 +36,6 @@ int32_t main(int32_t argc, char **argv) {
     // generate a random gate bootstrapping secret key
     const TFheGateBootstrappingSecretKeySet *keyset = new_random_gate_bootstrapping_secret_keyset(params);
 
-
     // generate a new unititialized ciphertext (or an array of ciphertexts)
     const LweSample *cipher_text_a = new_gate_bootstrapping_ciphertext(params);
     const LweSample *cipher_text_b = new_gate_bootstrapping_ciphertext(params);
@@ -48,17 +47,6 @@ int32_t main(int32_t argc, char **argv) {
     scheme.stopTimer();
 
     scheme.finalizeBenchmark();
-
-
-/*
-    // bootstrapped Constant (true or false) trivial Gate
-    auto start2 = high_resolution_clock::now();
-    bootsCONSTANT(cipher_text_result, 1, &keyset->cloud);
-    auto stop2 = high_resolution_clock::now();
-    auto duration2 = duration_cast<microseconds>(stop2 - start2);
-    cout << "time per bootsCONSTANT gate (microsecs)... " << duration2.count() << endl;
-*/
-
 
     return 0;
 }

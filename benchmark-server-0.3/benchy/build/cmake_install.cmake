@@ -1,4 +1,4 @@
-# Install script for directory: /home/woswos/GitHub/e3/benchmark-server-0.3/benchy
+# Install script for directory: /home/woswos/e3-obfuscation-wars/benchmark-server-0.3/benchy
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/woswos/GitHub/e3/benchmark-server-0.3/benchy/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/woswos/e3-obfuscation-wars/benchmark-server-0.3/benchy/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

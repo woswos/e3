@@ -1,100 +1,83 @@
 #include "scheme-base.h"
 #include <iostream>
 
-#include <helib/FHE.h>
-#include <helib/EncryptedArray.h>
+#include <tfhe/tfhe.h>
+#include <tfhe/tfhe_io.h>
 
 void* Scheme::init(){
 
-    // Plaintext prime modulus
-    unsigned long p = 4999;
-    // Cyclotomic polynomial - defines phi(m)
-    unsigned long m = 32109;
-    // Hensel lifting (default = 1)
-    unsigned long r = 1;
-    // Number of bits of the modulus chain
-    unsigned long bits = 300;
-    // Number of columns of Key-Switching matix (default = 2 or 3)
-    unsigned long c = 2;
+    // generate default gate bootstrapping parameters
+    int32_t minimum_lambda = 100;
+    TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
 
-    std::cout << "Initialising context object..." << std::endl;
+    // Cast to void from data type
+    void  *paramsPtr = static_cast<void*>(params);
 
-    // Intialise context
-    FHEcontext context(m, p, r);
-
-    // Modify the context, adding primes to the modulus chain
-    std::cout  << "Building modulus chain..." << std::endl;
-    buildModChain(context, bits, c);
-
-
-    // Transfer object to heap from stack
-    FHEcontext *FHEcontextPtr = new FHEcontext(context);
-
-    // Cast to void pointer for returning back to main
-    void  *ptr = static_cast<void*>(FHEcontextPtr);
-
-    return ptr;
+    return paramsPtr;
 }
 
-void* Scheme::generateBobKey(void *setupPtr){
+void* Scheme::generateKeySet(void *setupPtr){
 
-    // Cast void pointer to data type pointer
-    FHEcontext  *contextPtr = static_cast<FHEcontext*>(setupPtr);
-
-    //FHEcontext *FHEcontextPtr = new FHEcontext(context);
-
-    //FHEcontext context = (FHEcontext*)&contextPtr;
-    // Print the context
-    contextPtr->zMStar.printout();
-    //std::cout << std::endl;
-
-    // Secret key management
-    std::cout << "Creating secret key..." << std::endl;
-    // Create a secret key associated with the context
-    FHESecKey secret_key(contextPtr);
+    // Cast back to data type from void
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(setupPtr);
 
 
-    void  *ptr = 0;
-
-    return ptr;
-}
-
-void* Scheme::generateAliceKey(void *setupPtr){
+    TFheGateBootstrappingSecretKeySet *keyset = new_random_gate_bootstrapping_secret_keyset(params);
 
 
+    // Cast to void from data type
+    void  *voidKeysetPtr = static_cast<void*>(keyset);
 
-
-    void  *ptr = 0;
-
-    return ptr;
-}
-
-void* Scheme::getAliceKey(){
-
-
-    void  *ptr = 0;
-
-    return ptr;
+    return voidKeysetPtr;
 }
 
 
-void* Scheme::encrypt(void* message){
+void* Scheme::encrypt(int message){
 
-    void  *ptr = 0;
+    // Cast back to data type from void
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getKeySet());
 
-    return ptr;
+    // Cast back to data type from void
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameters());
+
+
+    // generate a new unititialized ciphertext (or an array of ciphertexts)
+    LweSample* result = new_gate_bootstrapping_ciphertext(params);
+
+    /** encrypts a boolean */
+    bootsSymEncrypt(result, message, keyset);
+
+
+    // Cast to void from data type
+    void  *voidResultPtr = static_cast<void*>(result);
+
+    return voidResultPtr;
 }
 
 
-void* Scheme::decrypt(void* cipherText){
+int Scheme::decrypt(void* cipherText){
 
-    void  *ptr = 0;
+    // Cast back to data type from void
+    LweSample  *cipherTextPtr = static_cast<LweSample*>(cipherText);
 
-    return ptr;
+    // Cast back to data type from void
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getKeySet());
+
+    /** decrypts a boolean */
+    return bootsSymDecrypt(cipherTextPtr, keyset);
 }
 
 
 void Scheme::cleanup(){
 
 
+}
+
+
+void* Scheme::getKeySet(){
+    return this->keySetPtr;
+}
+
+void* Scheme::getParameters(){
+    return this->parametersPtr;
 }

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS =   -std=c++11
 
-CXX_DEFINES = -DFFT_NATIVE
+CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/woswos/e3-obfuscation-wars/benchmark-server-0.5/benchy/./include -I/home/woswos/e3-obfuscation-wars/benchmark-server-0.5/benchy/./src -isystem /home/woswos/HElib/build/helib_pack/include 
+CXX_INCLUDES = -I/home/woswos/e3-obfuscation-wars/benchmark-server-0.5/benchy/./include -I/home/woswos/e3-obfuscation-wars/benchmark-server-0.5/benchy/./src -I/usr/local/lib 
 

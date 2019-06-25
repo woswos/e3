@@ -142,9 +142,6 @@ benchy.exe: CMakeFiles/benchy.exe.dir/src/main.cpp.o
 benchy.exe: CMakeFiles/benchy.exe.dir/src/gate-api.cpp.o
 benchy.exe: CMakeFiles/benchy.exe.dir/src/scheme-base.cpp.o
 benchy.exe: CMakeFiles/benchy.exe.dir/build.make
-benchy.exe: /home/woswos/HElib/build/helib_pack/lib/libhelib.a
-benchy.exe: /home/woswos/HElib/build/helib_pack/lib/libgmp.so
-benchy.exe: /home/woswos/HElib/build/helib_pack/lib/libntl.so
 benchy.exe: CMakeFiles/benchy.exe.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server-0.5/benchy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable benchy.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/benchy.exe.dir/link.txt --verbose=$(VERBOSE)

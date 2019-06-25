@@ -10,18 +10,18 @@ private:
 
 public:
 
-    void* gate_and(int bitA, int bitB);
-    void* gate_nand(int bitA, int bitB);
+    void* gate_and(void *bitA, void *bitB, void *key);
+    void* gate_nand(void *bitA, void *bitB, void *key);
 
-    void* gate_or(int bitA, int bitB);
-    void* gate_nor(int bitA, int bitBt);
+    void* gate_or(void *bitA, void *bitB, void *key);
+    void* gate_nor(void *bitA, void *bitB, void *key);
 
-    void* gate_xor(int bitA, int bitB);
-    void* gate_xnor(int bitA, int bitB);
+    void* gate_xor(void *bitA, void *bitB, void *key);
+    void* gate_xnor(void *bitA, void *bitB, void *key);
 
-    void* gate_not(int bitA, int bitB);
-    void* gate_buffer(int bitA, int bitB);
-    void* gate_mux(int bitA, int bitB);
+    void* gate_not(void *bitA, void *bitB, void *key);
+    void* gate_buffer(void *bitA, void *bitB, void *key);
+    void* gate_mux(void *bitA, void *bitB, void *key);
 
 };
 

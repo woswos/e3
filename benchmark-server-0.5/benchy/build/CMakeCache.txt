@@ -187,9 +187,6 @@ benchy_BINARY_DIR:STATIC=/home/woswos/e3-obfuscation-wars/benchmark-server-0.5/b
 //Value Computed by CMake
 benchy_SOURCE_DIR:STATIC=/home/woswos/e3-obfuscation-wars/benchmark-server-0.5/benchy
 
-//No help, variable specified on the command line.
-helib_DIR:UNINITIALIZED=/home/woswos/HElib/build/helib_pack/share/cmake/helib
-
 
 ########################
 # INTERNAL cache entries
@@ -269,14 +266,6 @@ CMAKE_GENERATOR:INTERNAL=Unix Makefiles
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
-//Have symbol pthread_create
-CMAKE_HAVE_LIBC_CREATE:INTERNAL=
-//Have library pthreads
-CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
-//Have library pthread
-CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=1
-//Have include pthread.h
-CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/woswos/e3-obfuscation-wars/benchmark-server-0.5/benchy

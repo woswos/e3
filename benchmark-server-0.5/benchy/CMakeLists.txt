@@ -5,10 +5,10 @@ cmake_minimum_required( VERSION 3.10 )
 project( benchy )
 
 # include headers
-include_directories( ./include ./src)
+include_directories( ./include ./src /usr/local/lib )
 
 # include libraries
-#link_directories( /usr/local/include )
+link_directories( /usr/local/include /usr/local/lib )
 
 file(GLOB benchy_SRC
     "./src/main.cpp"
@@ -19,9 +19,7 @@ file(GLOB benchy_SRC
 # target
 add_executable( benchy.exe  ${benchy_SRC} )
 
-find_package(helib 1.0.0 EXACT REQUIRED)
-
-target_link_libraries( benchy.exe helib )
+target_link_libraries( benchy.exe -ltfhe-spqlios-fma )
 
 set_target_properties(benchy.exe  PROPERTIES
     CXX_STANDARD 11
@@ -30,7 +28,11 @@ set_target_properties(benchy.exe  PROPERTIES
 )
 
 
-
+##########################
+# FOR HELIB
+#target_link_libraries( benchy.exe helib )
+#find_package(helib 1.0.0 EXACT REQUIRED)
+##########################
 
 ##########################
 ## FOR SEAL

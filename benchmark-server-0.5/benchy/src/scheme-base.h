@@ -7,12 +7,13 @@ private:
 
 
 public:
-    void *setupPtr = 0;
+    void *parametersPtr = 0;
+    void *keySetPtr = 0;
     void *aliceKeyPtr = 0;
     void *bobKeyPtr = 0;
-    void *parametersPtr = 0;
+
     void *cipherTextPtr = 0;
-    void *messagePtr = 0;
+    int message = 0;
 
 
     // Constructor
@@ -30,14 +31,17 @@ public:
     // Parameter setup
     void* init();
 
+    void* generateKeySet(void *setupPtr = 0);
     void* generateBobKey(void *setupPtr = 0);
     void* generateAliceKey(void *setupPtr = 0);
 
-    void* encrypt(void* message);
-    void* decrypt(void* cipherText);
+    void* encrypt(int message);
+    int decrypt(void* cipherText);
 
     void* getBobKey(); // returns bobKeyPtr
     void* getAliceKey(); // returns aliceKeyPtr
+    void* getKeySet(); // returns keySetPtr
+    void* getParameters(); // returns parametersPtr
 
     // For deleting created objects
     void cleanup();

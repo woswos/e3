@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "gate-api.h"
-#include "seal/seal.h"
 
 using std::cout;
 using std::endl;
@@ -10,19 +9,15 @@ int main()
 {
     GateApi* barkin = new GateApi();
 
+    barkin->setupPtr = barkin->setup();
 
+    barkin->bobKeyPtr = barkin->generateBobKey(barkin->setupPtr);
 
-
-    barkin->bobKeyPtr = barkin->generateBobKey();
-
-
-
-/*
-    barkin->aliceKeyPtr = barkin->getAliceKey();
+    barkin->aliceKeyPtr = barkin->generateAliceKey();
 
 
     cout << barkin->aliceKeyPtr << endl << endl;
-*/
+
 
 
     void *ptr = 0;

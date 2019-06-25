@@ -7,6 +7,7 @@ private:
 
 
 public:
+    void *setupPtr = 0;
     void *aliceKeyPtr = 0;
     void *bobKeyPtr = 0;
     void *parametersPtr = 0;
@@ -26,14 +27,19 @@ public:
     // Assignment
     Scheme & operator=(const Scheme &S);
 
+    // Parameter setup
+    void* setup();
 
     void* getBobKey(); // returns bobKeyPtr
     void* getAliceKey(); // returns aliceKeyPtr
 
-    void* generateBobKey();
-    void* generateAliceKey();
+    void* generateBobKey(void *setupPtr = 0);
+    void* generateAliceKey(void *setupPtr = 0);
     void* encrypt(int message);
     int decrypt(void* cipherText);
+
+    // For deleting created objects
+    void cleanup();
 
 };
 

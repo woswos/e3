@@ -6,15 +6,17 @@
 using std::cout;
 using std::endl;
 
-int main()
-{
-    GateApi* tfhe = new GateApi();
+int main(int argc, char const *argv[]) {
 
-    tfhe->benchmark();
+    #ifndef GATEAPI
+        ArithmeticApi* scheme = new ArithmeticApi();
+    #else
+        GateApi* scheme = new GateApi();
+    #endif
 
-    //ArithmeticApi* HElib = new ArithmeticApi();
+    scheme->benchmark();
 
-    //HElib->benchmark();
+    delete scheme;
 
     return 0;
 }

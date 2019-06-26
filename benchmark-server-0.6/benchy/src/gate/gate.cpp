@@ -7,7 +7,7 @@ int GateApi::benchmark(){
 
     void *result = 0;
 
-    for (size_t i = 0; i < 100; i++) {
+    for (size_t i = 0; i < 500; i++) {
 
         void *bitA = GateApi::encrypt(GateApi::randomBool());
         void *bitB = GateApi::encrypt(GateApi::randomBool());

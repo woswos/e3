@@ -10,10 +10,10 @@ private:
 public:
 
     // Constructor
-    //ArithmeticApi();
+    ArithmeticApi(){};
 
     // Destructor
-    //~ArithmeticApi();
+    ~ArithmeticApi(){};
 
     // Does the benchmarking, returns 1 if completed succesfully
     int benchmark();

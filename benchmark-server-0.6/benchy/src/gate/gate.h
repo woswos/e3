@@ -10,10 +10,10 @@ private:
 public:
 
     // Constructor
-    //GateApi();
+    GateApi(){};
 
     // Destructor
-    //~GateApi();
+    ~GateApi(){};
 
     // Does the benchmarking, returns 1 if completed succesfully
     int benchmark();

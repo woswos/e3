@@ -22,16 +22,16 @@ private:
 public:
 
     // Constructor
-    //Scheme();
+    Scheme(){};
 
     // Destructor
-    //~Scheme();
+    ~Scheme(){};
 
     // Copy constructor
-    //Scheme(const Scheme &S);
+    Scheme(const Scheme &S);
 
     // Assignment
-    //Scheme & operator=(const Scheme &S);
+    Scheme & operator=(const Scheme &S);
 
     void base_benchmark();
 

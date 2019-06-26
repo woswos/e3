@@ -1,3 +1,7 @@
+cmake_minimum_required (VERSION 3.5)
+
+project (benchy LANGUAGES CXX)
+
 ################################################################################
 # OPTIONS AND VARIABLES THAT NEED TO BE MODIFIED:
 
@@ -13,13 +17,11 @@ set(libraryLocation "/usr/local/lib")
 
 # Set this the name of your library
 set(libraryName "-ltfhe-spqlios-fma")
+#set(libraryName "helib")
+
+#find_package(helib 1.0.0 EXACT REQUIRED)
 
 ################################################################################
-
-# Rest of the cmake file
-cmake_minimum_required (VERSION 3.10)
-
-project (benchy)
 
 # Bring the headers into the project
 include_directories(src src/base src/gate src/arithmetic scheme)
@@ -38,6 +40,9 @@ if(GATE)
         "src/gate/*.cpp"
         "scheme/api-gate.cpp"
     )
+
+    add_definitions(-DGATEAPI)
+
 endif(GATE)
 unset(GATE CACHE)
 
@@ -48,6 +53,7 @@ if(ARITHMETIC)
         "src/arithmetic/*.cpp"
         "scheme/api-arithmetic.cpp"
     )
+
 endif(ARITHMETIC)
 unset(ARITHMETIC CACHE)
 
@@ -57,8 +63,16 @@ add_executable(benchy ${SOURCES})
 # Include following libraries
 target_link_libraries (benchy ${libraryName})
 
+set_target_properties(benchy  PROPERTIES
+    CXX_STANDARD 11
+    CXX_STANDARD_REQUIRED ON
+    CXX_EXTENSIONS OFF
+)
 
 
+################################################################################
+# OLD STUFF THAT MIGHT BE UNUSED:
+# I am storing them just in case of need
 ################################################################################
 #### Can manually add the sources using the set command as follows:
 ####set(SOURCES src/main.cpp scheme/api-gate.cpp)

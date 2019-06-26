@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/home/woswos/e3-obfuscation-wa
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_04f23/fast"
-/usr/bin/make -f CMakeFiles/cmTC_04f23.dir/build.make CMakeFiles/cmTC_04f23.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_18ad2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_18ad2.dir/build.make CMakeFiles/cmTC_18ad2.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_04f23.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_04f23.dir/testCCompiler.c.o   -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_04f23
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_04f23.dir/link.txt --verbose=1
-/usr/bin/cc      CMakeFiles/cmTC_04f23.dir/testCCompiler.c.o  -o cmTC_04f23 
+Building C object CMakeFiles/cmTC_18ad2.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_18ad2.dir/testCCompiler.c.o   -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_18ad2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18ad2.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_18ad2.dir/testCCompiler.c.o  -o cmTC_18ad2 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e8468/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e8468.dir/build.make CMakeFiles/cmTC_e8468.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c193e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c193e.dir/build.make CMakeFiles/cmTC_c193e.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_e8468
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e8468.dir/link.txt --verbose=1
-/usr/bin/cc     -v CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o  -o cmTC_e8468 
+Building C object CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_c193e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c193e.dir/link.txt --verbose=1
+/usr/bin/cc     -v CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o  -o cmTC_c193e 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -61,9 +61,9 @@ Thread model: posix
 gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_e8468' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccf2XaTK.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_e8468 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_e8468' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c193e' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccTiHBWF.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c193e /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c193e' '-mtune=generic' '-march=x86-64'
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
@@ -71,14 +71,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_e8468/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_e8468.dir/build.make CMakeFiles/cmTC_e8468.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_c193e/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_c193e.dir/build.make CMakeFiles/cmTC_c193e.dir/build]
   ignore line: [make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_e8468]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e8468.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o  -o cmTC_e8468 ]
+  ignore line: [Building C object CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_c193e]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c193e.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o  -o cmTC_c193e ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -90,13 +90,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_e8468' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccf2XaTK.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_e8468 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c193e' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccTiHBWF.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c193e /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccf2XaTK.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccTiHBWF.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -115,7 +115,7 @@ Parsed C implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_e8468] ==> ignore
+    arg [cmTC_c193e] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -127,7 +127,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_e8468.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_c193e.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -159,14 +159,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_27445/fast"
-/usr/bin/make -f CMakeFiles/cmTC_27445.dir/build.make CMakeFiles/cmTC_27445.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_e9679/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e9679.dir/build.make CMakeFiles/cmTC_e9679.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_27445.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_27445.dir/feature_tests.c.o   -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_27445
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27445.dir/link.txt --verbose=1
-/usr/bin/cc      CMakeFiles/cmTC_27445.dir/feature_tests.c.o  -o cmTC_27445 
+Building C object CMakeFiles/cmTC_e9679.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_e9679.dir/feature_tests.c.o   -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_e9679
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9679.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_e9679.dir/feature_tests.c.o  -o cmTC_e9679 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
@@ -179,14 +179,14 @@ make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fbe8d/fast"
-/usr/bin/make -f CMakeFiles/cmTC_fbe8d.dir/build.make CMakeFiles/cmTC_fbe8d.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_77eb2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_77eb2.dir/build.make CMakeFiles/cmTC_77eb2.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_fbe8d.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_fbe8d.dir/feature_tests.c.o   -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_fbe8d
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fbe8d.dir/link.txt --verbose=1
-/usr/bin/cc      CMakeFiles/cmTC_fbe8d.dir/feature_tests.c.o  -o cmTC_fbe8d 
+Building C object CMakeFiles/cmTC_77eb2.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_77eb2.dir/feature_tests.c.o   -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_77eb2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_77eb2.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_77eb2.dir/feature_tests.c.o  -o cmTC_77eb2 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
@@ -199,14 +199,14 @@ make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a5c7a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a5c7a.dir/build.make CMakeFiles/cmTC_a5c7a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_1ca6a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1ca6a.dir/build.make CMakeFiles/cmTC_1ca6a.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_a5c7a.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_a5c7a.dir/feature_tests.c.o   -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_a5c7a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5c7a.dir/link.txt --verbose=1
-/usr/bin/cc      CMakeFiles/cmTC_a5c7a.dir/feature_tests.c.o  -o cmTC_a5c7a 
+Building C object CMakeFiles/cmTC_1ca6a.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_1ca6a.dir/feature_tests.c.o   -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_1ca6a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1ca6a.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_1ca6a.dir/feature_tests.c.o  -o cmTC_1ca6a 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
@@ -217,28 +217,28 @@ make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e0cfc/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e0cfc.dir/build.make CMakeFiles/cmTC_e0cfc.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3eb43/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3eb43.dir/build.make CMakeFiles/cmTC_3eb43.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_e0cfc.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_e0cfc.dir/testCXXCompiler.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_e0cfc
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e0cfc.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_e0cfc.dir/testCXXCompiler.cxx.o  -o cmTC_e0cfc 
+Building CXX object CMakeFiles/cmTC_3eb43.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_3eb43.dir/testCXXCompiler.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_3eb43
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3eb43.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_3eb43.dir/testCXXCompiler.cxx.o  -o cmTC_3eb43 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_60fe3/fast"
-/usr/bin/make -f CMakeFiles/cmTC_60fe3.dir/build.make CMakeFiles/cmTC_60fe3.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c4bef/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c4bef.dir/build.make CMakeFiles/cmTC_c4bef.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_60fe3
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60fe3.dir/link.txt --verbose=1
-/usr/bin/c++      -v CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_60fe3 
+Building CXX object CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_c4bef
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4bef.dir/link.txt --verbose=1
+/usr/bin/c++      -v CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_c4bef 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -250,9 +250,9 @@ Thread model: posix
 gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_60fe3' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccdzkI2C.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_60fe3 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_60fe3' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c4bef' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwnuAge.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c4bef /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c4bef' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
@@ -260,14 +260,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_60fe3/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_60fe3.dir/build.make CMakeFiles/cmTC_60fe3.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_c4bef/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_c4bef.dir/build.make CMakeFiles/cmTC_c4bef.dir/build]
   ignore line: [make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_60fe3]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60fe3.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_60fe3 ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_c4bef]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4bef.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_c4bef ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -279,13 +279,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_60fe3' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccdzkI2C.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_60fe3 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c4bef' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwnuAge.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c4bef /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccdzkI2C.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccwnuAge.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -304,7 +304,7 @@ Parsed CXX implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_60fe3] ==> ignore
+    arg [cmTC_c4bef] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -316,7 +316,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_60fe3.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_c4bef.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -344,14 +344,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_64031/fast"
-/usr/bin/make -f CMakeFiles/cmTC_64031.dir/build.make CMakeFiles/cmTC_64031.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3938b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3938b.dir/build.make CMakeFiles/cmTC_3938b.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_64031.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_64031.dir/feature_tests.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_64031
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64031.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_64031.dir/feature_tests.cxx.o  -o cmTC_64031 
+Building CXX object CMakeFiles/cmTC_3938b.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_3938b.dir/feature_tests.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_3938b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3938b.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_3938b.dir/feature_tests.cxx.o  -o cmTC_3938b 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
@@ -417,14 +417,14 @@ make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_27892/fast"
-/usr/bin/make -f CMakeFiles/cmTC_27892.dir/build.make CMakeFiles/cmTC_27892.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_b53be/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b53be.dir/build.make CMakeFiles/cmTC_b53be.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_27892.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_27892.dir/feature_tests.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_27892
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27892.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_27892.dir/feature_tests.cxx.o  -o cmTC_27892 
+Building CXX object CMakeFiles/cmTC_b53be.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_b53be.dir/feature_tests.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_b53be
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b53be.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_b53be.dir/feature_tests.cxx.o  -o cmTC_b53be 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
@@ -490,14 +490,14 @@ make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1ebff/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1ebff.dir/build.make CMakeFiles/cmTC_1ebff.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_2a923/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2a923.dir/build.make CMakeFiles/cmTC_2a923.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_1ebff.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_1ebff.dir/feature_tests.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_1ebff
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1ebff.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_1ebff.dir/feature_tests.cxx.o  -o cmTC_1ebff 
+Building CXX object CMakeFiles/cmTC_2a923.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_2a923.dir/feature_tests.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_2a923
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2a923.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_2a923.dir/feature_tests.cxx.o  -o cmTC_2a923 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 
@@ -563,14 +563,14 @@ make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_db2ba/fast"
-/usr/bin/make -f CMakeFiles/cmTC_db2ba.dir/build.make CMakeFiles/cmTC_db2ba.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_de17d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_de17d.dir/build.make CMakeFiles/cmTC_de17d.dir/build
 make[1]: Entering directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_db2ba.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_db2ba.dir/feature_tests.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_db2ba
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_db2ba.dir/link.txt --verbose=1
-/usr/bin/c++       CMakeFiles/cmTC_db2ba.dir/feature_tests.cxx.o  -o cmTC_db2ba 
+Building CXX object CMakeFiles/cmTC_de17d.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_de17d.dir/feature_tests.cxx.o -c /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_de17d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_de17d.dir/link.txt --verbose=1
+/usr/bin/c++       CMakeFiles/cmTC_de17d.dir/feature_tests.cxx.o  -o cmTC_de17d 
 make[1]: Leaving directory '/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/CMakeTmp'
 
 

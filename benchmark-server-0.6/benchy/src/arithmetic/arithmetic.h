@@ -1,5 +1,5 @@
-#ifndef GATE_API_H
-#define GATE_API_H
+#ifndef ARITHMETIC_API_H
+#define ARITHMETIC_API_H
 
 #include "scheme-base.h"
 

@@ -22,7 +22,7 @@ cmake_minimum_required (VERSION 3.10)
 project (benchy)
 
 # Bring the headers into the project
-include_directories(src scheme)
+include_directories(src src/base src/gate src/arithmetic scheme)
 
 #For the shared library:
 include_directories(${libraryLocation})
@@ -34,6 +34,8 @@ link_directories(${libraryLocation})
 if(GATE)
     file(GLOB SOURCES
         "src/*.cpp"
+        "src/base/*.cpp"
+        "src/gate/*.cpp"
         "scheme/api-gate.cpp"
     )
 endif(GATE)
@@ -42,6 +44,8 @@ unset(GATE CACHE)
 if(ARITHMETIC)
     file(GLOB SOURCES
         "src/*.cpp"
+        "src/base/*.cpp"
+        "src/arithmetic/*.cpp"
         "scheme/api-arithmetic.cpp"
     )
 endif(ARITHMETIC)

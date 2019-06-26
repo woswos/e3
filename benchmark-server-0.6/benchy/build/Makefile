@@ -150,59 +150,59 @@ scheme/api-gate.cpp.s:
 	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.s
 .PHONY : scheme/api-gate.cpp.s
 
-src/arithmetic.o: src/arithmetic.cpp.o
+src/base/scheme-base.o: src/base/scheme-base.cpp.o
 
-.PHONY : src/arithmetic.o
-
-# target to build an object file
-src/arithmetic.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/arithmetic.cpp.o
-.PHONY : src/arithmetic.cpp.o
-
-src/arithmetic.i: src/arithmetic.cpp.i
-
-.PHONY : src/arithmetic.i
-
-# target to preprocess a source file
-src/arithmetic.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/arithmetic.cpp.i
-.PHONY : src/arithmetic.cpp.i
-
-src/arithmetic.s: src/arithmetic.cpp.s
-
-.PHONY : src/arithmetic.s
-
-# target to generate assembly for a file
-src/arithmetic.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/arithmetic.cpp.s
-.PHONY : src/arithmetic.cpp.s
-
-src/gate.o: src/gate.cpp.o
-
-.PHONY : src/gate.o
+.PHONY : src/base/scheme-base.o
 
 # target to build an object file
-src/gate.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate.cpp.o
-.PHONY : src/gate.cpp.o
+src/base/scheme-base.cpp.o:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o
+.PHONY : src/base/scheme-base.cpp.o
 
-src/gate.i: src/gate.cpp.i
+src/base/scheme-base.i: src/base/scheme-base.cpp.i
 
-.PHONY : src/gate.i
+.PHONY : src/base/scheme-base.i
 
 # target to preprocess a source file
-src/gate.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate.cpp.i
-.PHONY : src/gate.cpp.i
+src/base/scheme-base.cpp.i:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/scheme-base.cpp.i
+.PHONY : src/base/scheme-base.cpp.i
 
-src/gate.s: src/gate.cpp.s
+src/base/scheme-base.s: src/base/scheme-base.cpp.s
 
-.PHONY : src/gate.s
+.PHONY : src/base/scheme-base.s
 
 # target to generate assembly for a file
-src/gate.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate.cpp.s
-.PHONY : src/gate.cpp.s
+src/base/scheme-base.cpp.s:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/scheme-base.cpp.s
+.PHONY : src/base/scheme-base.cpp.s
+
+src/gate/gate.o: src/gate/gate.cpp.o
+
+.PHONY : src/gate/gate.o
+
+# target to build an object file
+src/gate/gate.cpp.o:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/gate.cpp.o
+.PHONY : src/gate/gate.cpp.o
+
+src/gate/gate.i: src/gate/gate.cpp.i
+
+.PHONY : src/gate/gate.i
+
+# target to preprocess a source file
+src/gate/gate.cpp.i:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/gate.cpp.i
+.PHONY : src/gate/gate.cpp.i
+
+src/gate/gate.s: src/gate/gate.cpp.s
+
+.PHONY : src/gate/gate.s
+
+# target to generate assembly for a file
+src/gate/gate.cpp.s:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/gate.cpp.s
+.PHONY : src/gate/gate.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -231,33 +231,6 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/scheme-base.o: src/scheme-base.cpp.o
-
-.PHONY : src/scheme-base.o
-
-# target to build an object file
-src/scheme-base.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/scheme-base.cpp.o
-.PHONY : src/scheme-base.cpp.o
-
-src/scheme-base.i: src/scheme-base.cpp.i
-
-.PHONY : src/scheme-base.i
-
-# target to preprocess a source file
-src/scheme-base.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/scheme-base.cpp.i
-.PHONY : src/scheme-base.cpp.i
-
-src/scheme-base.s: src/scheme-base.cpp.s
-
-.PHONY : src/scheme-base.s
-
-# target to generate assembly for a file
-src/scheme-base.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/scheme-base.cpp.s
-.PHONY : src/scheme-base.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -270,18 +243,15 @@ help:
 	@echo "... scheme/api-gate.o"
 	@echo "... scheme/api-gate.i"
 	@echo "... scheme/api-gate.s"
-	@echo "... src/arithmetic.o"
-	@echo "... src/arithmetic.i"
-	@echo "... src/arithmetic.s"
-	@echo "... src/gate.o"
-	@echo "... src/gate.i"
-	@echo "... src/gate.s"
+	@echo "... src/base/scheme-base.o"
+	@echo "... src/base/scheme-base.i"
+	@echo "... src/base/scheme-base.s"
+	@echo "... src/gate/gate.o"
+	@echo "... src/gate/gate.i"
+	@echo "... src/gate/gate.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/scheme-base.o"
-	@echo "... src/scheme-base.i"
-	@echo "... src/scheme-base.s"
 .PHONY : help
 
 

@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src -I/usr/local/lib 
+CXX_INCLUDES = -I/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src -I/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/scheme -I/usr/local/lib 
 

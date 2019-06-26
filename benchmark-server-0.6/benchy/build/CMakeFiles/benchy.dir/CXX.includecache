@@ -6,25 +6,53 @@
 
 #IncludeRegexTransform: 
 
-/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/gate-api.cpp
-gate-api.h
-/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/gate-api.h
-iostream
+../src/gate.h
+scheme-base.h
+../src/scheme-base.h
+
+../src/scheme-base.h
+map
 -
+string
+-
+time.h
+-
+
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/scheme/api-gate.cpp
+scheme-base.h
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/scheme/scheme-base.h
+gate.h
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/scheme/gate.h
 tfhe/tfhe.h
 -
 tfhe/tfhe_io.h
 -
 
-/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/gate-api.h
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/arithmetic.cpp
+arithmetic.h
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/arithmetic.h
+iostream
+-
+
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/arithmetic.h
+scheme-base.h
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/scheme-base.h
+
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/gate.cpp
+gate.h
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/gate.h
+iostream
+-
+
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/gate.h
 scheme-base.h
 /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/scheme-base.h
 
 /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/main.cpp
 iostream
 -
-gate-api.h
-/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/gate-api.h
+gate.h
+/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/gate.h
 
 /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/scheme-base.cpp
 scheme-base.h
@@ -38,10 +66,6 @@ time.h
 random
 -
 functional
--
-tfhe/tfhe.h
--
-tfhe/tfhe_io.h
 -
 
 /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/src/scheme-base.h

@@ -1,31 +1,64 @@
+################################################################################
+# OPTIONS AND VARIABLES THAT NEED TO BE MODIFIED:
+
+# Turn this ON if the scheme supports gate operations
+option(GATE "" ON)
+
+# Turn this ON if the scheme supports arithmetic operations
+option(ARITHMETIC "" OFF)
+
+
+# Set this the location of your library
+set(libraryLocation "/usr/local/lib")
+
+# Set this the name of your library
+set(libraryName "-ltfhe-spqlios-fma")
+
+################################################################################
+
+# Rest of the cmake file
 cmake_minimum_required (VERSION 3.10)
 
 project (benchy)
 
 # Bring the headers into the project
-include_directories(src)
+include_directories(src scheme)
 
 #For the shared library:
-include_directories(/usr/local/lib)
+include_directories(${libraryLocation})
 
 #For the static library:
-link_directories(/usr/local/lib)
+link_directories(${libraryLocation})
 
-# Can manually add the sources using the set command as follows:
-#set(SOURCES src/mainapp.cpp src/Student.cpp)
+# Include gate or arithmetic api based on the selection
+if(GATE)
+    file(GLOB SOURCES
+        "src/*.cpp"
+        "scheme/api-gate.cpp"
+    )
+endif(GATE)
+unset(GATE CACHE)
 
-# However, the file(GLOB...) allows for wildcard additions:
-file(GLOB SOURCES "src/*.cpp")
+if(ARITHMETIC)
+    file(GLOB SOURCES
+        "src/*.cpp"
+        "scheme/api-arithmetic.cpp"
+    )
+endif(ARITHMETIC)
+unset(ARITHMETIC CACHE)
 
 # Generate executable file
 add_executable(benchy ${SOURCES})
 
 # Include following libraries
-target_link_libraries (benchy -ltfhe-spqlios-fma)
+target_link_libraries (benchy ${libraryName})
 
 
 
 ################################################################################
+#### Can manually add the sources using the set command as follows:
+####set(SOURCES src/main.cpp scheme/api-gate.cpp)
+
 if(FALSE) # fake a block comment
 
 include_directories(${PROJECT_SOURCE_DIR}/src /usr/local/lib)

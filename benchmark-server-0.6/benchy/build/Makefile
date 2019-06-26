@@ -123,32 +123,86 @@ benchy/fast:
 	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/build
 .PHONY : benchy/fast
 
-src/gate-api.o: src/gate-api.cpp.o
+scheme/api-gate.o: scheme/api-gate.cpp.o
 
-.PHONY : src/gate-api.o
+.PHONY : scheme/api-gate.o
 
 # target to build an object file
-src/gate-api.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate-api.cpp.o
-.PHONY : src/gate-api.cpp.o
+scheme/api-gate.cpp.o:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.o
+.PHONY : scheme/api-gate.cpp.o
 
-src/gate-api.i: src/gate-api.cpp.i
+scheme/api-gate.i: scheme/api-gate.cpp.i
 
-.PHONY : src/gate-api.i
+.PHONY : scheme/api-gate.i
 
 # target to preprocess a source file
-src/gate-api.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate-api.cpp.i
-.PHONY : src/gate-api.cpp.i
+scheme/api-gate.cpp.i:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.i
+.PHONY : scheme/api-gate.cpp.i
 
-src/gate-api.s: src/gate-api.cpp.s
+scheme/api-gate.s: scheme/api-gate.cpp.s
 
-.PHONY : src/gate-api.s
+.PHONY : scheme/api-gate.s
 
 # target to generate assembly for a file
-src/gate-api.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate-api.cpp.s
-.PHONY : src/gate-api.cpp.s
+scheme/api-gate.cpp.s:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.s
+.PHONY : scheme/api-gate.cpp.s
+
+src/arithmetic.o: src/arithmetic.cpp.o
+
+.PHONY : src/arithmetic.o
+
+# target to build an object file
+src/arithmetic.cpp.o:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/arithmetic.cpp.o
+.PHONY : src/arithmetic.cpp.o
+
+src/arithmetic.i: src/arithmetic.cpp.i
+
+.PHONY : src/arithmetic.i
+
+# target to preprocess a source file
+src/arithmetic.cpp.i:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/arithmetic.cpp.i
+.PHONY : src/arithmetic.cpp.i
+
+src/arithmetic.s: src/arithmetic.cpp.s
+
+.PHONY : src/arithmetic.s
+
+# target to generate assembly for a file
+src/arithmetic.cpp.s:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/arithmetic.cpp.s
+.PHONY : src/arithmetic.cpp.s
+
+src/gate.o: src/gate.cpp.o
+
+.PHONY : src/gate.o
+
+# target to build an object file
+src/gate.cpp.o:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate.cpp.o
+.PHONY : src/gate.cpp.o
+
+src/gate.i: src/gate.cpp.i
+
+.PHONY : src/gate.i
+
+# target to preprocess a source file
+src/gate.cpp.i:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate.cpp.i
+.PHONY : src/gate.cpp.i
+
+src/gate.s: src/gate.cpp.s
+
+.PHONY : src/gate.s
+
+# target to generate assembly for a file
+src/gate.cpp.s:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate.cpp.s
+.PHONY : src/gate.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -213,9 +267,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... benchy"
 	@echo "... edit_cache"
-	@echo "... src/gate-api.o"
-	@echo "... src/gate-api.i"
-	@echo "... src/gate-api.s"
+	@echo "... scheme/api-gate.o"
+	@echo "... scheme/api-gate.i"
+	@echo "... scheme/api-gate.s"
+	@echo "... src/arithmetic.o"
+	@echo "... src/arithmetic.i"
+	@echo "... src/arithmetic.s"
+	@echo "... src/gate.o"
+	@echo "... src/gate.i"
+	@echo "... src/gate.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

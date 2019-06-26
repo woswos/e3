@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "gate-api.h"
+#include "gate.h"
 
 using std::cout;
 using std::endl;

@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named benchy.exe
+# Target rules for targets named benchy
 
 # Build rule for target.
-benchy.exe: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 benchy.exe
-.PHONY : benchy.exe
+benchy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 benchy
+.PHONY : benchy
 
 # fast build rule for target.
-benchy.exe/fast:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/build
-.PHONY : benchy.exe/fast
+benchy/fast:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/build
+.PHONY : benchy/fast
 
 src/gate-api.o: src/gate-api.cpp.o
 
@@ -129,7 +129,7 @@ src/gate-api.o: src/gate-api.cpp.o
 
 # target to build an object file
 src/gate-api.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/gate-api.cpp.o
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate-api.cpp.o
 .PHONY : src/gate-api.cpp.o
 
 src/gate-api.i: src/gate-api.cpp.i
@@ -138,7 +138,7 @@ src/gate-api.i: src/gate-api.cpp.i
 
 # target to preprocess a source file
 src/gate-api.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/gate-api.cpp.i
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate-api.cpp.i
 .PHONY : src/gate-api.cpp.i
 
 src/gate-api.s: src/gate-api.cpp.s
@@ -147,7 +147,7 @@ src/gate-api.s: src/gate-api.cpp.s
 
 # target to generate assembly for a file
 src/gate-api.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/gate-api.cpp.s
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate-api.cpp.s
 .PHONY : src/gate-api.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -156,7 +156,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -165,7 +165,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -174,7 +174,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 src/scheme-base.o: src/scheme-base.cpp.o
@@ -183,7 +183,7 @@ src/scheme-base.o: src/scheme-base.cpp.o
 
 # target to build an object file
 src/scheme-base.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/scheme-base.cpp.o
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/scheme-base.cpp.o
 .PHONY : src/scheme-base.cpp.o
 
 src/scheme-base.i: src/scheme-base.cpp.i
@@ -192,7 +192,7 @@ src/scheme-base.i: src/scheme-base.cpp.i
 
 # target to preprocess a source file
 src/scheme-base.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/scheme-base.cpp.i
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/scheme-base.cpp.i
 .PHONY : src/scheme-base.cpp.i
 
 src/scheme-base.s: src/scheme-base.cpp.s
@@ -201,7 +201,7 @@ src/scheme-base.s: src/scheme-base.cpp.s
 
 # target to generate assembly for a file
 src/scheme-base.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/src/scheme-base.cpp.s
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/scheme-base.cpp.s
 .PHONY : src/scheme-base.cpp.s
 
 # Help Target
@@ -211,7 +211,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... benchy.exe"
+	@echo "... benchy"
 	@echo "... edit_cache"
 	@echo "... src/gate-api.o"
 	@echo "... src/gate-api.i"

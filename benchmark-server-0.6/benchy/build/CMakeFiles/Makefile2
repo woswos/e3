@@ -60,39 +60,39 @@ CMAKE_SOURCE_DIR = /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy
 CMAKE_BINARY_DIR = /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/benchy.exe.dir
+# Target rules for target CMakeFiles/benchy.dir
 
 # All Build rule for target.
-CMakeFiles/benchy.exe.dir/all:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/depend
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles --progress-num=1,2,3,4 "Built target benchy.exe"
-.PHONY : CMakeFiles/benchy.exe.dir/all
+CMakeFiles/benchy.dir/all:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/depend
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles --progress-num=1,2,3,4 "Built target benchy"
+.PHONY : CMakeFiles/benchy.dir/all
 
 # Include target in all.
-all: CMakeFiles/benchy.exe.dir/all
+all: CMakeFiles/benchy.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/benchy.exe.dir/rule: cmake_check_build_system
+CMakeFiles/benchy.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/benchy.exe.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/benchy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles 0
-.PHONY : CMakeFiles/benchy.exe.dir/rule
+.PHONY : CMakeFiles/benchy.dir/rule
 
 # Convenience name for target.
-benchy.exe: CMakeFiles/benchy.exe.dir/rule
+benchy: CMakeFiles/benchy.dir/rule
 
-.PHONY : benchy.exe
-
-# clean rule for target.
-CMakeFiles/benchy.exe.dir/clean:
-	$(MAKE) -f CMakeFiles/benchy.exe.dir/build.make CMakeFiles/benchy.exe.dir/clean
-.PHONY : CMakeFiles/benchy.exe.dir/clean
+.PHONY : benchy
 
 # clean rule for target.
-clean: CMakeFiles/benchy.exe.dir/clean
+CMakeFiles/benchy.dir/clean:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/clean
+.PHONY : CMakeFiles/benchy.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/benchy.dir/clean
 
 .PHONY : clean
 

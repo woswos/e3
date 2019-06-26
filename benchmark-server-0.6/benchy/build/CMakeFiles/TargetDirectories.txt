@@ -1,3 +1,0 @@
-/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/rebuild_cache.dir
-/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/benchy.dir
-/home/woswos/e3-obfuscation-wars/benchmark-server-0.6/benchy/build/CMakeFiles/edit_cache.dir

@@ -104,68 +104,6 @@ int Scheme::decrypt(void* cipherText){
     decryptor->decrypt(*cipherTextPtr, *x_decrypted_Ptr);
 
     return std::stoi(x_decrypted_Ptr->to_string());
-    /*
-
-
-
-
-
-                // Compute x_sq_plus_one (x^2+1)
-                Ciphertext x_sq_plus_one;
-
-
-                evaluator.square(x_encrypted, x_sq_plus_one);
-
-
-
-                Plaintext plain_one("1");
-
-                evaluator.add_plain_inplace(x_sq_plus_one, plain_one);
-
-
-
-                // Compute (2(x^2+1))
-                Plaintext plain_two("2");
-
-                evaluator.multiply_plain_inplace(x_sq_plus_one, plain_two);
-        *
-            /*
-                int x = 6;
-                Plaintext x_plain(to_string(x));
-
-                Ciphertext x_encrypted;
-                encryptor.encrypt(x_plain, x_encrypted);
-
-                Plaintext x_decrypted;
-                decryptor.decrypt(x_encrypted, x_decrypted);
-
-
-                // Compute x_sq_plus_one (x^2+1)
-                Ciphertext x_sq_plus_one;
-                evaluator.square(x_encrypted, x_sq_plus_one);
-                Plaintext plain_one("1");
-                evaluator.add_plain_inplace(x_sq_plus_one, plain_one);
-
-                // If we want to decrypt to check the result
-                Plaintext decrypted_result;
-                decryptor.decrypt(x_sq_plus_one, decrypted_result);
-
-
-                // Compute x_plus_one_sq ((x+1)^2)
-                Ciphertext x_plus_one_sq;
-                evaluator.add_plain(x_encrypted, plain_one, x_plus_one_sq);
-                evaluator.square_inplace(x_plus_one_sq);
-
-
-                // Compute encrypted_result (2(x^2+1)(x+1)^2)
-                Ciphertext encrypted_result;
-                Plaintext plain_two("2");
-                evaluator.multiply_plain_inplace(x_sq_plus_one, plain_two);
-                evaluator.multiply(x_sq_plus_one, x_plus_one_sq, encrypted_result);
-            */
-
-
-    return 0;
 }
 
 void Scheme::cleanup(){

@@ -8,16 +8,24 @@ class GateApi : public Scheme
 private:
 
 public:
-
+    /*******************/
+    /* Gate Api Basics */
+    /*******************/
     // Constructor
     GateApi(){};
 
     // Destructor
     ~GateApi(){};
 
+    /**********************/
+    /* Benchmarking Stuff */
+    /**********************/
     // Does the benchmarking, returns 1 if completed succesfully
     int benchmark();
 
+    /*******************/
+    /* Supported Gates */
+    /*******************/
     void* gate_and(void *bitA, void *bitB);
     void* gate_nand(void *bitA, void *bitB);
 

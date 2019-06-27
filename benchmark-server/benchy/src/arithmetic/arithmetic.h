@@ -8,22 +8,30 @@ class ArithmeticApi : public Scheme
 private:
 
 public:
-
+    /*************************/
+    /* Arithmetic Api Basics */
+    /*************************/
     // Constructor
     ArithmeticApi(){};
 
     // Destructor
     ~ArithmeticApi(){};
 
+    /**********************/
+    /* Benchmarking Stuff */
+    /**********************/
     // Does the benchmarking, returns 1 if completed succesfully
     int benchmark();
 
+    /***********************************/
+    /* Supported Arithmetic Operations */
+    /***********************************/
     void* arithmetic_add(void *valA, void *valB);
-    void* arithmetic_subtract(void *valA, void *valB);
 
     void* arithmetic_multiply(void *valA, void *valB);
     void* arithmetic_square(void *valA);
 
+    //void* arithmetic_subtract(void *valA, void *valB);
     // Relinearize
     // Rescale
     // Rotate one

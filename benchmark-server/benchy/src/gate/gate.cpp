@@ -3,8 +3,10 @@
 
 int GateApi::benchmark(){
 
+    // Runs GateApi::init() and GateApi::generateKeySet()
     GateApi::base_benchmark();
 
+/*
     void *result = 0;
 
     for (size_t i = 0; i < 500; i++) {
@@ -27,6 +29,6 @@ int GateApi::benchmark(){
 
     std::cout << GateApi::getTiming("gate_and") << " microsecs \n";
     std::cout << GateApi::getTiming("decrypt") << " microsecs \n";
-
+*/
     return 1;
 }

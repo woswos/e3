@@ -8,6 +8,25 @@ class ArithmeticApi : public Scheme
 private:
 
 public:
+    /***********************************/
+    /* Supported Arithmetic Operations */
+    /***********************************/
+    // ValA and ValB are ciphertexts
+    void* EvalAdd(void *valA, void *valB);
+    void* EvalMult(void *valA, void *valB);
+    void* EvalSub(void *valA, void *valB);
+
+    void* EvalNegate(void *valA);
+    void* EvalSquare(void *valA);
+    void* EvalCube(void *valA);
+
+    void* EvalPermuteRow(void *valA);
+    void* EvalPermuteCol(void *valA);
+
+    void* EvalDotProduct(void *valA, void *valB);
+    void* EvalLinearTransformation(void *valA, void *valB);
+    void* EvalDFT(void *valA, void *valB);
+
     /*************************/
     /* Arithmetic Api Basics */
     /*************************/
@@ -17,27 +36,13 @@ public:
     // Destructor
     ~ArithmeticApi(){};
 
+
     /**********************/
     /* Benchmarking Stuff */
     /**********************/
     // Does the benchmarking, returns 1 if completed succesfully
     int benchmark(ArithmeticApi* schemePtr);
 
-    /***********************************/
-    /* Supported Arithmetic Operations */
-    /***********************************/
-    void* arithmetic_add(void *valA, void *valB);
-
-    void* arithmetic_multiply(void *valA, void *valB);
-    void* arithmetic_square(void *valA);
-
-    //void* arithmetic_subtract(void *valA, void *valB);
-    // Relinearize
-    // Rescale
-    // Rotate one
-    // Rotate random
-    // Conjugate
-    // https://github.com/microsoft/SEAL/blob/0b0b5dd68e95c83d0c357d17af9b862df55cb8ea/dotnet/examples/6_Performance.cs#L337
 };
 
 #endif

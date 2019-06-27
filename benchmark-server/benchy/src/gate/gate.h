@@ -9,6 +9,23 @@ private:
 
 public:
     /*******************/
+    /* Supported Gates */
+    /*******************/
+    void* EvalAnd(void *bitA, void *bitB);
+    void* EvalNand(void *bitA, void *bitB);
+
+    void* EvalOr(void *bitA, void *bitB);
+    void* EvalNor(void *bitA, void *bitB);
+
+    void* EvalXor(void *bitA, void *bitB);
+    void* EvalXnor(void *bitA, void *bitB);
+
+    void* EvalMux(void *bitA, void *bitB, void *bitC);
+    void* EvalNot(void *bitA);
+    void* EvalBuffer(void *bitA);
+
+
+    /*******************/
     /* Gate Api Basics */
     /*******************/
     // Constructor
@@ -17,21 +34,6 @@ public:
     // Destructor
     ~GateApi(){};
 
-    /*******************/
-    /* Supported Gates */
-    /*******************/
-    void* gate_and(void *bitA, void *bitB);
-    void* gate_nand(void *bitA, void *bitB);
-
-    void* gate_or(void *bitA, void *bitB);
-    void* gate_nor(void *bitA, void *bitB);
-
-    void* gate_xor(void *bitA, void *bitB);
-    void* gate_xnor(void *bitA, void *bitB);
-
-    void* gate_mux(void *bitA, void *bitB, void *bitC);
-    void* gate_not(void *bitA);
-    void* gate_buffer(void *bitA);
 
     /**********************/
     /* Benchmarking Stuff */

@@ -23,60 +23,60 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
 // This function is called once in the beginning of the benchmark.
 //      You can use this function to initilize required parameters
 //      or pointers, etc.
-void Scheme::init(){
+void Scheme::Init(){
 
     // generate default gate bootstrapping parameters
     int32_t minimum_lambda = 100;
     TFheGateBootstrappingParameterSet *params = new_default_gate_bootstrapping_parameters(minimum_lambda);
 
-    Scheme::storeParameter("params", params);
+    Scheme::StoreParameter("params", params);
 
 }
 
 // This function is called whenever new keys are required. You don't need to
 //      return anything but store the pointers to your key parameters by using
-//      Scheme::storeParameter(string key, typename pointer) function.
+//      Scheme::StoreParameter(string key, typename pointer) function.
 // This function accepts any type of pointers and internally casts to void pointer type.
 // Later, you will be able to call the stored pointer by using
-//      Scheme::getParameter(string key) function. So, give it a meaningful key name.
+//      Scheme::GetParameter(string key) function. So, give it a meaningful key name.
 // You can store as many pointers you want.
-void Scheme::generateKeySet(){
+void Scheme::GenerateKeySet(){
 
     // cast back to data type from void
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     TFheGateBootstrappingSecretKeySet *keyset = new_random_gate_bootstrapping_secret_keyset(params);
 
-    Scheme::storeParameter("keyset", keyset);
+    Scheme::StoreParameter("keyset", keyset);
 
 }
 
 // This function will be called for encrypting plaintext values. Please return a
 //      void type pointer to the cipher text. You achieve this by casting your
 //      existing pointer to the cipher text.
-// You can get required keys and parameters by calling Scheme::getParameter(string key)
+// You can get required keys and parameters by calling Scheme::GetParameter(string key)
 //      function as mentioned previously. This function will return a void type pointer
 //      and please cast this pointer to your reqired data type before utilizing.
-void* Scheme::encrypt(int message){
+void* Scheme::Encrypt(int plainText){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     // generate a new unititialized ciphertext
     LweSample* result = new_gate_bootstrapping_ciphertext(params);
 
     // encrypts a boolean
-    bootsSymEncrypt(result, message, keyset);
+    bootsSymEncrypt(result, plainText, keyset);
 
     return static_cast<void*>(result);
 
 }
 
 
-int Scheme::decrypt(void* cipherText){
+int Scheme::Decrypt(void* cipherText){
 
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
 
     // Cast back to data type from void
     LweSample  *cipherTextPtr = static_cast<LweSample*>(cipherText);
@@ -85,7 +85,7 @@ int Scheme::decrypt(void* cipherText){
     return bootsSymDecrypt(cipherTextPtr, keyset);
 }
 
-void Scheme::cleanup(){
+void Scheme::Cleanup(){
 // remove_before_flight
 }
 
@@ -98,11 +98,11 @@ void Scheme::cleanup(){
 // You should return a void pointer to the result after completing the gate operation
 
 // And gate
-void* GateApi::gate_and(void *bitA, void *bitB){
+void* GateApi::EvalAnd(void *bitA, void *bitB){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
     LweSample  *bitBPtr = static_cast<LweSample*>(bitB);
@@ -117,11 +117,11 @@ void* GateApi::gate_and(void *bitA, void *bitB){
 }
 
 // Nand gate
-void* GateApi::gate_nand(void *bitA, void *bitB){
+void* GateApi::EvalNand(void *bitA, void *bitB){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
     LweSample  *bitBPtr = static_cast<LweSample*>(bitB);
@@ -136,11 +136,11 @@ void* GateApi::gate_nand(void *bitA, void *bitB){
 }
 
 // Or gate
-void* GateApi::gate_or(void *bitA, void *bitB){
+void* GateApi::EvalOr(void *bitA, void *bitB){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
     LweSample  *bitBPtr = static_cast<LweSample*>(bitB);
@@ -155,11 +155,11 @@ void* GateApi::gate_or(void *bitA, void *bitB){
 }
 
 // Nor gate
-void* GateApi::gate_nor(void *bitA, void *bitB){
+void* GateApi::EvalNor(void *bitA, void *bitB){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
     LweSample  *bitBPtr = static_cast<LweSample*>(bitB);
@@ -174,11 +174,11 @@ void* GateApi::gate_nor(void *bitA, void *bitB){
 }
 
 // Xor gate
-void* GateApi::gate_xor(void *bitA, void *bitB){
+void* GateApi::EvalXor(void *bitA, void *bitB){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
     LweSample  *bitBPtr = static_cast<LweSample*>(bitB);
@@ -193,11 +193,11 @@ void* GateApi::gate_xor(void *bitA, void *bitB){
 }
 
 // Xnor gate
-void* GateApi::gate_xnor(void *bitA, void *bitB){
+void* GateApi::EvalXnor(void *bitA, void *bitB){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
     LweSample  *bitBPtr = static_cast<LweSample*>(bitB);
@@ -212,11 +212,11 @@ void* GateApi::gate_xnor(void *bitA, void *bitB){
 }
 
 // MUX gate
-void* GateApi::gate_mux(void *bitA, void *bitB, void *bitC){
+void* GateApi::EvalMux(void *bitA, void *bitB, void *bitC){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
     LweSample  *bitBPtr = static_cast<LweSample*>(bitB);
@@ -232,11 +232,11 @@ void* GateApi::gate_mux(void *bitA, void *bitB, void *bitC){
 }
 
 // Not gate
-void* GateApi::gate_not(void *bitA){
+void* GateApi::EvalNot(void *bitA){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
 
@@ -250,11 +250,11 @@ void* GateApi::gate_not(void *bitA){
 }
 
 // Buffer gate
-void* GateApi::gate_buffer(void *bitA){
+void* GateApi::EvalBuffer(void *bitA){
 
     // cast back to data type from void
-    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::getParameter("keyset"));
-    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::getParameter("params"));
+    TFheGateBootstrappingSecretKeySet  *keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet  *params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
 
     LweSample  *bitAPtr = static_cast<LweSample*>(bitA);
 
@@ -272,14 +272,14 @@ void* GateApi::gate_buffer(void *bitA){
 /** Please don't modify the following functions **/
 /*************************************************/
 template <typename T>
-void Scheme::storeParameter(string key, T* pointer){
+void Scheme::StoreParameter(string key, T* pointer){
 
     void *ptr = static_cast<void*>(pointer);
     Scheme::parameters.insert({key, ptr});
 
 }
 
-void* Scheme::getParameter(string key){
+void* Scheme::GetParameter(string key){
 
     return Scheme::parameters[key];
 }

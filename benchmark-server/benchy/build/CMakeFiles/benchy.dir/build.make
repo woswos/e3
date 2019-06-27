@@ -105,68 +105,68 @@ CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.provides: CMakeFiles/benchy.dir
 CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.provides.build: CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o
 
 
-CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o: CMakeFiles/benchy.dir/flags.make
-CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o: ../src/arithmetic/arithmetic.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o -c /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/arithmetic/arithmetic.cpp
+CMakeFiles/benchy.dir/src/gate/gate.cpp.o: CMakeFiles/benchy.dir/flags.make
+CMakeFiles/benchy.dir/src/gate/gate.cpp.o: ../src/gate/gate.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/benchy.dir/src/gate/gate.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/benchy.dir/src/gate/gate.cpp.o -c /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/gate/gate.cpp
 
-CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/arithmetic/arithmetic.cpp > CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.i
+CMakeFiles/benchy.dir/src/gate/gate.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/benchy.dir/src/gate/gate.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/gate/gate.cpp > CMakeFiles/benchy.dir/src/gate/gate.cpp.i
 
-CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/arithmetic/arithmetic.cpp -o CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.s
+CMakeFiles/benchy.dir/src/gate/gate.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/benchy.dir/src/gate/gate.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/gate/gate.cpp -o CMakeFiles/benchy.dir/src/gate/gate.cpp.s
 
-CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o.requires:
+CMakeFiles/benchy.dir/src/gate/gate.cpp.o.requires:
 
-.PHONY : CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o.requires
+.PHONY : CMakeFiles/benchy.dir/src/gate/gate.cpp.o.requires
 
-CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o.provides: CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o.requires
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o.provides.build
-.PHONY : CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o.provides
+CMakeFiles/benchy.dir/src/gate/gate.cpp.o.provides: CMakeFiles/benchy.dir/src/gate/gate.cpp.o.requires
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/gate.cpp.o.provides.build
+.PHONY : CMakeFiles/benchy.dir/src/gate/gate.cpp.o.provides
 
-CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o.provides.build: CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o
+CMakeFiles/benchy.dir/src/gate/gate.cpp.o.provides.build: CMakeFiles/benchy.dir/src/gate/gate.cpp.o
 
 
-CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o: CMakeFiles/benchy.dir/flags.make
-CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o: ../scheme/api-arithmetic.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o -c /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/api-arithmetic.cpp
+CMakeFiles/benchy.dir/scheme/api-gate.cpp.o: CMakeFiles/benchy.dir/flags.make
+CMakeFiles/benchy.dir/scheme/api-gate.cpp.o: ../scheme/api-gate.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/benchy.dir/scheme/api-gate.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/benchy.dir/scheme/api-gate.cpp.o -c /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/api-gate.cpp
 
-CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/api-arithmetic.cpp > CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.i
+CMakeFiles/benchy.dir/scheme/api-gate.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/benchy.dir/scheme/api-gate.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/api-gate.cpp > CMakeFiles/benchy.dir/scheme/api-gate.cpp.i
 
-CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/api-arithmetic.cpp -o CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.s
+CMakeFiles/benchy.dir/scheme/api-gate.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/benchy.dir/scheme/api-gate.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/api-gate.cpp -o CMakeFiles/benchy.dir/scheme/api-gate.cpp.s
 
-CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o.requires:
+CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.requires:
 
-.PHONY : CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o.requires
+.PHONY : CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.requires
 
-CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o.provides: CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o.requires
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o.provides.build
-.PHONY : CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o.provides
+CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.provides: CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.requires
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.provides.build
+.PHONY : CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.provides
 
-CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o.provides.build: CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o
+CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.provides.build: CMakeFiles/benchy.dir/scheme/api-gate.cpp.o
 
 
 # Object files for target benchy
 benchy_OBJECTS = \
 "CMakeFiles/benchy.dir/src/main.cpp.o" \
 "CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o" \
-"CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o" \
-"CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o"
+"CMakeFiles/benchy.dir/src/gate/gate.cpp.o" \
+"CMakeFiles/benchy.dir/scheme/api-gate.cpp.o"
 
 # External object files for target benchy
 benchy_EXTERNAL_OBJECTS =
 
 benchy: CMakeFiles/benchy.dir/src/main.cpp.o
 benchy: CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o
-benchy: CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o
-benchy: CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o
+benchy: CMakeFiles/benchy.dir/src/gate/gate.cpp.o
+benchy: CMakeFiles/benchy.dir/scheme/api-gate.cpp.o
 benchy: CMakeFiles/benchy.dir/build.make
 benchy: /usr/local/lib/libseal.a
 benchy: CMakeFiles/benchy.dir/link.txt
@@ -180,8 +180,8 @@ CMakeFiles/benchy.dir/build: benchy
 
 CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/src/main.cpp.o.requires
 CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.requires
-CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o.requires
-CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o.requires
+CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/src/gate/gate.cpp.o.requires
+CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.requires
 
 .PHONY : CMakeFiles/benchy.dir/requires
 

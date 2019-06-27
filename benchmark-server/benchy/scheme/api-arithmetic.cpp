@@ -25,7 +25,7 @@ using namespace seal;
 // This function is called once in the beginning of the benchmark.
 //      You can use this function to initilize required parameters
 //      or pointers, etc.
-void Scheme::init(){
+void Scheme::Init(){
 
     // Choose a scheme and create encytion parameters
     EncryptionParameters parms(scheme_type::BFV);
@@ -38,50 +38,50 @@ void Scheme::init(){
     //std::shared_ptr<seal::SEALContext> context = SEALContext::Create(parms);
 
     std::shared_ptr<seal::SEALContext> *contextPtr = new std::shared_ptr<seal::SEALContext>(SEALContext::Create(parms));
-    Scheme::storeParameter("context", contextPtr);
+    Scheme::StoreParameter("context", contextPtr);
 
 }
 
 // This function is called whenever new keys are required. You don't need to
 //      return anything but store the pointers to your key parameters by using
-//      Scheme::storeParameter(string key, typename pointer) function.
+//      Scheme::StoreParameter(string key, typename pointer) function.
 // This function accepts any type of pointers and internally casts to void pointer type.
 // Later, you will be able to call the stored pointer by using
-//      Scheme::getParameter(string key) function. So, give it a meaningful key name.
+//      Scheme::GetParameter(string key) function. So, give it a meaningful key name.
 // You can store as many pointers you want.
-void Scheme::generateKeySet(){
+void Scheme::GenerateKeySet(){
 
     // cast back to data type from void
-    std::shared_ptr<seal::SEALContext> *context = static_cast<std::shared_ptr<seal::SEALContext>*>(Scheme::getParameter("context"));
+    std::shared_ptr<seal::SEALContext> *context = static_cast<std::shared_ptr<seal::SEALContext>*>(Scheme::GetParameter("context"));
 
     KeyGenerator keygen(*context);
     PublicKey *public_keyPtr = new PublicKey(keygen.public_key());
     SecretKey *secret_keyPtr = new SecretKey(keygen.secret_key());
 
-    Scheme::storeParameter("public_key", public_keyPtr);
-    Scheme::storeParameter("secret_key", secret_keyPtr);
+    Scheme::StoreParameter("public_key", public_keyPtr);
+    Scheme::StoreParameter("secret_key", secret_keyPtr);
 
     Encryptor *encryptorPtr = new Encryptor(*context, *public_keyPtr);
     Evaluator *evaluatorPtr = new Evaluator(*context);
     Decryptor *decryptorPtr = new Decryptor(*context, *secret_keyPtr);
 
-    Scheme::storeParameter("encryptor", encryptorPtr);
-    Scheme::storeParameter("evaluator", evaluatorPtr);
-    Scheme::storeParameter("decryptor", decryptorPtr);
+    Scheme::StoreParameter("encryptor", encryptorPtr);
+    Scheme::StoreParameter("evaluator", evaluatorPtr);
+    Scheme::StoreParameter("decryptor", decryptorPtr);
 }
 
 // This function will be called for encrypting plaintext values. Please return a
 //      void type pointer to the cipher text. You achieve this by casting your
 //      existing pointer to the cipher text.
-// You can get required keys and parameters by calling Scheme::getParameter(string key)
+// You can get required keys and parameters by calling Scheme::GetParameter(string key)
 //      function as mentioned previously. This function will return a void type pointer
 //      and please cast this pointer to your reqired data type before utilizing.
-void* Scheme::encrypt(int message){
+void* Scheme::Encrypt(int plainText){
 
     // cast back to data type from void
-    Encryptor *encryptor = static_cast<Encryptor*>(Scheme::getParameter("encryptor"));
+    Encryptor *encryptor = static_cast<Encryptor*>(Scheme::GetParameter("encryptor"));
 
-    Plaintext x_plain(to_string(message));
+    Plaintext x_plain(to_string(plainText));
 
     Ciphertext *x_encrypted_Ptr = new Ciphertext();
 
@@ -92,9 +92,9 @@ void* Scheme::encrypt(int message){
 }
 
 
-int Scheme::decrypt(void* cipherText){
+int Scheme::Decrypt(void* cipherText){
 
-    Decryptor  *decryptor = static_cast<Decryptor*>(Scheme::getParameter("decryptor"));
+    Decryptor  *decryptor = static_cast<Decryptor*>(Scheme::GetParameter("decryptor"));
 
     // Cast back to data type from void
     Ciphertext  *cipherTextPtr = static_cast<Ciphertext*>(cipherText);
@@ -106,17 +106,17 @@ int Scheme::decrypt(void* cipherText){
     return std::stoi(x_decrypted_Ptr->to_string());
 }
 
-void Scheme::cleanup(){
+void Scheme::Cleanup(){
 // remove_before_flight
 }
 
 /**************************/
 /** ARITHMETIC FUNCTIONS **/
 /**************************/
-void* ArithmeticApi::arithmetic_add(void *valA, void *valB){
+void* ArithmeticApi::EvalAdd(void *valA, void *valB){
 
     // cast back to data type from void
-    Evaluator *evaluator = static_cast<Evaluator*>(Scheme::getParameter("evaluator"));
+    Evaluator *evaluator = static_cast<Evaluator*>(Scheme::GetParameter("evaluator"));
 
     Ciphertext  *valAPtr = static_cast<Ciphertext*>(valA);
     Ciphertext  *valBPtr = static_cast<Ciphertext*>(valB);
@@ -126,10 +126,10 @@ void* ArithmeticApi::arithmetic_add(void *valA, void *valB){
     return static_cast<void*>(valAPtr);
 }
 
-void* ArithmeticApi::arithmetic_multiply(void *valA, void *valB){
+void* ArithmeticApi::EvalMult(void *valA, void *valB){
 
     // cast back to data type from void
-    Evaluator *evaluator = static_cast<Evaluator*>(Scheme::getParameter("evaluator"));
+    Evaluator *evaluator = static_cast<Evaluator*>(Scheme::GetParameter("evaluator"));
 
     Ciphertext  *valAPtr = static_cast<Ciphertext*>(valA);
     Ciphertext  *valBPtr = static_cast<Ciphertext*>(valB);
@@ -140,10 +140,10 @@ void* ArithmeticApi::arithmetic_multiply(void *valA, void *valB){
 
 }
 
-void* ArithmeticApi::arithmetic_square(void *valA){
+void* ArithmeticApi::EvalSquare(void *valA){
 
     // cast back to data type from void
-    Evaluator *evaluator = static_cast<Evaluator*>(Scheme::getParameter("evaluator"));
+    Evaluator *evaluator = static_cast<Evaluator*>(Scheme::GetParameter("evaluator"));
 
     Ciphertext  *valAPtr = static_cast<Ciphertext*>(valA);
 
@@ -159,14 +159,14 @@ void* ArithmeticApi::arithmetic_square(void *valA){
 /** Please don't modify the following functions **/
 /*************************************************/
 template <typename T>
-void Scheme::storeParameter(string key, T* pointer){
+void Scheme::StoreParameter(string key, T* pointer){
 
     void *ptr = static_cast<void*>(pointer);
     Scheme::parameters.insert({key, ptr});
 
 }
 
-void* Scheme::getParameter(string key){
+void* Scheme::GetParameter(string key){
 
     return Scheme::parameters[key];
 }

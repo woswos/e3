@@ -7,9 +7,9 @@
 
 void Scheme::base_benchmark(){
 
-    Scheme::init();
+    Scheme::Init();
 
-    Scheme::generateKeySet();
+    Scheme::GenerateKeySet();
 
 }
 

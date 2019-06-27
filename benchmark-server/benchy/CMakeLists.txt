@@ -6,10 +6,10 @@ project (benchy LANGUAGES CXX)
 # OPTIONS AND VARIABLES THAT NEED TO BE MODIFIED:
 
 # Turn this ON if the scheme supports gate operations
-option(GATE "" OFF)
+option(GATE "" ON)
 
 # Turn this ON if the scheme supports arithmetic operations
-option(ARITHMETIC "" ON)
+option(ARITHMETIC "" OFF)
 
 
 # Set this the location of your library

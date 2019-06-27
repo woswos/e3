@@ -10,12 +10,12 @@ int ArithmeticApi::benchmark(ArithmeticApi* schemePtr){
         int a = 1;
         int b = 2;
 
-        void *valA = ArithmeticApi::encrypt(a);
-        void *valB = ArithmeticApi::encrypt(b);
+        void *valA = ArithmeticApi::Encrypt(a);
+        void *valB = ArithmeticApi::Encrypt(b);
 
-        void *valC = ArithmeticApi::arithmetic_add(valA, valB);
+        void *valC = ArithmeticApi::EvalAdd(valA, valB);
 
-        std::cout << ArithmeticApi::decrypt(valC) << "\n";
+        std::cout << ArithmeticApi::Decrypt(valC) << "\n";
 
     return 1;
 }

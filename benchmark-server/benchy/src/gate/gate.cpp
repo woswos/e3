@@ -15,11 +15,11 @@ int GateApi::benchmark(GateApi* schemePtr){
 
     for (size_t i = 0; i < 10; i++) {
 
-        GateApi::test_gate_cycle_fresh_ciphertext("gate_and", schemePtr, &GateApi::gate_nand, &GateApi::test_gate_nand);
+        GateApi::test_gate_cycle_fresh_ciphertext("gate_and", schemePtr, &GateApi::EvalAnd, &GateApi::test_gate_nand);
 
-        //GateApi::test_gate_cycle_fresh_ciphertext("gate_nand", schemePtr, &GateApi::gate_nand, &GateApi::test_gate_nand);
+        //GateApi::test_gate_cycle_fresh_ciphertext("gate_nand", schemePtr, &GateApi::EvalNand, &GateApi::test_gate_nand);
 
-        //GateApi::test_gate_cycle_fresh_ciphertext("gate_or", schemePtr, &GateApi::gate_or, &GateApi::test_gate_or);
+        //GateApi::test_gate_cycle_fresh_ciphertext("gate_or", schemePtr, &GateApi::EvalOr, &GateApi::test_gate_or);
 
         std::cout << "\n";
     }
@@ -37,8 +37,8 @@ int GateApi::test_gate_cycle_fresh_ciphertext(
     int testBitOne = 1;
     int testBitZero = 0;
 
-    void *bitOne = GateApi::encrypt(testBitOne);
-    void *bitZero = GateApi::encrypt(testBitZero);
+    void *bitOne = GateApi::Encrypt(testBitOne);
+    void *bitZero = GateApi::Encrypt(testBitZero);
 
     void *result1 = 0;
     void *result2 = 0;
@@ -69,10 +69,10 @@ int GateApi::test_gate_cycle_fresh_ciphertext(
     testResult3 = ((*schemePtr).*test_gate_func_name)(testBitOne, testBitZero);
     testResult4 = ((*schemePtr).*test_gate_func_name)(testBitOne, testBitOne);
 
-    testResult1 = GateApi::compare(GateApi::decrypt(result1), testResult1);
-    testResult2 = GateApi::compare(GateApi::decrypt(result2), testResult2);
-    testResult3 = GateApi::compare(GateApi::decrypt(result3), testResult3);
-    testResult4 = GateApi::compare(GateApi::decrypt(result4), testResult4);
+    testResult1 = GateApi::compare(GateApi::Decrypt(result1), testResult1);
+    testResult2 = GateApi::compare(GateApi::Decrypt(result2), testResult2);
+    testResult3 = GateApi::compare(GateApi::Decrypt(result3), testResult3);
+    testResult4 = GateApi::compare(GateApi::Decrypt(result4), testResult4);
     /*
     if(testResult1){
         std::cout << "Test 1 is succesfull" << "\n";

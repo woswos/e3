@@ -126,13 +126,6 @@ void* ArithmeticApi::arithmetic_add(void *valA, void *valB){
     return static_cast<void*>(valAPtr);
 }
 
-void* ArithmeticApi::arithmetic_subtract(void *valA, void *valB){
-
-    void *ptr = 0;
-
-    return ptr;
-}
-
 void* ArithmeticApi::arithmetic_multiply(void *valA, void *valB){
 
     // cast back to data type from void

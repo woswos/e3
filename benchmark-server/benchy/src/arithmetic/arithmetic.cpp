@@ -1,7 +1,7 @@
 #include "arithmetic.h"
 #include <iostream>
 
-int ArithmeticApi::benchmark(){
+int ArithmeticApi::benchmark(ArithmeticApi* schemePtr){
 
     ArithmeticApi::base_benchmark();
 

@@ -1,20 +1,38 @@
 #include "gate.h"
 #include <iostream>
+#include <functional>
+#include <string>
 
-int GateApi::benchmark(){
+int GateApi::benchmark(GateApi* schemePtr){
 
     // Runs GateApi::init() and GateApi::generateKeySet()
     GateApi::base_benchmark();
 
-    enum Gate { AND, NAND, OR, NOR, XOR, XNOR, MUX, NOT, BUFFER};
-    string gateNames[] = { "AND...", "NAND...", "OR...", "NOR...", "XOR...", "XNOR...", "MUX...", "NOT...", "BUFFER...",};
+    //enum Gate { AND, NAND, OR, NOR, XOR, XNOR, MUX, NOT, BUFFER};
+    //string gateNames[] = { "AND...", "NAND...", "OR...", "NOR...", "XOR...", "XNOR...", "MUX...", "NOT...", "BUFFER...",};
 
-    GateApi::test_gate_cycle();
+    std::cout << "Fresh ciphertext tests" << "\n";
+
+    for (size_t i = 0; i < 10; i++) {
+
+        GateApi::test_gate_cycle_fresh_ciphertext("gate_and", schemePtr, &GateApi::gate_nand, &GateApi::test_gate_nand);
+
+        //GateApi::test_gate_cycle_fresh_ciphertext("gate_nand", schemePtr, &GateApi::gate_nand, &GateApi::test_gate_nand);
+
+        //GateApi::test_gate_cycle_fresh_ciphertext("gate_or", schemePtr, &GateApi::gate_or, &GateApi::test_gate_or);
+
+        std::cout << "\n";
+    }
 
     return 1;
 }
 
-int GateApi::test_gate_cycle(){
+int GateApi::test_gate_cycle_fresh_ciphertext(
+                            std::string gate_name_s,
+                            GateApi* schemePtr,
+                            void* (GateApi::*gate_func_name)(void*, void*),
+                            int (GateApi::*test_gate_func_name)(int, int)
+                            ){
 
     int testBitOne = 1;
     int testBitZero = 0;
@@ -30,31 +48,32 @@ int GateApi::test_gate_cycle(){
     int testResult1, testResult2, testResult3, testResult4;
 
     GateApi::startTimer();
-    result1 = GateApi::gate_nand(bitZero, bitZero);
-    GateApi::addTiming("gate_and", GateApi::stopTimer());
+    //result1 = GateApi::gate_nand(bitZero, bitZero);
+    result1 = ((*schemePtr).*gate_func_name)(bitZero, bitZero);
+    GateApi::addTiming(gate_name_s, GateApi::stopTimer());
 
     GateApi::startTimer();
-    result2 = GateApi::gate_nand(bitZero, bitOne);
-    GateApi::addTiming("gate_and", GateApi::stopTimer());
+    result2 = ((*schemePtr).*gate_func_name)(bitZero, bitOne);
+    GateApi::addTiming(gate_name_s, GateApi::stopTimer());
 
     GateApi::startTimer();
-    result3 = GateApi::gate_nand(bitOne, bitZero);
-    GateApi::addTiming("gate_and", GateApi::stopTimer());
+    result3 = ((*schemePtr).*gate_func_name)(bitOne, bitZero);
+    GateApi::addTiming(gate_name_s, GateApi::stopTimer());
 
     GateApi::startTimer();
-    result4 = GateApi::gate_nand(bitOne, bitOne);
-    GateApi::addTiming("gate_and", GateApi::stopTimer());
+    result4 = ((*schemePtr).*gate_func_name)(bitOne, bitOne);
+    GateApi::addTiming(gate_name_s, GateApi::stopTimer());
 
-    testResult1 = GateApi::test_gate_nand(testBitZero, testBitZero);
-    testResult2 = GateApi::test_gate_nand(testBitZero, testBitOne);
-    testResult3 = GateApi::test_gate_nand(testBitOne, testBitZero);
-    testResult4 = GateApi::test_gate_nand(testBitOne, testBitOne);
+    testResult1 = ((*schemePtr).*test_gate_func_name)(testBitZero, testBitZero);
+    testResult2 = ((*schemePtr).*test_gate_func_name)(testBitZero, testBitOne);
+    testResult3 = ((*schemePtr).*test_gate_func_name)(testBitOne, testBitZero);
+    testResult4 = ((*schemePtr).*test_gate_func_name)(testBitOne, testBitOne);
 
     testResult1 = GateApi::compare(GateApi::decrypt(result1), testResult1);
     testResult2 = GateApi::compare(GateApi::decrypt(result2), testResult2);
     testResult3 = GateApi::compare(GateApi::decrypt(result3), testResult3);
     testResult4 = GateApi::compare(GateApi::decrypt(result4), testResult4);
-
+    /*
     if(testResult1){
         std::cout << "Test 1 is succesfull" << "\n";
     }
@@ -70,8 +89,8 @@ int GateApi::test_gate_cycle(){
     if(testResult4){
         std::cout << "Test 4 is succesfull" << "\n";
     }
-
-    std::cout << "Timing for nand gate is: " << GateApi::getTiming("gate_and") << " microsecs" << "\n";
+    */
+    std::cout << "Timing for " << gate_name_s << " is: " << GateApi::getTiming(gate_name_s) << " microsecs" << "\n";
 
     return 0;
 }

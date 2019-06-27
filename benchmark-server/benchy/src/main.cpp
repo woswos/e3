@@ -10,11 +10,14 @@ int main(int argc, char const *argv[]) {
 
     #ifndef GATEAPI
         ArithmeticApi* scheme = new ArithmeticApi();
+        scheme->benchmark(scheme);
+
     #else
         GateApi* scheme = new GateApi();
+        scheme->benchmark(scheme);
+        
     #endif
 
-    scheme->benchmark();
 
     delete scheme;
 

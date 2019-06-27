@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/benchy.dir/src/main.cpp.o"
   "CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o"
-  "CMakeFiles/benchy.dir/src/gate/gate.cpp.o"
-  "CMakeFiles/benchy.dir/scheme/api-gate.cpp.o"
+  "CMakeFiles/benchy.dir/src/arithmetic/arithmetic.cpp.o"
+  "CMakeFiles/benchy.dir/scheme/api-arithmetic.cpp.o"
   "benchy.pdb"
   "benchy"
 )

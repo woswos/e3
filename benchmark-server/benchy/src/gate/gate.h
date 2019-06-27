@@ -37,9 +37,14 @@ public:
     /* Benchmarking Stuff */
     /**********************/
     // Does the benchmarking, returns 1 if completed succesfully
-    int benchmark();
+    int benchmark(GateApi* schemePtr);
 
-    int test_gate_cycle();
+    int test_gate_cycle_fresh_ciphertext(
+                        std::string gate_name_s,
+                        GateApi* schemePtr,
+                        void* (GateApi::*gate_func_name)(void*, void*),
+                        int (GateApi::*test_gate_func_name)(int, int)
+                        );
 
     int test_gate_and(int bitA, int bitB);
     int test_gate_nand(int bitA, int bitB);
@@ -54,6 +59,9 @@ public:
     int test_gate_not(int bitA);
     int test_gate_buffer(int bitA);
 
+    int test(){
+        return 0;
+    };
 };
 
 #endif

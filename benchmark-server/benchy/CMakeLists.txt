@@ -6,10 +6,10 @@ project (benchy LANGUAGES CXX)
 # OPTIONS AND VARIABLES THAT NEED TO BE MODIFIED:
 
 # Turn this ON if the scheme supports gate operations
-option(GATE "" ON)
+option(GATE "" OFF)
 
 # Turn this ON if the scheme supports arithmetic operations
-option(ARITHMETIC "" OFF)
+option(ARITHMETIC "" ON)
 
 
 # Set this the location of your library
@@ -20,7 +20,7 @@ set(libraryName "-ltfhe-spqlios-fma")
 #set(libraryName "helib")
 
 #find_package(helib 1.0.0 EXACT REQUIRED)
-#find_package(SEAL 3.3.0 EXACT REQUIRED)
+find_package(SEAL 3.3.0 EXACT REQUIRED)
 ################################################################################
 ################################################################################
 
@@ -72,7 +72,7 @@ set_target_properties(benchy  PROPERTIES
 
 ################################################################################
 ################################################################################
-#target_link_libraries(benchy SEAL::seal)
+target_link_libraries(benchy SEAL::seal)
 ################################################################################
 ################################################################################
 

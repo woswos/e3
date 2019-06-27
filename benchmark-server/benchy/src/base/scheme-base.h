@@ -25,6 +25,8 @@ private:
     // Temporary time storage
     time_t tempTime;
 
+    map<string, void*> benchmark_funcs;
+
 public:
 
     /*********************/

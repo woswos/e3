@@ -21,7 +21,7 @@ public:
     /* Benchmarking Stuff */
     /**********************/
     // Does the benchmarking, returns 1 if completed succesfully
-    int benchmark();
+    int benchmark(ArithmeticApi* schemePtr);
 
     /***********************************/
     /* Supported Arithmetic Operations */

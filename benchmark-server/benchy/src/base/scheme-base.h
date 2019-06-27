@@ -62,6 +62,9 @@ public:
     //      put them inside this function
     void base_benchmark();
 
+    // Returns true of false if given values are equal to each other
+    bool compare(int valueA, int valueB);
+
 
     /**************/
     /* Scheme Api */

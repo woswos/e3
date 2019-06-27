@@ -86,7 +86,7 @@ int Scheme::decrypt(void* cipherText){
 }
 
 void Scheme::cleanup(){
-
+// remove_before_flight
 }
 
 /********************/

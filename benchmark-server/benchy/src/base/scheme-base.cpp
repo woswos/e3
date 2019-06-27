@@ -51,3 +51,11 @@ bool Scheme::randomBool() {
     static auto gen = std::bind(std::uniform_int_distribution<>(0,1),std::default_random_engine());
     return gen();
 }
+
+bool Scheme::compare(int valueA, int valueB) {
+    if(valueA == valueB){
+        return true;
+    } else {
+        return false;
+    }
+}

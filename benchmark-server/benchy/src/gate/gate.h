@@ -17,12 +17,6 @@ public:
     // Destructor
     ~GateApi(){};
 
-    /**********************/
-    /* Benchmarking Stuff */
-    /**********************/
-    // Does the benchmarking, returns 1 if completed succesfully
-    int benchmark();
-
     /*******************/
     /* Supported Gates */
     /*******************/
@@ -38,6 +32,27 @@ public:
     void* gate_mux(void *bitA, void *bitB, void *bitC);
     void* gate_not(void *bitA);
     void* gate_buffer(void *bitA);
+
+    /**********************/
+    /* Benchmarking Stuff */
+    /**********************/
+    // Does the benchmarking, returns 1 if completed succesfully
+    int benchmark();
+
+    int test_gate_cycle();
+
+    int test_gate_and(int bitA, int bitB);
+    int test_gate_nand(int bitA, int bitB);
+
+    int test_gate_or(int bitA, int bitB);
+    int test_gate_nor(int bitA, int bitB);
+
+    int test_gate_xor(int bitA, int bitB);
+    int test_gate_xnor(int bitA, int bitB);
+
+    int test_gate_mux(int bitA, int bitB, int bitC);
+    int test_gate_not(int bitA);
+    int test_gate_buffer(int bitA);
 
 };
 

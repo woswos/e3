@@ -1,7 +1,7 @@
 #ifndef GATE_API_H
 #define GATE_API_H
 
-#include "scheme-base.h"
+#include "base.h"
 
 class GateApi : public Scheme
 {

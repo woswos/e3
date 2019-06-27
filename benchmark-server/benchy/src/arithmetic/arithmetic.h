@@ -1,7 +1,7 @@
 #ifndef ARITHMETIC_API_H
 #define ARITHMETIC_API_H
 
-#include "scheme-base.h"
+#include "base.h"
 
 class ArithmeticApi : public Scheme
 {

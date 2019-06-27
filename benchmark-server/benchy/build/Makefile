@@ -150,32 +150,32 @@ scheme/api-gate.cpp.s:
 	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.s
 .PHONY : scheme/api-gate.cpp.s
 
-src/base/scheme-base.o: src/base/scheme-base.cpp.o
+src/base/base.o: src/base/base.cpp.o
 
-.PHONY : src/base/scheme-base.o
+.PHONY : src/base/base.o
 
 # target to build an object file
-src/base/scheme-base.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o
-.PHONY : src/base/scheme-base.cpp.o
+src/base/base.cpp.o:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/base.cpp.o
+.PHONY : src/base/base.cpp.o
 
-src/base/scheme-base.i: src/base/scheme-base.cpp.i
+src/base/base.i: src/base/base.cpp.i
 
-.PHONY : src/base/scheme-base.i
+.PHONY : src/base/base.i
 
 # target to preprocess a source file
-src/base/scheme-base.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/scheme-base.cpp.i
-.PHONY : src/base/scheme-base.cpp.i
+src/base/base.cpp.i:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/base.cpp.i
+.PHONY : src/base/base.cpp.i
 
-src/base/scheme-base.s: src/base/scheme-base.cpp.s
+src/base/base.s: src/base/base.cpp.s
 
-.PHONY : src/base/scheme-base.s
+.PHONY : src/base/base.s
 
 # target to generate assembly for a file
-src/base/scheme-base.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/scheme-base.cpp.s
-.PHONY : src/base/scheme-base.cpp.s
+src/base/base.cpp.s:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/base.cpp.s
+.PHONY : src/base/base.cpp.s
 
 src/gate/gate.o: src/gate/gate.cpp.o
 
@@ -243,9 +243,9 @@ help:
 	@echo "... scheme/api-gate.o"
 	@echo "... scheme/api-gate.i"
 	@echo "... scheme/api-gate.s"
-	@echo "... src/base/scheme-base.o"
-	@echo "... src/base/scheme-base.i"
-	@echo "... src/base/scheme-base.s"
+	@echo "... src/base/base.o"
+	@echo "... src/base/base.i"
+	@echo "... src/base/base.s"
 	@echo "... src/gate/gate.o"
 	@echo "... src/gate/gate.i"
 	@echo "... src/gate/gate.s"

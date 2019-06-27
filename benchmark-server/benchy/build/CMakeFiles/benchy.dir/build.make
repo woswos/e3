@@ -81,28 +81,28 @@ CMakeFiles/benchy.dir/src/main.cpp.o.provides: CMakeFiles/benchy.dir/src/main.cp
 CMakeFiles/benchy.dir/src/main.cpp.o.provides.build: CMakeFiles/benchy.dir/src/main.cpp.o
 
 
-CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o: CMakeFiles/benchy.dir/flags.make
-CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o: ../src/base/scheme-base.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o -c /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/scheme-base.cpp
+CMakeFiles/benchy.dir/src/base/base.cpp.o: CMakeFiles/benchy.dir/flags.make
+CMakeFiles/benchy.dir/src/base/base.cpp.o: ../src/base/base.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/benchy.dir/src/base/base.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/benchy.dir/src/base/base.cpp.o -c /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/base.cpp
 
-CMakeFiles/benchy.dir/src/base/scheme-base.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/benchy.dir/src/base/scheme-base.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/scheme-base.cpp > CMakeFiles/benchy.dir/src/base/scheme-base.cpp.i
+CMakeFiles/benchy.dir/src/base/base.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/benchy.dir/src/base/base.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/base.cpp > CMakeFiles/benchy.dir/src/base/base.cpp.i
 
-CMakeFiles/benchy.dir/src/base/scheme-base.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/benchy.dir/src/base/scheme-base.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/scheme-base.cpp -o CMakeFiles/benchy.dir/src/base/scheme-base.cpp.s
+CMakeFiles/benchy.dir/src/base/base.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/benchy.dir/src/base/base.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/base.cpp -o CMakeFiles/benchy.dir/src/base/base.cpp.s
 
-CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.requires:
+CMakeFiles/benchy.dir/src/base/base.cpp.o.requires:
 
-.PHONY : CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.requires
+.PHONY : CMakeFiles/benchy.dir/src/base/base.cpp.o.requires
 
-CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.provides: CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.requires
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.provides.build
-.PHONY : CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.provides
+CMakeFiles/benchy.dir/src/base/base.cpp.o.provides: CMakeFiles/benchy.dir/src/base/base.cpp.o.requires
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/base.cpp.o.provides.build
+.PHONY : CMakeFiles/benchy.dir/src/base/base.cpp.o.provides
 
-CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.provides.build: CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o
+CMakeFiles/benchy.dir/src/base/base.cpp.o.provides.build: CMakeFiles/benchy.dir/src/base/base.cpp.o
 
 
 CMakeFiles/benchy.dir/src/gate/gate.cpp.o: CMakeFiles/benchy.dir/flags.make
@@ -156,7 +156,7 @@ CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.provides.build: CMakeFiles/benchy.di
 # Object files for target benchy
 benchy_OBJECTS = \
 "CMakeFiles/benchy.dir/src/main.cpp.o" \
-"CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o" \
+"CMakeFiles/benchy.dir/src/base/base.cpp.o" \
 "CMakeFiles/benchy.dir/src/gate/gate.cpp.o" \
 "CMakeFiles/benchy.dir/scheme/api-gate.cpp.o"
 
@@ -164,7 +164,7 @@ benchy_OBJECTS = \
 benchy_EXTERNAL_OBJECTS =
 
 benchy: CMakeFiles/benchy.dir/src/main.cpp.o
-benchy: CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o
+benchy: CMakeFiles/benchy.dir/src/base/base.cpp.o
 benchy: CMakeFiles/benchy.dir/src/gate/gate.cpp.o
 benchy: CMakeFiles/benchy.dir/scheme/api-gate.cpp.o
 benchy: CMakeFiles/benchy.dir/build.make
@@ -179,7 +179,7 @@ CMakeFiles/benchy.dir/build: benchy
 .PHONY : CMakeFiles/benchy.dir/build
 
 CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/src/main.cpp.o.requires
-CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/src/base/scheme-base.cpp.o.requires
+CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/src/base/base.cpp.o.requires
 CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/src/gate/gate.cpp.o.requires
 CMakeFiles/benchy.dir/requires: CMakeFiles/benchy.dir/scheme/api-gate.cpp.o.requires
 

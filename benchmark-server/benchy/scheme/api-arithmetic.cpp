@@ -7,7 +7,7 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
                 Please don't cout anything!
 **********************************************************************************/
 
-#include "scheme-base.h"
+#include "base.h"
 #include "arithmetic.h"
 
 /*************************************/

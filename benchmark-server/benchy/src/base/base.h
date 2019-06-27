@@ -32,7 +32,7 @@ public:
     /**************/
     // Identifies the homomorphic scheme in use
     std::string scheme_id;
-    
+
     // Scheme dependent and scheme independent parameter setup
     void Init();
 

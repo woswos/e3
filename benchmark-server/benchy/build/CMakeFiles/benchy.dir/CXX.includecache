@@ -7,10 +7,10 @@
 #IncludeRegexTransform: 
 
 ../src/arithmetic/arithmetic.h
-scheme-base.h
-../src/arithmetic/scheme-base.h
+base.h
+../src/arithmetic/base.h
 
-../src/base/scheme-base.h
+../src/base/base.h
 map
 -
 string
@@ -19,12 +19,12 @@ time.h
 -
 
 ../src/gate/gate.h
-scheme-base.h
-../src/gate/scheme-base.h
+base.h
+../src/gate/base.h
 
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/api-gate.cpp
-scheme-base.h
-/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/scheme-base.h
+base.h
+/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/base.h
 gate.h
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/scheme/gate.h
 tfhe/tfhe.h
@@ -32,9 +32,9 @@ tfhe/tfhe.h
 tfhe/tfhe_io.h
 -
 
-/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/scheme-base.cpp
-scheme-base.h
-/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/scheme-base.h
+/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/base.cpp
+base.h
+/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/base.h
 iostream
 -
 map
@@ -46,7 +46,7 @@ random
 functional
 -
 
-/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/scheme-base.h
+/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/base/base.h
 map
 -
 string
@@ -65,8 +65,8 @@ string
 -
 
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/gate/gate.h
-scheme-base.h
-/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/gate/scheme-base.h
+base.h
+/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/gate/base.h
 
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/main.cpp
 iostream

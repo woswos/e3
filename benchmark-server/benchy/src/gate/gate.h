@@ -34,12 +34,18 @@ public:
     // Destructor
     ~GateApi(){};
 
-
     /**********************/
     /* Benchmarking Stuff */
     /**********************/
     // Does the benchmarking, returns 1 if completed succesfully
     int benchmark(GateApi* schemePtr);
+
+    int test_gate_cycle_recursive_ciphertext(
+                        std::string gate_name_s,
+                        GateApi* schemePtr,
+                        void* (GateApi::*gate_func_name)(void*, void*),
+                        int (GateApi::*test_gate_func_name)(int, int)
+                        );
 
     int test_gate_cycle_fresh_ciphertext(
                         std::string gate_name_s,
@@ -61,9 +67,6 @@ public:
     int test_gate_not(int bitA);
     int test_gate_buffer(int bitA);
 
-    int test(){
-        return 0;
-    };
 };
 
 #endif

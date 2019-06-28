@@ -13,6 +13,16 @@ void Scheme::base_benchmark(){
 
 }
 
+void Scheme::consoleLog(string message){
+    std::cout << message << std::endl;
+}
+
+void Scheme::consoleErrorLog(string message){
+    std::cout << "######" << std::endl;
+    std::cout << "ERROR:" << std::endl;
+    std::cout << message << std::endl;
+    std::cout << "######" << std::endl << std::endl;
+}
 
 void Scheme::addTiming(string key, long int value){
     if ( Scheme::timings.find(key) == Scheme::timings.end() ) {

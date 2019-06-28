@@ -99,6 +99,11 @@ public:
     // Assignment
     Scheme & operator=(const Scheme &S);
 
+    // For logging normal messages in a fancy way
+    void consoleLog(string message);
+
+    // For logging error messages in a fancy way
+    void consoleErrorLog(string message);
 
     /**********************/
     /* Benchmarking Stuff */

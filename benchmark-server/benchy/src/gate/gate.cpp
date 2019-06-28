@@ -11,21 +11,30 @@ int GateApi::benchmark(GateApi* schemePtr){
     //enum Gate { AND, NAND, OR, NOR, XOR, XNOR, MUX, NOT, BUFFER};
     //string gateNames[] = { "AND...", "NAND...", "OR...", "NOR...", "XOR...", "XNOR...", "MUX...", "NOT...", "BUFFER...",};
 
-    std::cout << "Fresh ciphertext tests" << "\n";
+    GateApi::consoleLog("Fresh ciphertext tests");
+    for (size_t i = 0; i < 2; i++) {
 
-    for (size_t i = 0; i < 10; i++) {
+        GateApi::test_gate_cycle_fresh_ciphertext("gate_and_fresh", schemePtr, &GateApi::EvalAnd, &GateApi::test_gate_and);
 
-        GateApi::test_gate_cycle_fresh_ciphertext("gate_and", schemePtr, &GateApi::EvalAnd, &GateApi::test_gate_nand);
-
-        //GateApi::test_gate_cycle_fresh_ciphertext("gate_nand", schemePtr, &GateApi::EvalNand, &GateApi::test_gate_nand);
-
-        //GateApi::test_gate_cycle_fresh_ciphertext("gate_or", schemePtr, &GateApi::EvalOr, &GateApi::test_gate_or);
-
-        std::cout << "\n";
+        //std::cout << "\n";
     }
+
+    //GateApi::test_gate_cycle_recursive_ciphertext("gate_and_recursive", schemePtr, &GateApi::EvalAnd, &GateApi::test_gate_and);
 
     return 1;
 }
+
+int GateApi::test_gate_cycle_recursive_ciphertext(
+                            std::string gate_name_s,
+                            GateApi* schemePtr,
+                            void* (GateApi::*gate_func_name)(void*, void*),
+                            int (GateApi::*test_gate_func_name)(int, int)
+                            ){
+
+
+    return 1;
+}
+
 
 int GateApi::test_gate_cycle_fresh_ciphertext(
                             std::string gate_name_s,
@@ -37,8 +46,8 @@ int GateApi::test_gate_cycle_fresh_ciphertext(
     int testBitOne = 1;
     int testBitZero = 0;
 
-    void *bitOne = GateApi::Encrypt(testBitOne);
-    void *bitZero = GateApi::Encrypt(testBitZero);
+    void *encryptedBitOnePtr = GateApi::Encrypt(testBitOne);
+    void *encryptedBitZeroPtr = GateApi::Encrypt(testBitZero);
 
     void *result1 = 0;
     void *result2 = 0;
@@ -47,53 +56,51 @@ int GateApi::test_gate_cycle_fresh_ciphertext(
 
     int testResult1, testResult2, testResult3, testResult4;
 
+    // Test 0 and 0
     GateApi::startTimer();
-    //result1 = GateApi::gate_nand(bitZero, bitZero);
-    result1 = ((*schemePtr).*gate_func_name)(bitZero, bitZero);
+    result1 = ((*schemePtr).*gate_func_name)(encryptedBitZeroPtr, encryptedBitZeroPtr);
     GateApi::addTiming(gate_name_s, GateApi::stopTimer());
 
+    // Test 0 and 1
     GateApi::startTimer();
-    result2 = ((*schemePtr).*gate_func_name)(bitZero, bitOne);
+    result2 = ((*schemePtr).*gate_func_name)(encryptedBitZeroPtr, encryptedBitOnePtr);
     GateApi::addTiming(gate_name_s, GateApi::stopTimer());
 
+    // Test 1 and 0
     GateApi::startTimer();
-    result3 = ((*schemePtr).*gate_func_name)(bitOne, bitZero);
+    result3 = ((*schemePtr).*gate_func_name)(encryptedBitOnePtr, encryptedBitZeroPtr);
     GateApi::addTiming(gate_name_s, GateApi::stopTimer());
 
+    // Test 1 and 1
     GateApi::startTimer();
-    result4 = ((*schemePtr).*gate_func_name)(bitOne, bitOne);
+    result4 = ((*schemePtr).*gate_func_name)(encryptedBitOnePtr, encryptedBitOnePtr);
     GateApi::addTiming(gate_name_s, GateApi::stopTimer());
 
+    // Test 0 and 0
     testResult1 = ((*schemePtr).*test_gate_func_name)(testBitZero, testBitZero);
+    // Test 0 and 1
     testResult2 = ((*schemePtr).*test_gate_func_name)(testBitZero, testBitOne);
+    // Test 1 and 0
     testResult3 = ((*schemePtr).*test_gate_func_name)(testBitOne, testBitZero);
+    // Test 1 and 1
     testResult4 = ((*schemePtr).*test_gate_func_name)(testBitOne, testBitOne);
 
     testResult1 = GateApi::compare(GateApi::Decrypt(result1), testResult1);
     testResult2 = GateApi::compare(GateApi::Decrypt(result2), testResult2);
     testResult3 = GateApi::compare(GateApi::Decrypt(result3), testResult3);
     testResult4 = GateApi::compare(GateApi::Decrypt(result4), testResult4);
-    /*
-    if(testResult1){
-        std::cout << "Test 1 is succesfull" << "\n";
+
+    // Return zero if any test is not succesfull
+    if((!testResult1)||(!testResult2)||(!testResult3)||(!testResult4)){
+        GateApi::consoleErrorLog("An error occured during " + gate_name_s + " test");
+        return 0;
     }
 
-    if(testResult2){
-        std::cout << "Test 2 is succesfull" << "\n";
-    }
+    GateApi::consoleLog("Timing for " + gate_name_s + " is: " + std::to_string(GateApi::getTiming(gate_name_s)) + " microsecs");
 
-    if(testResult3){
-        std::cout << "Test 3 is succesfull" << "\n";
-    }
-
-    if(testResult4){
-        std::cout << "Test 4 is succesfull" << "\n";
-    }
-    */
-    std::cout << "Timing for " << gate_name_s << " is: " << GateApi::getTiming(gate_name_s) << " microsecs" << "\n";
-
-    return 0;
+    return 1;
 }
+
 
 int GateApi::test_gate_and(int bitA, int bitB){
     return (bitA && bitB);

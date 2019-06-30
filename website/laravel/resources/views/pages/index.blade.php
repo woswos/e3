@@ -118,7 +118,7 @@
 
   <script type="text/javascript">
       const options = {
-        duration: 5,
+        duration: 3,
       };
 
       let counter_1 = new CountUp('counter_1', {{ $totalPrizeAvailable }}, options);

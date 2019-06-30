@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 // Include the namespace from scheme and challenge for accesing to database
 use App\Scheme;
 use App\Challenge;
+use App\Queue;
 
 class SchemesController extends Controller
 {
@@ -80,11 +81,20 @@ class SchemesController extends Controller
         $scheme->attached_files = $fileNameToStore;
         $scheme->save();
 
+
         // Get latest submitted scheme's id
         $lastSchemes = Scheme::orderBy('id','DESC')->take(1)->get();
-        $scheme_id = $lastSchemes[0];
+        $lastScheme = $lastSchemes[0];
+        $lastSchemeId = $lastScheme['id'];
 
-        return redirect()->route('scheme.show', ['id' => $scheme_id])->with('success', 'Challenge Submitted');
+
+        // Add submitted scheme to the processing queue
+        $queue = new Queue;
+        $queue->scheme_id = $lastSchemeId;
+        $queue->processed = 0;
+        $queue->save();
+
+        return redirect()->route('scheme.show', ['id' => $lastSchemeId])->with('success', 'Challenge Submitted');
 
     }
 

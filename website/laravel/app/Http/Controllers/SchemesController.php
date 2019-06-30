@@ -12,6 +12,16 @@ use App\Queue;
 class SchemesController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -79,6 +89,7 @@ class SchemesController extends Controller
         $scheme->total_attempts = 0;
         $scheme->speed = 0;
         $scheme->attached_files = $fileNameToStore;
+        $scheme->user_id = auth()->user()->id;
         $scheme->save();
 
 

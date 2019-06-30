@@ -17,7 +17,12 @@
 
   <div class="container mt-4">
     <h4>Available Challenges</h4>
-    <h5><a href='{{ route('challenge.create') }}/{{ $scheme->id }}'>Create a challenge!</a></h5>
+
+    @if(!Auth::guest())
+        @if(Auth::user()->id == $scheme->user_id)
+            <h5><a href='{{ route('challenge.create') }}/{{ $scheme->id }}'>Create a challenge!</a></h5>
+        @endif
+    @endif
 
     @if(count($challenges) > 0)
 

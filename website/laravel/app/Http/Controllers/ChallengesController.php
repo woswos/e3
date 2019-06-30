@@ -54,6 +54,7 @@ class ChallengesController extends Controller
      */
     public function create($scheme_id = 0)
     {
+
         // If url was manually changed, redirect to challenge listing page
         if($scheme_id == 0){
           return redirect('challenge');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBenchmarkQueueTable extends Migration
+class AddUserIdToSchemes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateBenchmarkQueueTable extends Migration
      */
     public function up()
     {
-      Schema::create('queue', function (Blueprint $table) {
-          $table->bigIncrements('id');
-          $table->string('scheme_id'); // foreign key for relating to schemes
-          $table->boolean('processed')->nullable();
-          $table->timestamps();
-      });
+        Schema::table('schemes', function (Blueprint $table) {
+            $table -> integer('user_id');
+        });
     }
 
     /**
@@ -28,6 +25,8 @@ class CreateBenchmarkQueueTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('queue');
+        Schema::table('schemes', function (Blueprint $table) {
+            $table -> dropColumn('user_id');
+        });
     }
 }

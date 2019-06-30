@@ -78,13 +78,14 @@ class SolutionsController extends Controller
           $fileNameToStore = 'none';
       }
 
-      // Create a scheme
+      // Create a solution
       $solution = new Solution;
       $solution->scheme_id = $request->input('scheme_id');
       $solution->challenge_id = $request->input('challenge_id');
       $solution->title = $request->input('title');
       $solution->explanation = $request->input('explanation');
       $solution->attached_files = $fileNameToStore;
+      $solution->user_id = auth()->user()->id;
       $solution->save();
 
       return redirect()->route('challenge.show', ['id' => $request->input('challenge_id')])->with('success', 'Solution Submitted');

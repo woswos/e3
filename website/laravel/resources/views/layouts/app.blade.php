@@ -13,7 +13,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700,700i,800&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -37,7 +37,9 @@
         @include('partials/navbar')
 
         <div class="py-4" style="min-height: 75%;">
-            @include('partials/messages')
+            <div class="container">
+                @include('partials/messages')
+            </div>
             @yield('content')
         </div>
 

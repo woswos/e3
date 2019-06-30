@@ -15,6 +15,7 @@ class PagesController extends Controller
 
       // Get all schemes
       $schemes = Scheme::all();
+      $totalSchemes = $schemes->count();
 
       // Get top 5 schemes from db
       $topSchemes = Scheme::all()->take(5);
@@ -36,6 +37,7 @@ class PagesController extends Controller
           'schemes' => $schemes,
           'totalPrizeAvailable' => $totalPrizeAvailable,
           'totalPrizeChallenges' => $totalPrizeChallenges,
+          'totalSchemes' => $totalSchemes,
           'topSchemes' => $topSchemes,
           'topHackers' => $topHackers,
           'recentlySubmittedSchemes' => $recentlySubmittedSchemes,

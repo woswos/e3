@@ -1,0 +1,19 @@
+html, body {
+  height: 100%;
+}
+
+body {
+    padding-top: 50px;
+}
+
+.home-cards * {
+    padding: 8px;
+}
+
+.home-card-image {
+    height: 10rem;
+}
+
+.bg-fade {
+    /*background-color: rgba(52, 58, 64, 0.05)!important;*/
+}

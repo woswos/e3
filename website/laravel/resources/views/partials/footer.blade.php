@@ -1,70 +1,82 @@
+</div>
 <!-- Footer -->
-<footer class="page-footer font-small blue mt-5 pt-4">
+<footer class="page-footer font-small mt-5 pt-2 bg-white shadow-sm">
 
   <!-- Footer Links -->
-  <div class="container-fluid text-center text-md-left">
+  <div class="container text-center text-md-left">
 
-    <!-- Grid row -->
-    <div class="row">
+    <!-- Footer links -->
+    <div class="row text-center text-md-left mt-3 pb-3">
 
       <!-- Grid column -->
-      <div class="col-md-6 mt-md-0 mt-3">
-
-        <!-- Content -->
-        <h5 class="text-uppercase">{{ config('app.name') }}</h5>
-        <p>Some explanation</p>
-
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text mb-4 font-weight-bold">MoMA LAB</h6>
+        <p>
+            Modern Microprocessors Architecture Lab
+        </p>
       </div>
       <!-- Grid column -->
 
-      <hr class="clearfix w-100 d-md-none pb-3">
+      <hr class="w-100 clearfix d-md-none">
 
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
-
-        <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-        </ul>
-
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+        <p>
+          <a href="#!">MDBootstrap</a>
+        </p>
+        <p>
+          <a href="#!">MDWordPress</a>
+        </p>
+        <p>
+          <a href="#!">BrandFlow</a>
+        </p>
+        <p>
+          <a href="#!">Bootstrap Angular</a>
+        </p>
       </div>
       <!-- Grid column -->
 
+      <hr class="w-100 clearfix d-md-none">
+
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+        <p>
+          <a href="#!">Your Account</a>
+        </p>
+        <p>
+          <a href="#!">Become an Affiliate</a>
+        </p>
+        <p>
+          <a href="#!">Shipping Rates</a>
+        </p>
+        <p>
+          <a href="#!">Help</a>
+        </p>
+      </div>
 
-        <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
+      <!-- Grid column -->
+      <hr class="w-100 clearfix d-md-none">
 
-        <ul class="list-unstyled">
-          <li>
-            <a href="">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-        </ul>
-
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+        <p>Modern Microprocessors Architecture Lab</p>
+        <p>New York University Abu Dhabi</p>
+        <p>PO Box 129188, Saadiyat Island,</p>
+        <p>Abu Dhabi, United Arab Emirates</p>
       </div>
       <!-- Grid column -->
+
+    </div>
+    <!-- Footer links -->
 
     </div>
     <!-- Grid row -->
 
   </div>
   <!-- Footer Links -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2019 <a href="https://wp.nyu.edu/momalab/">MoMA lab</a>
-  </div>
-  <!-- Copyright -->
 
 </footer>
 <!-- Footer -->

@@ -11,10 +11,12 @@ int GateApi::benchmark(GateApi* schemePtr){
     //enum Gate { AND, NAND, OR, NOR, XOR, XNOR, MUX, NOT, BUFFER};
     //string gateNames[] = { "AND...", "NAND...", "OR...", "NOR...", "XOR...", "XNOR...", "MUX...", "NOT...", "BUFFER...",};
 
+    //std::cout << GateApi::test_gate_manual_single(0,1) << "\n";
+
     GateApi::consoleLog("Fresh ciphertext tests");
     for (size_t i = 0; i < 2; i++) {
 
-        GateApi::test_gate_cycle_fresh_ciphertext("gate_and_fresh", schemePtr, &GateApi::EvalAnd, &GateApi::test_gate_and);
+        GateApi::test_gate_cycle_fresh_ciphertext("gate_nand_fresh", schemePtr, &GateApi::EvalNand, &GateApi::test_gate_nand);
 
         //std::cout << "\n";
     }
@@ -33,6 +35,18 @@ int GateApi::test_gate_cycle_recursive_ciphertext(
 
 
     return 1;
+}
+
+int GateApi::test_gate_manual_single(int bitA, int bitB){
+
+    void *encryptedBitOnePtr = GateApi::Encrypt(bitA);
+    void *encryptedBitZeroPtr = GateApi::Encrypt(bitB);
+
+    void *result;
+
+    result = GateApi::EvalNand(encryptedBitOnePtr, encryptedBitZeroPtr);
+
+    return GateApi::Decrypt(result);
 }
 
 

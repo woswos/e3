@@ -1,0 +1,143 @@
+/**********************************************************************************
+benchy api for schemes that support gate operations
+
+IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack memory
+                For example use     Object* o = new Object();
+                Don't use   Object* o;
+                Please don't cout anything!
+**********************************************************************************/
+
+#include "base.h"
+#include "gate.h"
+
+/*************************************/
+/** Please include your scheme here **/
+/*************************************/
+#include <tfhe/tfhe.h>
+#include <tfhe/tfhe_io.h>
+
+class Ciphertext
+{
+
+private:
+    int x = 0;
+
+public:
+    Ciphertext(){};
+
+    Ciphertext(std::string value){
+        if(value == "0"){
+            x = 0;
+        } else {
+            x = 1;
+        }
+    }
+
+    std::string str() const {
+        return std::string()+'0'+std::to_string(x);
+    }
+
+    static Ciphertext nand(Ciphertext a, Ciphertext b) {
+        Ciphertext r;
+        r.x = !(a.x&b.x);
+        return r;
+    }
+
+};
+
+/***********************/
+/** GENERIC FUNCTIONS **/
+/***********************/
+
+// This function is called once in the beginning of the benchmark.
+//      You can use this function to initilize required parameters
+//      or pointers, etc.
+void Scheme::Init(){
+
+
+}
+
+// This function is called whenever new keys are required. You don't need to
+//      return anything but store the pointers to your key parameters by using
+//      Scheme::StoreParameter(string key, typename pointer) function.
+// This function accepts any type of pointers and internally casts to void pointer type.
+// Later, you will be able to call the stored pointer by using
+//      Scheme::GetParameter(string key) function. So, give it a meaningful key name.
+// You can store as many pointers you want.
+void Scheme::GenerateKeySet(){
+
+
+}
+
+// This function will be called for encrypting plaintext values. Please return a
+//      void type pointer to the cipher text. You achieve this by casting your
+//      existing pointer to the cipher text.
+// You can get required keys and parameters by calling Scheme::GetParameter(string key)
+//      function as mentioned previously. This function will return a void type pointer
+//      and please cast this pointer to your reqired data type before utilizing.
+void* Scheme::Encrypt(int plainText){
+
+
+    Ciphertext a(std::to_string(plainText));
+
+
+    Ciphertext* ptr = new Ciphertext(a);
+
+
+    return static_cast<void*>(ptr);
+
+}
+
+
+int Scheme::Decrypt(void* cipherText){
+
+    Ciphertext  *ptr = static_cast<Ciphertext*>(cipherText);
+
+    return std::stoi(ptr->str());
+}
+
+void Scheme::Cleanup(){
+// remove_before_flight
+}
+
+/********************/
+/** GATE FUNCTIONS **/
+/********************/
+// For gates, you will be provided coid pointers to cipher texts that was encrypted
+//      by using the encrypt() function you defined above. Please cast provided void
+//      pointers to your cipher text data type before using.
+// You should return a void pointer to the result after completing the gate operation
+
+
+// Nand gate
+void* GateApi::EvalNand(void *bitA, void *bitB){
+
+    Ciphertext  *bitAPtr = static_cast<Ciphertext*>(bitA);
+    Ciphertext  *bitBPtr = static_cast<Ciphertext*>(bitB);
+
+    Ciphertext c = Ciphertext::nand(*bitAPtr, *bitBPtr);
+
+    Ciphertext* resultPtr = new Ciphertext(c);
+
+    return static_cast<void*>(resultPtr);
+}
+
+
+
+
+
+/*************************************************/
+/** Please don't modify the following functions **/
+/*************************************************/
+template <typename T>
+void Scheme::StoreParameter(string key, T* pointer){
+
+    void *ptr = static_cast<void*>(pointer);
+    Scheme::parameters.insert({key, ptr});
+
+}
+
+void* Scheme::GetParameter(string key){
+
+    return Scheme::parameters[key];
+}

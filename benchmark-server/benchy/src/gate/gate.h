@@ -54,6 +54,8 @@ public:
                         int (GateApi::*test_gate_func_name)(int, int)
                         );
 
+    int test_gate_manual_single(int bitA, int bitB);
+
     int test_gate_and(int bitA, int bitB);
     int test_gate_nand(int bitA, int bitB);
 

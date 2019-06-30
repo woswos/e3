@@ -29,3 +29,7 @@ Route::resource('challenge', 'ChallengesController');
 //Route::get('/solution/attempt/{destination?}/{parameter?}', 'SolutionsController@attempt')->name('solution.attempt');
 Route::get('/solution/create/{scheme_id}', 'SolutionsController@create')->name('solution.create.id');
 Route::resource('solution', 'SolutionsController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

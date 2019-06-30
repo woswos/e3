@@ -17,19 +17,19 @@
             </li>
             -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('scheme.index') }}">Explore Encryption Schemes</a>
+                <a class="nav-link {{ Request::is('scheme') ? 'active' : '' }}" href="{{ route('scheme.index') }}">Explore Encryption Schemes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('challenge.index') }}">Explore Challenges</a>
+                <a class="nav-link {{ Request::is('challenge') ? 'active' : '' }}" href="{{ route('challenge.index') }}">Explore Challenges</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('ranking') }}">Global Rankings</a>
+                <a class="nav-link {{ Request::is('ranking') ? 'active' : '' }}" href="{{ route('ranking') }}">Global Rankings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
+                <a class="nav-link {{ Request::is('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('about') }}">About</a>
+                <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a>
             </li>
 
             </ul>
@@ -39,16 +39,16 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link {{ Request::is('register') ? 'active' : '' }}" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                        <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

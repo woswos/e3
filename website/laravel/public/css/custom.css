@@ -17,3 +17,35 @@ body {
 .bg-fade {
     /*background-color: rgba(52, 58, 64, 0.05)!important;*/
 }
+
+.bg-dark {
+    background-color: #4169e1!important;
+}
+
+/*
+#0f4471
+#155263
+#872341
+#b31e6f
+#900c3f
+#6941E1
+*/
+
+a {
+    color: #E14169;
+}
+
+a:hover {
+    color: #4169e1;
+}
+
+.btn-outline-primary {
+    color: #E14169;
+    border-color: #E14169;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #4169e1;
+    border-color: #4169e1;
+}

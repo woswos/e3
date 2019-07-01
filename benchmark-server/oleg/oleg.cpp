@@ -19,12 +19,12 @@ public:
     }
 
     std::string str() const {
-        return std::string()+'0'+std::to_string(x);
+        return std::to_string(x);
     }
 
     static Ciphertext nand(Ciphertext a, Ciphertext b) {
         Ciphertext r;
-        r.x = !(a.x&b.x);
+        r.x = 1 & ~(a.x&b.x);
         return r;
     }
 

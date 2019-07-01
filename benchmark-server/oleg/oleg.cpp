@@ -5,7 +5,8 @@
 
 using Bit = CiphertextBit;
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const * argv[])
+{
 
     Bit a("1"), b("0");
 

@@ -44,6 +44,7 @@ int GateApi::test_gate_manual_single(int bitA, int bitB){
 
     void *result;
 
+    GateApi::consoleLog("Testing 'nand gate' with " + std::to_string(bitA) + " and " + std::to_string(bitB));
     result = GateApi::EvalNand(encryptedBitOnePtr, encryptedBitZeroPtr);
 
     return GateApi::Decrypt(result);

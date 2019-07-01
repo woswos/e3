@@ -137,7 +137,7 @@ void init_properties_heli(NativeProperties ** ppprop, std::string & name)
     if (e3heli::PRN) std::cout << "[ Computing tables " << std::flush;
     props.pcontext = new FHEcontext(m, p, r, gens, ords);
     FHEcontext & context = *props.pcontext;
-    context.bitsPerLevel = B;
+    //context.bitsPerLevel = B; remove_before_flight
     buildModChain(context, L, c);
     context.makeBootstrappable(mvec, /*t=*/0, cons);
     if (e3heli::PRN) std::cout << "] " << std::flush;

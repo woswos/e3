@@ -4,8 +4,8 @@
 
 #include "def_tfhe.h"
 
-#include "tfhe.h"
-#include "tfhe_io.h"
+#include <tfhe/tfhe.h>
+#include <tfhe/tfhe_io.h>
 
 //struct LweSample { ... };
 
@@ -20,4 +20,3 @@ inline  ek * toek(e3::TfheNativeEvalKey a) { return static_cast<ek *>(a); }
 inline  const ek * toek(e3::cTfheNativeEvalKey a) { return static_cast<const ek *>(a); }
 
 } // e3tfhe
-

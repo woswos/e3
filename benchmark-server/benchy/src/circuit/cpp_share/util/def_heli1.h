@@ -4,8 +4,8 @@
 
 #include "def_heli.h"
 
-#include "FHE.h"
-#include "EncryptedArray.h"
+#include <helib/FHE.h>
+#include <helib/EncryptedArray.h>
 
 ///using NativePrivKey = FHESecKey * ;
 ///using NativeEvalKey = FHEPubKey * ;

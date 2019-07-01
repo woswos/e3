@@ -5,7 +5,7 @@
 // MPIR headers
 #include "mpir.h"
 #include "mpirxx.h"
-#include "gmp-impl.h"
+#include "gmp.h"
 
 // local headers
 #include "def_mpir.h"
@@ -39,4 +39,3 @@ struct BigunNative
     bool operator==(const BigunNative & a) const { return n == a.n; }
     bool operator<(const BigunNative & a) const { return n < a.n; }
 };
-

@@ -1,6 +1,6 @@
 #include <string>
 
-struct Key { int k = 1; };
+struct Key { int k; Key(); };
 
 class CiphertextBit
 {

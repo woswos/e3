@@ -9,7 +9,7 @@ using std::cout;
 using Bit = CiphertextBit;
 
 
-string f2s(string n){ string r; std::ifstream(n)>>r; return r; }
+string f2s(string n) { string r; std::ifstream(n) >> r; return r; }
 
 int main(int argc, char const * argv[])
 try
@@ -25,8 +25,8 @@ try
 
     return 0;
 }
-catch(...)
+catch (...)
 {
-    cout<<"Exception\n";
+    cout << "Exception\n";
     return 1;
 }

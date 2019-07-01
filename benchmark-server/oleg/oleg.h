@@ -12,24 +12,10 @@ class CiphertextBit
     public:
         CiphertextBit() {};
 
-        CiphertextBit(std::string value)
-        {
-            if (value == "0")
-            {
-                x = 0;
-            }
-            else
-            {
-                x = 1;
-            }
-        }
+        CiphertextBit(std::string v): x(std::stoi(v)) {}
+        std::string str() const { return std::to_string(x); }
 
-        std::string str() const
-        {
-            return std::to_string(x);
-        }
-
-        CiphertextBit nand(CiphertextBit b)
+        CiphertextBit nand(CiphertextBit b) const
         {
             CiphertextBit r;
             r.x = 1 & ~(x & b.x);

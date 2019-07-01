@@ -8,7 +8,7 @@ using Bit = CiphertextBit;
 int main(int argc, char const * argv[])
 {
 
-    Bit a("1"), b("0");
+    Bit a("2"), b("1");
 
     auto c = gate_nand(a, b);
 

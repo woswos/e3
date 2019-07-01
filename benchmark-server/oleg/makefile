@@ -14,3 +14,6 @@ test.exe: main.cpp oleg.cpp *.h
 	$(CC) $(OPT) main.cpp oleg.cpp -o $@
 	rm -f *.obj
 
+
+clean c:
+	rm -f *.exe *.o *.obj *.key

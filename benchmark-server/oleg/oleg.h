@@ -1,13 +1,13 @@
 #include <string>
 
-struct Key{};
+struct Key { int k = 1; };
 
 class CiphertextBit
 {
 
     private:
         int x = 0;
-	static Key key;
+        static Key key;
 
     public:
         CiphertextBit() {};
@@ -18,14 +18,14 @@ class CiphertextBit
         CiphertextBit nand(CiphertextBit b) const
         {
             CiphertextBit r;
-            r.x = 1 & ~(x & b.x);
+            r.x = ( 1 & ~((x - key.k) & (b.x - key.k)) ) + key.k;
             return r;
         }
 
 };
 
-inline CiphertextBit gate_nand(CiphertextBit a, CiphertextBit b){ return a.nand(b); }
-inline CiphertextBit gate_not(CiphertextBit a){ return gate_nand(a,a); }
-inline CiphertextBit gate_and(CiphertextBit a, CiphertextBit b){ return gate_not(gate_nand(a,b)); }
+inline CiphertextBit gate_nand(CiphertextBit a, CiphertextBit b) { return a.nand(b); }
+inline CiphertextBit gate_not(CiphertextBit a) { return gate_nand(a, a); }
+inline CiphertextBit gate_and(CiphertextBit a, CiphertextBit b) { return gate_not(gate_nand(a, b)); }
 // ... etc
 

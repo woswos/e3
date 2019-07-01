@@ -13,37 +13,35 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
 /*************************************/
 /** Please include your scheme here **/
 /*************************************/
-#include <tfhe/tfhe.h>
-#include <tfhe/tfhe_io.h>
 
-class Ciphertext
+// Oleg's scheme
+struct Key{};
+
+class CiphertextBit
 {
 
-private:
-    int x = 0;
+    private:
+        int x = 0;
+	static Key key;
 
-public:
-    Ciphertext(){};
+    public:
+        CiphertextBit() {};
 
-    Ciphertext(std::string value){
-        if(value == "0"){
-            x = 0;
-        } else {
-            x = 1;
+        CiphertextBit(std::string v): x(std::stoi(v)) {}
+        std::string str() const { return std::to_string(x); }
+
+        CiphertextBit nand(CiphertextBit b) const
+        {
+            CiphertextBit r;
+            r.x = 1 & ~(x & b.x);
+            return r;
         }
-    }
-
-    std::string str() const {
-        return std::string()+'0'+std::to_string(x);
-    }
-
-    static Ciphertext nand(Ciphertext a, Ciphertext b) {
-        Ciphertext r;
-        r.x = !(a.x&b.x);
-        return r;
-    }
 
 };
+
+inline CiphertextBit gate_nand(CiphertextBit a, CiphertextBit b){ return a.nand(b); }
+inline CiphertextBit gate_not(CiphertextBit a){ return gate_nand(a,a); }
+inline CiphertextBit gate_and(CiphertextBit a, CiphertextBit b){ return gate_not(gate_nand(a,b)); }
 
 /***********************/
 /** GENERIC FUNCTIONS **/
@@ -78,10 +76,10 @@ void Scheme::GenerateKeySet(){
 void* Scheme::Encrypt(int plainText){
 
 
-    Ciphertext a(std::to_string(plainText));
+    CiphertextBit a(std::to_string(plainText));
 
 
-    Ciphertext* ptr = new Ciphertext(a);
+    CiphertextBit* ptr = new CiphertextBit(a);
 
 
     return static_cast<void*>(ptr);
@@ -91,7 +89,7 @@ void* Scheme::Encrypt(int plainText){
 
 int Scheme::Decrypt(void* cipherText){
 
-    Ciphertext  *ptr = static_cast<Ciphertext*>(cipherText);
+    CiphertextBit  *ptr = static_cast<CiphertextBit*>(cipherText);
 
     return std::stoi(ptr->str());
 }
@@ -109,20 +107,43 @@ void Scheme::Cleanup(){
 // You should return a void pointer to the result after completing the gate operation
 
 
-// Nand gate
-void* GateApi::EvalNand(void *bitA, void *bitB){
+// And gate
+void* GateApi::EvalAnd(void *bitA, void *bitB){
 
-    Ciphertext  *bitAPtr = static_cast<Ciphertext*>(bitA);
-    Ciphertext  *bitBPtr = static_cast<Ciphertext*>(bitB);
+    CiphertextBit  *bitAPtr = static_cast<CiphertextBit*>(bitA);
+    CiphertextBit  *bitBPtr = static_cast<CiphertextBit*>(bitB);
 
-    Ciphertext c = Ciphertext::nand(*bitAPtr, *bitBPtr);
+    CiphertextBit c = gate_and(*bitAPtr, *bitBPtr);
 
-    Ciphertext* resultPtr = new Ciphertext(c);
+    CiphertextBit* resultPtr = new CiphertextBit(c);
 
     return static_cast<void*>(resultPtr);
 }
 
+// Nand gate
+void* GateApi::EvalNand(void *bitA, void *bitB){
 
+    CiphertextBit  *bitAPtr = static_cast<CiphertextBit*>(bitA);
+    CiphertextBit  *bitBPtr = static_cast<CiphertextBit*>(bitB);
+
+    CiphertextBit c = gate_nand(*bitAPtr, *bitBPtr);
+
+    CiphertextBit* resultPtr = new CiphertextBit(c);
+
+    return static_cast<void*>(resultPtr);
+}
+
+// Not gate
+void* GateApi::EvalNot(void *bitA){
+
+    CiphertextBit  *bitAPtr = static_cast<CiphertextBit*>(bitA);
+
+    CiphertextBit c = gate_not(*bitAPtr);
+
+    CiphertextBit* resultPtr = new CiphertextBit(c);
+
+    return static_cast<void*>(resultPtr);
+}
 
 
 

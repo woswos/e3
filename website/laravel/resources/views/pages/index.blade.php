@@ -68,7 +68,7 @@
         </div>
     </section>
     -->
-    
+
     <section class="bg-fade">
         <div class="container mt-5">
             <h3>[A title for the graph]</h3>
@@ -151,7 +151,7 @@
     </section>
 
     <section class="">
-        <div class="container mt-5">
+        <div class="container mt-4">
             <h3>Recently submitted schemes</h3>
         </div>
 

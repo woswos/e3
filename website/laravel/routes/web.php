@@ -31,5 +31,6 @@ Route::get('/solution/create/{scheme_id}', 'SolutionsController@create')->name('
 Route::resource('solution', 'SolutionsController');
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

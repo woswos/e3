@@ -16,8 +16,8 @@
               @endif
              @endforeach
           ],
-          borderColor: '#3490dc',
-          backgroundColor: '#3490dc',
+          borderColor: '#4169e1',
+          backgroundColor: '#4169e1',
           pointRadius: 4,
           pointHoverRadius: 8
        }]

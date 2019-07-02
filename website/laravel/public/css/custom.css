@@ -36,8 +36,32 @@ a {
 }
 
 a:hover {
+    color: #af0f37;
+}
+
+.btn-primary {
+    background-color: #4169e1;
+    border-color: #4169e1;
+}
+
+.btn-primary:hover {
+    background-color: #2d55cd;
+    border-color: #2d55cd;
+}
+
+
+
+
+.btn-link {
     color: #4169e1;
 }
+
+.btn-link:hover {
+    color: #2d55cd;
+}
+
+
+
 
 .btn-outline-primary {
     color: #E14169;
@@ -46,6 +70,6 @@ a:hover {
 
 .btn-outline-primary:hover {
     color: #fff;
-    background-color: #4169e1;
-    border-color: #4169e1;
+    background-color: #E14169;
+    border-color: #E14169;
 }

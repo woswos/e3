@@ -4,6 +4,8 @@
 #include <time.h>
 #include <random>
 #include <functional>
+#include <chrono>
+
 
 void Scheme::base_benchmark(){
 
@@ -24,19 +26,19 @@ void Scheme::consoleErrorLog(string message){
     std::cout << "######" << std::endl << std::endl;
 }
 
-void Scheme::addTiming(string key, long int value){
+void Scheme::addTiming(string key, long long value){
     if ( Scheme::timings.find(key) == Scheme::timings.end() ) {
         Scheme::timings.insert({key, value});
 
     } else {
-        long int temp = Scheme::timings[key];
+        long long temp = Scheme::timings[key];
         Scheme::timings[key] = ((value + temp)/2);
 
     }
 }
 
 
-int Scheme::getTiming(string key){
+long long Scheme::getTiming(string key){
 
     return Scheme::timings[key];
 }
@@ -44,16 +46,15 @@ int Scheme::getTiming(string key){
 
 void Scheme::startTimer(){
 
-    Scheme::tempTime = clock();
+    Scheme::tempTime = std::chrono::high_resolution_clock::now();;
 }
 
 
-long int Scheme::stopTimer(){
+long long Scheme::stopTimer(){
 
-    time_t currentTime = clock();
+    std::chrono::_V2::system_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
 
-    long int duration = static_cast<long int> (currentTime - Scheme::tempTime);
-    return duration;
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(currentTime - Scheme::tempTime).count();
 }
 
 

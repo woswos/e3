@@ -4,6 +4,8 @@
 #include <map>
 #include <string>
 #include <time.h>
+#include <iostream>
+#include <chrono>
 
 using std::string;
 using std::map;
@@ -20,11 +22,11 @@ private:
 
     // Holds the time durations for various operations tested
     // key, time value
-    map<string, long int> timings;
+    map<string, long long> timings;
 
     // Temporary time storage
-    time_t tempTime;
-
+    std::chrono::_V2::system_clock::time_point tempTime;
+    
 
 public:
     /**************/
@@ -108,14 +110,14 @@ public:
     /**********************/
     /* Benchmarking Stuff */
     /**********************/
-    void addTiming(string key, long int value);
-    int getTiming(string key);
+    void addTiming(string key, long long value);
+    long long getTiming(string key);
 
     // Assigns current clock() value to tempTime
     void startTimer();
 
     // Returns time difference based on the temporary time value when called
-    long int stopTimer();
+    long long stopTimer();
 
     // Return a random boolean value
     bool randomBool();

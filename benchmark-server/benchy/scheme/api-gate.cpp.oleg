@@ -9,6 +9,7 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
 
 #include "base.h"
 #include "gate.h"
+#include <memory>
 
 /*************************************/
 /** Please include your scheme here **/
@@ -115,7 +116,7 @@ void* GateApi::EvalAnd(void *bitA, void *bitB){
 
     CiphertextBit c = gate_and(*bitAPtr, *bitBPtr);
 
-    CiphertextBit* resultPtr = new CiphertextBit(c);
+    CiphertextBit* resultPtr = &c;
 
     return static_cast<void*>(resultPtr);
 }
@@ -128,7 +129,7 @@ void* GateApi::EvalNand(void *bitA, void *bitB){
 
     CiphertextBit c = gate_nand(*bitAPtr, *bitBPtr);
 
-    CiphertextBit* resultPtr = new CiphertextBit(c);
+    CiphertextBit* resultPtr = &c;
 
     return static_cast<void*>(resultPtr);
 }
@@ -140,7 +141,7 @@ void* GateApi::EvalNot(void *bitA){
 
     CiphertextBit c = gate_not(*bitAPtr);
 
-    CiphertextBit* resultPtr = new CiphertextBit(c);
+    CiphertextBit* resultPtr = &c;
 
     return static_cast<void*>(resultPtr);
 }

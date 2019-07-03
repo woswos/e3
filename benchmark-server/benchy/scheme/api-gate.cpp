@@ -19,7 +19,6 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
 /***********************/
 /** GENERIC FUNCTIONS **/
 /***********************/
-
 // This function is called once in the beginning of the benchmark.
 //      You can use this function to initilize required parameters
 //      or pointers, etc.

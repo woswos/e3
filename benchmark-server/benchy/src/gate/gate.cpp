@@ -3,6 +3,35 @@
 #include <functional>
 #include <string>
 
+struct Key { int k = 1; };
+
+class CiphertextBit
+{
+
+    private:
+        int x = 0;
+	static Key key;
+
+    public:
+        CiphertextBit() {};
+
+        CiphertextBit(std::string v): x(std::stoi(v)) {}
+        std::string str() const { return std::to_string(x); }
+
+        CiphertextBit nand(CiphertextBit b) const
+        {
+            CiphertextBit r;
+            r.x = 1 & ~(x & b.x);
+            return r;
+        }
+
+};
+
+inline CiphertextBit gate_nand(CiphertextBit a, CiphertextBit b){ return a.nand(b); }
+inline CiphertextBit gate_not(CiphertextBit a){ return gate_nand(a,a); }
+inline CiphertextBit gate_and(CiphertextBit a, CiphertextBit b){ return gate_not(gate_nand(a,b)); }
+
+
 int GateApi::benchmark(GateApi* schemePtr){
 
     // Runs GateApi::init() and GateApi::generateKeySet()
@@ -11,7 +40,10 @@ int GateApi::benchmark(GateApi* schemePtr){
     //enum Gate { AND, NAND, OR, NOR, XOR, XNOR, MUX, NOT, BUFFER};
     //string gateNames[] = { "AND...", "NAND...", "OR...", "NOR...", "XOR...", "XNOR...", "MUX...", "NOT...", "BUFFER...",};
 
-    std::cout << GateApi::test_gate_manual_single(0,1) << "\n";
+
+    std::cout << GateApi::Decrypt(GateApi::EvalAnd(GateApi::Encrypt(1), GateApi::Encrypt(1))) << "\n";
+
+    //GateApi::test_gate_manual_single(0,1);
 
     /*
     GateApi::consoleLog("Fresh ciphertext tests");
@@ -43,12 +75,75 @@ int GateApi::test_gate_manual_single(int bitA, int bitB){
     void *encryptedBitOnePtr = GateApi::Encrypt(bitA);
     void *encryptedBitZeroPtr = GateApi::Encrypt(bitB);
 
-    void *result;
+    void *result1;
+    void *result2;
+
+    CiphertextBit a(std::to_string(bitA)), b(std::to_string(bitB));
+
+    CiphertextBit result1o;
+    CiphertextBit result2o;
 
     GateApi::consoleLog("Testing 'nand gate' with " + std::to_string(bitA) + " and " + std::to_string(bitB));
-    result = GateApi::EvalNand(encryptedBitOnePtr, encryptedBitZeroPtr);
 
-    return GateApi::Decrypt(result);
+
+
+    for (size_t i = 0; i < 1000; i++) {
+        for (size_t i = 0; i < 1000000; i++) {
+            GateApi::startTimer();
+            result1 = GateApi::EvalNand(encryptedBitOnePtr, encryptedBitZeroPtr);
+            result2 = GateApi::EvalNand(encryptedBitZeroPtr, encryptedBitOnePtr);
+            GateApi::addTiming("nanda", GateApi::stopTimer());
+
+            GateApi::startTimer();
+            result1 = GateApi::EvalNand(result1, result2);
+            result2 = GateApi::EvalNand(result2, result1);
+            GateApi::addTiming("nanda", GateApi::stopTimer());
+
+            GateApi::startTimer();
+            result1 = GateApi::EvalNand(result1, result2);
+            result2 = GateApi::EvalNand(result2, result1);
+            GateApi::addTiming("nanda", GateApi::stopTimer());
+
+            GateApi::startTimer();
+            result1 = GateApi::EvalNand(result1, result2);
+            result2 = GateApi::EvalNand(result2, result1);
+            GateApi::addTiming("nanda", GateApi::stopTimer());
+
+        }
+
+        for (size_t i = 0; i < 1000000; i++) {
+            GateApi::startTimer();
+            result1o = gate_and(a, b);
+            result2o = gate_and(b, a);
+            GateApi::addTiming("nandb", GateApi::stopTimer());
+
+            GateApi::startTimer();
+            result1o = gate_and(result1o, result2o);
+            result2o = gate_and(result2o, result1o);
+            GateApi::addTiming("nandb", GateApi::stopTimer());
+
+            GateApi::startTimer();
+            result1o = gate_and(result1o, result2o);
+            result2o = gate_and(result2o, result1o);
+            GateApi::addTiming("nandb", GateApi::stopTimer());
+
+            GateApi::startTimer();
+            result1o = gate_and(result1o, result2o);
+            result2o = gate_and(result2o, result1o);
+            GateApi::addTiming("nandb", GateApi::stopTimer());
+
+        }
+
+        std::cout << "still running" << "\n";
+    }
+
+
+
+    GateApi::consoleLog("Difference: " + std::to_string(GateApi::getTiming("nanda")-GateApi::getTiming("nanda")) + " nanosecs");
+
+    //GateApi::consoleLog("Timing for 'nand gate' is: " + std::to_string(GateApi::getTiming("nand")) + " nanosecs");
+
+    return 1;
 }
 
 
@@ -112,7 +207,7 @@ int GateApi::test_gate_cycle_fresh_ciphertext(
         return 0;
     }
 
-    GateApi::consoleLog("Timing for " + gate_name_s + " is: " + std::to_string(GateApi::getTiming(gate_name_s)) + " microsecs");
+    GateApi::consoleLog("Timing for " + gate_name_s + " is: " + std::to_string(GateApi::getTiming(gate_name_s)) + " nanosecs");
 
     return 1;
 }

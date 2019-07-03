@@ -1,0 +1,134 @@
+/**********************************************************************************
+benchy api for schemes that support arithmetic operations
+
+IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack memory
+                For example use     Object* o = new Object();
+                Don't use   Object* o;
+**********************************************************************************/
+
+#include "scheme-base.h"
+#include "arithmetic.h"
+
+/*************************************/
+/** Please include your scheme here **/
+/*************************************/
+#include <helib/FHE.h>
+#include <helib/EncryptedArray.h>
+
+/***********************/
+/** GENERIC FUNCTIONS **/
+/***********************/
+
+// This function is called once in the beginning of the benchmark.
+//      You can use this function to initilize required parameters
+//      or pointers, etc.
+void Scheme::init(){
+
+    // Plaintext prime modulus
+    unsigned long p = 4999;
+    // Cyclotomic polynomial - defines phi(m)
+    unsigned long m = 32109;
+    // Hensel lifting (default = 1)
+    unsigned long r = 1;
+    // Number of bits of the modulus chain
+    unsigned long bits = 300;
+    // Number of columns of Key-Switching matix (default = 2 or 3)
+    unsigned long c = 2;
+
+    std::cout << "Initialising context object..." << std::endl;
+
+    // Intialise context
+    FHEcontext context(m, p, r);
+
+    // Modify the context, adding primes to the modulus chain
+    std::cout  << "Building modulus chain..." << std::endl;
+    buildModChain(context, bits, c);
+
+
+    // Transfer object to heap from stack
+    FHEcontext *FHEcontextPtr = new FHEcontext(context);
+
+    Scheme::storeParameter("context", FHEcontextPtr);
+}
+
+// This function is called whenever new keys are required. You don't need to
+//      return anything but store the pointers to your key parameters by using
+//      Scheme::storeParameter(string key, typename pointer) function.
+// This function accepts any type of pointers and internally casts to void pointer type.
+// Later, you will be able to call the stored pointer by using
+//      Scheme::getParameter(string key) function. So, give it a meaningful key name.
+// You can store as many pointers you want.
+void Scheme::generateKeySet(){
+
+    // cast back to data type from void
+    FHEcontext  *context = static_cast<FHEcontext*>(Scheme::getParameter("context"));
+
+    // Secret key management
+    std::cout << "Creating secret key..." << std::endl;
+    // Create a secret key associated with the context
+    FHESecKey secret_key(*context);
+    std::cout << "Created secret key" << std::endl;
+
+    // Generate the secret key
+    secret_key.GenSecKey();
+    std::cout << "Generating key-switching matrices..." << std::endl;
+    // Compute key-switching matrices that we need
+    addSome1DMatrices(secret_key);
+    std::cout << "Generated key-switching matrices" << std::endl;
+    // Public key management
+    // Set the secret key (upcast: FHESecKey is a subclass of FHEPubKey)
+    const FHEPubKey& public_key = secret_key;
+    std::cout << "test" << std::endl;
+    // Get the EncryptedArray of the context
+    const EncryptedArray& ea = *(context->ea);
+
+    std::cout << "works!" << std::endl;
+}
+
+// This function will be called for encrypting plaintext values. Please return a
+//      void type pointer to the cipher text. You achieve this by casting your
+//      existing pointer to the cipher text.
+// You can get required keys and parameters by calling Scheme::getParameter(string key)
+//      function as mentioned previously. This function will return a void type pointer
+//      and please cast this pointer to your reqired data type before utilizing.
+void* Scheme::encrypt(int message){
+
+    void* ptr = 0;
+
+    return ptr;
+
+}
+
+
+int Scheme::decrypt(void* cipherText){
+
+    return 0;
+}
+
+void Scheme::cleanup(){
+
+}
+
+/**************************/
+/** ARITHMETIC FUNCTIONS **/
+/**************************/
+
+
+
+
+
+/*************************************************/
+/** Please don't modify the following functions **/
+/*************************************************/
+template <typename T>
+void Scheme::storeParameter(string key, T* pointer){
+
+    void *ptr = static_cast<void*>(pointer);
+    Scheme::parameters.insert({key, ptr});
+
+}
+
+void* Scheme::getParameter(string key){
+
+    return Scheme::parameters[key];
+}

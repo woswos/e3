@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/benchy.dir/src/main.cpp.o CMakeFiles/benchy.dir/src/base/base.cpp.o CMakeFiles/benchy.dir/src/gate/gate.cpp.o CMakeFiles/benchy.dir/scheme/api-gate.cpp.o  -o benchy  -L/usr/local/lib -Wl,-rpath,/usr/local/lib -ltfhe-spqlios-fma /usr/local/lib/libseal.a -pthread 

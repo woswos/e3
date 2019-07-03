@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/scheme.exe.dir/scheme.cpp.o  -o scheme.exe /usr/local/lib/libseal.a -pthread 

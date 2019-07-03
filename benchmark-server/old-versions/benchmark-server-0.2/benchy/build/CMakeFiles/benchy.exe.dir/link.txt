@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/benchy.exe.dir/src/gate.cpp.o CMakeFiles/benchy.exe.dir/src/main.cpp.o  -o benchy.exe 

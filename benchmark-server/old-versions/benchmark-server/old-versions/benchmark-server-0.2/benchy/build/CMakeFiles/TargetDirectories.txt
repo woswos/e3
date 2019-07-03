@@ -1,3 +1,0 @@
-/home/woswos/GitHub/e3/benchmark-server-0.2/benchy/build/CMakeFiles/rebuild_cache.dir
-/home/woswos/GitHub/e3/benchmark-server-0.2/benchy/build/CMakeFiles/benchy.exe.dir
-/home/woswos/GitHub/e3/benchmark-server-0.2/benchy/build/CMakeFiles/edit_cache.dir

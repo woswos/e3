@@ -21,10 +21,6 @@ iostream
 -
 chrono
 -
-tfhe/tfhe.h
--
-tfhe/tfhe_io.h
--
 
 ../src/gate/gate.h
 base.h
@@ -69,10 +65,6 @@ iostream
 -
 chrono
 -
-tfhe/tfhe.h
--
-tfhe/tfhe_io.h
--
 
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/gate/gate.cpp
 gate.h
@@ -82,10 +74,6 @@ iostream
 functional
 -
 string
--
-tfhe/tfhe.h
--
-tfhe/tfhe_io.h
 -
 
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/gate/gate.h

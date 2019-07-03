@@ -19,7 +19,7 @@ int main(int argc, char const *argv[]) {
     #endif
 
     // Delete pointers allocated in heap
-    //scheme->DeleteParameters();
+    scheme->DeleteParameters();
 
     delete scheme;
 

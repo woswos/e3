@@ -11,74 +11,7 @@ public:
     /*******************/
     /* Supported Gates */
     /*******************/
-    void Init(){
-
-        // generate default gate bootstrapping parameters
-        int32_t minimum_lambda = 100;
-        TFheGateBootstrappingParameterSet* params = new_default_gate_bootstrapping_parameters(minimum_lambda);
-
-        // generate a new unititialized ciphertext
-        LweSample* uCipherText = new_gate_bootstrapping_ciphertext(params);
-
-        Scheme::StoreParameter("params", params);
-        Scheme::StoreParameter("uCipherText", uCipherText);
-
-    }
-
-    void GenerateKeySet(){
-
-        // cast back to data type from void
-        TFheGateBootstrappingParameterSet* params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
-
-        TFheGateBootstrappingSecretKeySet* keyset = new_random_gate_bootstrapping_secret_keyset(params);
-
-        Scheme::StoreParameter("keyset", keyset);
-
-    }
-
-    auto Encrypt(int plainText) -> LweSample* {
-
-        // cast back to data type from void
-        TFheGateBootstrappingSecretKeySet* keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
-        TFheGateBootstrappingParameterSet* params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
-
-        // generate a new unititialized ciphertext
-        LweSample* encryptionResult = new_gate_bootstrapping_ciphertext(params);
-        Scheme::StoreParameter("encryptionResult", encryptionResult);
-
-        // encrypts a boolean
-        bootsSymEncrypt(encryptionResult, plainText, keyset);
-
-        return encryptionResult;
-
-    }
-
-    template <typename T>
-    int Decrypt(T cipherText){
-
-        TFheGateBootstrappingSecretKeySet* keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
-
-        /** decrypts a boolean */
-        return bootsSymDecrypt(cipherText, keyset);
-    }
-
-
-    template <typename T>
-    auto EvalAnd(T bitA, T bitB)  -> LweSample*{
-
-        // cast back to data type from void
-        TFheGateBootstrappingSecretKeySet* keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
-        TFheGateBootstrappingParameterSet* params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
-
-        LweSample* resultPtr = static_cast<LweSample*>(Scheme::GetParameter("uCipherText"));
-
-        /** bootstrapped And Gate: result = a and b */
-        bootsAND(resultPtr, bitA, bitB, &keyset->cloud);
-
-        return resultPtr;
-    }
-
-
+    void* EvalAnd(void *bitA, void *bitB);
     void* EvalNand(void *bitA, void *bitB);
 
     void* EvalOr(void *bitA, void *bitB);

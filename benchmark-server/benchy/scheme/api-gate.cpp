@@ -24,7 +24,19 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
 // This function is called once in the beginning of the benchmark.
 //      You can use this function to initilize required parameters
 //      or pointers, etc.
+void Scheme::Init(){
 
+    // generate default gate bootstrapping parameters
+    int32_t minimum_lambda = 100;
+    TFheGateBootstrappingParameterSet* params = new_default_gate_bootstrapping_parameters(minimum_lambda);
+
+    // generate a new unititialized ciphertext
+    LweSample* uCipherText = new_gate_bootstrapping_ciphertext(params);
+
+    Scheme::StoreParameter("params", params);
+    Scheme::StoreParameter("uCipherText", uCipherText);
+
+}
 
 // This function is called whenever new keys are required. You don't need to
 //      return anything but store the pointers to your key parameters by using
@@ -33,7 +45,16 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
 // Later, you will be able to call the stored pointer by using
 //      Scheme::GetParameter(string key) function. So, give it a meaningful key name.
 // You can store as many pointers you want.
+void Scheme::GenerateKeySet(){
 
+    // cast back to data type from void
+    TFheGateBootstrappingParameterSet* params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
+
+    TFheGateBootstrappingSecretKeySet* keyset = new_random_gate_bootstrapping_secret_keyset(params);
+
+    Scheme::StoreParameter("keyset", keyset);
+
+}
 
 // This function will be called for encrypting plaintext values. Please return a
 //      void type pointer to the cipher text. You achieve this by casting your
@@ -41,9 +62,34 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
 // You can get required keys and parameters by calling Scheme::GetParameter(string key)
 //      function as mentioned previously. This function will return a void type pointer
 //      and please cast this pointer to your reqired data type before utilizing.
+void* Scheme::Encrypt(int plainText){
+
+    // cast back to data type from void
+    TFheGateBootstrappingSecretKeySet* keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet* params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
+
+    // generate a new unititialized ciphertext
+    LweSample* encryptionResult = new_gate_bootstrapping_ciphertext(params);
+    Scheme::StoreParameter("encryptionResult", encryptionResult);
+
+    // encrypts a boolean
+    bootsSymEncrypt(encryptionResult, plainText, keyset);
+
+    return static_cast<void*>(encryptionResult);
+
+}
 
 
+int Scheme::Decrypt(void* cipherText){
 
+    TFheGateBootstrappingSecretKeySet* keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+
+    // Cast back to data type from void
+    LweSample  *cipherTextPtr = static_cast<LweSample*>(cipherText);
+
+    /** decrypts a boolean */
+    return bootsSymDecrypt(cipherTextPtr, keyset);
+}
 
 
 /********************/
@@ -55,7 +101,21 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
 // You should return a void pointer to the result after completing the gate operation
 
 // And gate
+void* GateApi::EvalAnd(void *bitA, void *bitB){
 
+    // cast back to data type from void
+    TFheGateBootstrappingSecretKeySet* keyset = static_cast<TFheGateBootstrappingSecretKeySet*>(Scheme::GetParameter("keyset"));
+    TFheGateBootstrappingParameterSet* params = static_cast<TFheGateBootstrappingParameterSet*>(Scheme::GetParameter("params"));
+
+    LweSample* bitAPtr = static_cast<LweSample*>(bitA);
+    LweSample* bitBPtr = static_cast<LweSample*>(bitB);
+    LweSample* resultPtr = static_cast<LweSample*>(Scheme::GetParameter("uCipherText"));
+
+    /** bootstrapped And Gate: result = a and b */
+    bootsAND(resultPtr, bitAPtr, bitBPtr, &keyset->cloud);
+
+    return static_cast<void*>(resultPtr);
+}
 
 // Nand gate
 void* GateApi::EvalNand(void *bitA, void *bitB){

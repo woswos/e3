@@ -7,9 +7,6 @@
 #include <iostream>
 #include <chrono>
 
-#include <tfhe/tfhe.h>
-#include <tfhe/tfhe_io.h>
-
 using std::string;
 using std::map;
 
@@ -45,7 +42,7 @@ public:
     void GenerateKeySet();
 
     // Encrypt a given plainText using the scheme
-    auto Encrypt(int plainText) -> LweSample* ;
+    void* Encrypt(int plainText);
 
     // Decrypt a given plainText using the scheme
     int Decrypt(void* cipherText);

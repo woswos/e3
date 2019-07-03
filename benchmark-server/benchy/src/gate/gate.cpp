@@ -48,7 +48,14 @@ int GateApi::benchmark(GateApi* schemePtr){
         std::cout << GateApi::Decrypt(GateApi::EvalAnd(GateApi::Encrypt(1), GateApi::Encrypt(1))) << "\n";
     }
 */
-    GateApi::test_gate_manual_single(0,1);
+    //GateApi::test_gate_manual_single(0,1);
+
+    std::cout << GateApi::Decrypt(GateApi::EvalAnd(GateApi::Encrypt(0), GateApi::Encrypt(0))) << "\n";
+    std::cout << GateApi::Decrypt(GateApi::EvalAnd(GateApi::Encrypt(0), GateApi::Encrypt(1))) << "\n";
+    std::cout << GateApi::Decrypt(GateApi::EvalAnd(GateApi::Encrypt(1), GateApi::Encrypt(0))) << "\n";
+    std::cout << GateApi::Decrypt(GateApi::EvalAnd(GateApi::Encrypt(1), GateApi::Encrypt(1))) << "\n";
+
+    GateApi::ClearTracked();
 
     /*
     GateApi::consoleLog("Fresh ciphertext tests");
@@ -64,6 +71,7 @@ int GateApi::benchmark(GateApi* schemePtr){
     return 1;
 }
 
+/*
 int GateApi::test_gate_cycle_recursive_ciphertext(
                             std::string gate_name_s,
                             GateApi* schemePtr,
@@ -92,7 +100,7 @@ int GateApi::test_gate_manual_single(int bitA, int bitB){
 
 
 
-    for (size_t i = 0; i < 1000; i++) {
+    for (size_t i = 0; i < 1000000; i++) {
         for (size_t i = 0; i < 1000000; i++) {
             GateApi::startTimer();
             result1 = GateApi::EvalNand(encryptedBitOnePtr, encryptedBitZeroPtr);
@@ -216,7 +224,7 @@ int GateApi::test_gate_cycle_fresh_ciphertext(
 
     return 1;
 }
-
+*/
 
 int GateApi::test_gate_and(int bitA, int bitB){
     return (bitA && bitB);

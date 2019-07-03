@@ -7,9 +7,10 @@ IMPORTANT NOTE: Please instantiate all objects in the heap memory, not stack mem
                 Please don't cout anything!
 **********************************************************************************/
 
+#include <map>
+#include <memory>
 #include "base.h"
 #include "gate.h"
-#include <memory>
 
 /*************************************/
 /** Please include your scheme here **/
@@ -95,10 +96,6 @@ int Scheme::Decrypt(void* cipherText){
     return std::stoi(ptr->str());
 }
 
-void Scheme::Cleanup(){
-// remove_before_flight
-}
-
 /********************/
 /** GATE FUNCTIONS **/
 /********************/
@@ -159,7 +156,19 @@ void Scheme::StoreParameter(string key, T* pointer){
 
 }
 
-void* Scheme::GetParameter(string key){
+template <typename T>
+auto Scheme::GetParameter(string key) -> T{
 
-    return Scheme::parameters[key];
+    return static_cast<T>(Scheme::parameters[key]);
+}
+
+void Scheme::DeleteParameters(){
+
+    // remove_before_flight
+    for (auto it = Scheme::parameters.begin(); it != Scheme::parameters.end(); ++it){
+        delete (char*)(*it).second;
+    }
+
+    Scheme::parameters.clear();
+
 }

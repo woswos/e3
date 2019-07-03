@@ -76,15 +76,17 @@ public:
 
 
     // Returns void pointers based on given key
-    void* GetParameter(string key);
+    template <typename T>
+    auto GetParameter(string key) -> T;
 
     // Stores void pointers based on given key and casts given pointers to void
     template <typename T>
-    void StoreParameter(string key, T* pointer);
+    void StoreParameter(string key, T* pointer, bool track = false);
 
     // For deleting created objects
     void DeleteParameters();
 
+    void ClearTracked();
 
     /*********************/
     /* Base Class Basics */

@@ -71,7 +71,7 @@ void* Scheme::Encrypt(int plainText){
     //std::shared_ptr<LweSample*> encryptionResult = std::make_shared<LweSample*>(new_gate_bootstrapping_ciphertext(params));
 
     LweSample* encryptionResult = new_gate_bootstrapping_ciphertext(params);
-    Scheme::StoreParameter("result", encryptionResult, true);
+    //Scheme::StoreParameter("encryptionResult", encryptionResult);
 
     // encrypts a boolean
     bootsSymEncrypt(encryptionResult, plainText, Scheme::GetParameter<TFheGateBootstrappingSecretKeySet*>("keyset"));
@@ -212,7 +212,7 @@ void* GateApi::EvalBuffer(void *bitA){
 /** Please don't modify the following functions **/
 /*************************************************/
 template <typename T>
-void Scheme::StoreParameter(string key, T* pointer, bool track){
+void Scheme::StoreParameter(string key, T* pointer){
 
     void *ptr = static_cast<void*>(pointer);
     Scheme::parameters.insert({key, ptr});
@@ -233,10 +233,5 @@ void Scheme::DeleteParameters(){
     }
 
     Scheme::parameters.clear();
-
-}
-
-void Scheme::ClearTracked(){
-
 
 }

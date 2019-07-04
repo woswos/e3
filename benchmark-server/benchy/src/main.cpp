@@ -1,27 +1,34 @@
 #include <iostream>
+#include <fstream>
+#include "base.h"
 
-#include "gate.h"
-#include "arithmetic.h"
+#include "oleg.h"
 
-using std::cout;
-using std::endl;
 
 int main(int argc, char const *argv[]) {
 
-    #ifndef GATEAPI
-        ArithmeticApi* scheme = new ArithmeticApi();
-        scheme->benchmark(scheme);
+    Scheme scheme;
 
-    #else
-        GateApi* scheme = new GateApi();
-        scheme->benchmark(scheme);
+    try
+    {
 
-    #endif
+        CiphertextBit a("1"), b("0");
 
-    // Delete pointers allocated in heap
-    scheme->DeleteParameters();
+        scheme.consoleLog("Testing 'nand gate' with " + a.str() + " and " + b.str());
 
-    delete scheme;
+        scheme.startTimer();
+        auto c = gate_nand(a, b);
+        scheme.addTiming("gate_nand", scheme.stopTimer());
 
-    return 0;
+        scheme.consoleLogln(", result: " + std::to_string(scheme.getTiming("gate_nand")) + " nanoseconds");
+
+
+        return 0;
+    }
+    catch (...)
+    {
+        scheme.consoleErrorLog("Exception");
+        return 1;
+    }
+
 }

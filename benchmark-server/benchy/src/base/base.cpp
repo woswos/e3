@@ -6,16 +6,20 @@
 #include <functional>
 #include <chrono>
 
-
-void Scheme::base_benchmark(){
-
-    Scheme::Init();
-
-    Scheme::GenerateKeySet();
+void Scheme::init(){
 
 }
 
+void Scheme::generateKeySet(){
+
+}
+
+
 void Scheme::consoleLog(string message){
+    std::cout << message;
+}
+
+void Scheme::consoleLogln(string message){
     std::cout << message << std::endl;
 }
 

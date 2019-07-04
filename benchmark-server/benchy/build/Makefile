@@ -123,33 +123,6 @@ benchy/fast:
 	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/build
 .PHONY : benchy/fast
 
-scheme/api-gate.o: scheme/api-gate.cpp.o
-
-.PHONY : scheme/api-gate.o
-
-# target to build an object file
-scheme/api-gate.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.o
-.PHONY : scheme/api-gate.cpp.o
-
-scheme/api-gate.i: scheme/api-gate.cpp.i
-
-.PHONY : scheme/api-gate.i
-
-# target to preprocess a source file
-scheme/api-gate.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.i
-.PHONY : scheme/api-gate.cpp.i
-
-scheme/api-gate.s: scheme/api-gate.cpp.s
-
-.PHONY : scheme/api-gate.s
-
-# target to generate assembly for a file
-scheme/api-gate.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/scheme/api-gate.cpp.s
-.PHONY : scheme/api-gate.cpp.s
-
 src/base/base.o: src/base/base.cpp.o
 
 .PHONY : src/base/base.o
@@ -176,33 +149,6 @@ src/base/base.s: src/base/base.cpp.s
 src/base/base.cpp.s:
 	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/base.cpp.s
 .PHONY : src/base/base.cpp.s
-
-src/gate/gate.o: src/gate/gate.cpp.o
-
-.PHONY : src/gate/gate.o
-
-# target to build an object file
-src/gate/gate.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/gate.cpp.o
-.PHONY : src/gate/gate.cpp.o
-
-src/gate/gate.i: src/gate/gate.cpp.i
-
-.PHONY : src/gate/gate.i
-
-# target to preprocess a source file
-src/gate/gate.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/gate.cpp.i
-.PHONY : src/gate/gate.cpp.i
-
-src/gate/gate.s: src/gate/gate.cpp.s
-
-.PHONY : src/gate/gate.s
-
-# target to generate assembly for a file
-src/gate/gate.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/gate.cpp.s
-.PHONY : src/gate/gate.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -240,15 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... benchy"
 	@echo "... edit_cache"
-	@echo "... scheme/api-gate.o"
-	@echo "... scheme/api-gate.i"
-	@echo "... scheme/api-gate.s"
 	@echo "... src/base/base.o"
 	@echo "... src/base/base.i"
 	@echo "... src/base/base.s"
-	@echo "... src/gate/gate.o"
-	@echo "... src/gate/gate.i"
-	@echo "... src/gate/gate.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

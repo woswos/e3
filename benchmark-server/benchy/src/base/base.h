@@ -10,16 +10,15 @@
 using std::string;
 using std::map;
 
+
 class Scheme
 {
 private:
+    struct CiphertextBit {};
+
     /********************************/
     /* Base Class Storage Variables */
     /********************************/
-    // Hold void pointers to various paramaters supplied by the scheme
-    // key, void pointer
-    map<string, void *> parameters;
-
     // Holds the time durations for various operations tested
     // key, time value
     map<string, long long> timings;
@@ -36,57 +35,22 @@ public:
     std::string scheme_id;
 
     // Scheme dependent and scheme independent parameter setup
-    void Init();
+    void init();
 
     // Generate private key, public key, evaluation keys, etc.
-    void GenerateKeySet();
+    void generateKeySet();
+
+    int test_gate(
+                std::string gate_name_s,
+                CiphertextBit (Scheme::*gate_func_name)(CiphertextBit, CiphertextBit)
+                );
 
     // Encrypt a given plainText using the scheme
-    void* Encrypt(int plainText);
+    //void* Encrypt(int plainText);
 
     // Decrypt a given plainText using the scheme
-    int Decrypt(void* cipherText);
+    //int Decrypt(void* cipherText);
 
-    // Applies the relinearization operation to a given input ciphertext
-    void* Relinearize(void* cipherText);
-
-    // Resets the noise in a given input ciphertext to a specific level determined
-    //      by the parameters
-    void* Bootstrap(void* cipherText);
-
-    // Change ciphertext coefficient modulus to smaller or larger value.
-    void* ModSwitch(void* cipherText);
-
-    // Re-randomize a given ciphertext
-    void* ReRandomize(void* cipherText);
-
-    // Switches an input ciphertext from using one secret key to another secret
-    //      key without changing the underlying plaintext
-    void* KeySwitch(void* cipherText);
-
-    // Estimate the noise growth in the current circuit
-    void NoiseEstimate();
-
-    // Relinearize
-    // Rescale
-    // Rotate one
-    // Rotate random
-    // Conjugate
-    // https://github.com/microsoft/SEAL/blob/0b0b5dd68e95c83d0c357d17af9b862df55cb8ea/dotnet/examples/6_Performance.cs#L337
-
-
-    // Returns void pointers based on given key
-    template <typename T>
-    auto GetParameter(string key) -> T;
-
-    // Stores void pointers based on given key and casts given pointers to void
-    template <typename T>
-    void StoreParameter(string key, T* pointer, bool track = false);
-
-    // For deleting created objects
-    void DeleteParameters();
-
-    void ClearTracked();
 
     /*********************/
     /* Base Class Basics */
@@ -105,6 +69,8 @@ public:
 
     // For logging normal messages in a fancy way
     void consoleLog(string message);
+
+    void consoleLogln(string message);
 
     // For logging error messages in a fancy way
     void consoleErrorLog(string message);

@@ -1,34 +1,39 @@
 #include <iostream>
-#include <fstream>
-#include "base.h"
+#include <string>
+#include <vector>
+#include "benchmark.h"
 
 #include "oleg.h"
 
+using Bit = CiphertextBit;
 
 int main(int argc, char const *argv[]) {
 
-    Scheme scheme;
+    Bit a("1"), b("0");
+
+    auto c = gate_nand(a, b);
+
 
     try
     {
-
-        CiphertextBit a("1"), b("0");
-
-        scheme.consoleLog("Testing 'nand gate' with " + a.str() + " and " + b.str());
-
-        scheme.startTimer();
-        auto c = gate_nand(a, b);
-        scheme.addTiming("gate_nand", scheme.stopTimer());
-
-        scheme.consoleLogln(", result: " + std::to_string(scheme.getTiming("gate_nand")) + " nanoseconds");
+        unsigned time = 100; // ms
 
 
-        return 0;
+        for ( auto g : gates ){
+            cout << names[g] << " " << test<Bit>( g, a, b, time ) << '\n';
+        }
+
+
+        //cout << "N... "; validateGates<BNUint<1>, BNBit>(_0_En, _1_En);
+
+    }
+    catch (string e)
+    {
+        cout << "Error: " << e << "\n";
     }
     catch (...)
     {
-        scheme.consoleErrorLog("Exception");
-        return 1;
+        cout << "exception\n";
     }
 
 }

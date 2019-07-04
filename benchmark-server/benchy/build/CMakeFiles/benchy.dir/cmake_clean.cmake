@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/benchy.dir/src/main.cpp.o"
-  "CMakeFiles/benchy.dir/src/base/base.cpp.o"
   "benchy.pdb"
   "benchy"
 )

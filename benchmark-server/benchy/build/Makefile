@@ -123,33 +123,6 @@ benchy/fast:
 	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/build
 .PHONY : benchy/fast
 
-src/base/base.o: src/base/base.cpp.o
-
-.PHONY : src/base/base.o
-
-# target to build an object file
-src/base/base.cpp.o:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/base.cpp.o
-.PHONY : src/base/base.cpp.o
-
-src/base/base.i: src/base/base.cpp.i
-
-.PHONY : src/base/base.i
-
-# target to preprocess a source file
-src/base/base.cpp.i:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/base.cpp.i
-.PHONY : src/base/base.cpp.i
-
-src/base/base.s: src/base/base.cpp.s
-
-.PHONY : src/base/base.s
-
-# target to generate assembly for a file
-src/base/base.cpp.s:
-	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/base/base.cpp.s
-.PHONY : src/base/base.cpp.s
-
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -186,9 +159,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... benchy"
 	@echo "... edit_cache"
-	@echo "... src/base/base.o"
-	@echo "... src/base/base.i"
-	@echo "... src/base/base.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

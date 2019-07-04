@@ -11,7 +11,6 @@ include_directories(${libraryLocation})
 # Include gate or arithmetic api based on the selection
 file(GLOB SOURCES
     "src/*.cpp"
-    "src/base/*.cpp"
 )
 
 # Generate executable file

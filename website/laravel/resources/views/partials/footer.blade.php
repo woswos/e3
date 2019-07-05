@@ -1,4 +1,4 @@
-<footer class="page-footer font-small mt-5 pt-2 bg-white shadow-sm">
+<footer class="page-footer font-small mt-5 pt-2 bg-white shadow-sm border-top">
 
   <div class="container text-center text-md-left">
 
@@ -42,6 +42,9 @@
         <p>New York University Abu Dhabi</p>
         <p>PO Box 129188, Saadiyat Island,</p>
         <p>Abu Dhabi, United Arab Emirates</p>
+
+        <img src="{{ asset('img/attacker.gif') }}" alt="attacker" style="z-index:1; position: absolute; height: 100px; right: 0px; bottom: -17px; opacity: 0.5;">
+
       </div>
 
     </div>

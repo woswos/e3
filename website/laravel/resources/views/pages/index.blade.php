@@ -174,17 +174,21 @@
         </div>
     </section>
 
-    <script type="text/javascript">
-        const options = {
-          duration: 3,
-        };
+    {{-- @if (Cookie::get('first_time') == 'yes') --}}
+        <script type="text/javascript">
+            const options = {
+              duration: 3,
+            };
 
-        let counter_1 = new CountUp('counter_1', {{ $totalPrizeAvailable }}, options);
-        let counter_2 = new CountUp('counter_2', {{ $totalPrizeChallenges }}, options);
-        let counter_3 = new CountUp('counter_3', {{ $totalSchemes }}, options);
-        counter_1.start();
-        counter_2.start();
-        counter_3.start();
-    </script>
+            let counter_1 = new CountUp('counter_1', {{ $totalPrizeAvailable }}, options);
+            let counter_2 = new CountUp('counter_2', {{ $totalPrizeChallenges }}, options);
+            let counter_3 = new CountUp('counter_3', {{ $totalSchemes }}, options);
+
+            counter_1.start();
+            counter_2.start();
+            counter_3.start();
+
+        </script>
+    {{-- @endif --}}
 
   @endsection

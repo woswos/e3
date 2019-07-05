@@ -43,7 +43,7 @@
         <p>PO Box 129188, Saadiyat Island,</p>
         <p>Abu Dhabi, United Arab Emirates</p>
 
-        <img src="{{ asset('img/attacker.gif') }}" alt="attacker" style="z-index:1; position: absolute; height: 100px; right: 0px; bottom: -17px; opacity: 0.5;">
+        <img src="{{ asset('img/attacker.gif') }}" alt="attacker" style="z-index:1; position: absolute; height: 100px; right: 0px; bottom: -17px; opacity: 0.75;">
 
       </div>
 

@@ -85,6 +85,7 @@ class SchemesController extends Controller
         $scheme->authors = $request->input('authors');
         $scheme->institutions = $request->input('institutions');
         $scheme->abstract = $request->input('abstract');
+        $scheme->keywords = $request->input('keywords');
         $scheme->total_prize = 0;
         $scheme->total_attempts = 0;
         $scheme->speed = 0;

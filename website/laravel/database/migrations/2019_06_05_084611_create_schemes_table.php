@@ -23,6 +23,7 @@ class CreateSchemesTable extends Migration
             $table->string('total_attempts')->nullable();
             $table->string('speed')->nullable();
             $table->string('attached_files')->nullable();
+            $table->string('keywords')->nullable();
             $table->timestamps();
         });
     }

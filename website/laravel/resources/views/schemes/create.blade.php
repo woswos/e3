@@ -23,6 +23,11 @@
                 {{Form::label('abstract', 'Abstract')}}
                 {{Form::textarea('abstract', '', ['id' => '', 'class' => 'form-control', 'placeholder' => 'Please copy and paste your abstract here'])}}
             </div>
+            <!-- Keywords -->
+            <div class="form-group">
+                {{Form::label('keywords', 'Keyword(s)')}}
+                {{Form::text('keywords', '', ['class' => 'form-control', 'placeholder' => 'Please seperate each keyword with a comma (,)', 'data-role' => 'tagsinput' ])}}
+            </div>
             <!-- Attachments -->
             <div class="form-group">
                 {{Form::label('attached_files', 'Please attach the paper here. Please only upload pdf files: ')}}

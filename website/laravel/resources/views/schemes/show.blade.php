@@ -10,6 +10,19 @@
             {{ $scheme->abstract }}
         </div>
         <br>
+        @if ($scheme->keywords != "")
+            <div>
+                Keywords:
+                @foreach(explode(",", $scheme->keywords) as $keyword)
+                    {{ $keyword }}
+                    @if (!($loop->last))
+                        ,&nbsp;
+                    @endif
+                @endforeach
+            </div>
+            <br>
+        @endif
+
         @if ($scheme->attached_files != "none")
           <a href="{{ route('index') }}/storage/attached_files/{{ $scheme->attached_files }}" target="_blank">Download attached files</a>
         @endif

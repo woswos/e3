@@ -105,7 +105,7 @@ class SchemesController extends Controller
         $queue->processed = 0;
         $queue->save();
 
-        return redirect()->route('scheme.show', ['id' => $lastSchemeId])->with('success', 'Challenge Submitted');
+        return redirect()->route('scheme.show', ['id' => $lastSchemeId])->with('success', 'Encryption Scheme Submitted');
 
     }
 

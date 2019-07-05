@@ -30,7 +30,11 @@ Route::resource('challenge', 'ChallengesController');
 Route::get('/solution/create/{scheme_id}', 'SolutionsController@create')->name('solution.create.id');
 Route::resource('solution', 'SolutionsController');
 
+// Authentication stuff
 Auth::routes();
 Auth::routes(['verify' => true]);
+Route::get('/changepassword','DashboardController@showChangePasswordForm');
+Route::post('/changepassword','DashboardController@changePassword')->name('changepassword');
 
+// Dashboard
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

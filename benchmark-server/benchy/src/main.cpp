@@ -9,18 +9,16 @@ using Bit = CiphertextBit;
 
 int main(int argc, char const *argv[]) {
 
-    Bit a("1"), b("0");
-
-    auto c = gate_nand(a, b);
-
+    //auto c = gate_nand(a, b);
 
     try
     {
+        Bit bitOne("1"), bitZero("0");
+
         unsigned time = 100; // ms
 
-
         for ( auto g : gates ){
-            cout << names[g] << " " << test<Bit>( g, a, b, time ) << '\n';
+            cout << names[g] << " " << test<Bit>( g, bitOne, bitZero, time ) << '\n';
         }
 
 

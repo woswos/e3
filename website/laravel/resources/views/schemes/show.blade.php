@@ -14,18 +14,55 @@
             <div>
                 Keywords:
                 @foreach(explode(",", $scheme->keywords) as $keyword)
-                    {{ $keyword }}
-                    @if (!($loop->last))
-                        ,&nbsp;
-                    @endif
+                {{$keyword}}@if(!($loop->last)),&nbsp;@endif
                 @endforeach
             </div>
             <br>
         @endif
 
         @if ($scheme->attached_files != "none")
-          <a href="{{ route('index') }}/storage/attached_files/{{ $scheme->attached_files }}" target="_blank">Download attached files</a>
+          <a href="{{ route('index') }}/storage/attached_files/{{ $scheme->attached_files }}" target="_blank">Download corresponding paper</a>
         @endif
+      </div>
+      <br>
+      <div class="container">
+        <h4>Software Implementation</h4>
+        @foreach($implementation as $row)
+          <div>
+                Implemented in:
+                @if ($row->programming_language != "Other")
+                    {{$row->programming_language}}
+                @else
+                    {{$row->programming_language_other}}
+                @endif
+          </div>
+        @endforeach
+        @foreach($implementation as $row)
+            @if ($row->gate != "")
+              <div>
+                    Natively supported gate operations:
+                    @foreach(explode(",", $row->gate) as $gate)
+                    {{ucfirst($gate)}}@if(!($loop->last)),&nbsp;@endif
+                    @endforeach
+              </div>
+            @endif
+        @endforeach
+        @foreach($implementation as $row)
+            @if ($row->arithmetic != "")
+              <div>
+                    Natively supported arithmetic operations:
+                    @foreach(explode(",", $row->arithmetic) as $arithmetic)
+                    {{ucfirst($arithmetic)}}@if(!($loop->last)),&nbsp;@endif
+                    @endforeach
+              </div>
+            @endif
+        @endforeach
+
+        @foreach($implementation as $row)
+            @if ($row->attached_files_implementation != "none")
+              <a href="{{ route('index') }}/storage/attached_files/{{ $row->attached_files_implementation }}" target="_blank">Download code</a>
+            @endif
+        @endforeach
       </div>
     </section>
 

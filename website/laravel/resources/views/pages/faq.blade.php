@@ -7,7 +7,7 @@
 
         <div class="">
             <ul>
-              <li><h5>Lorem ipsum dolor sit amet</h5></li>
+              <li><h5>Submission Instructions</h5></li>
               <li><h5>Consectetur adipiscing elit<h5></li>
                 <ul>
                   <li>Phasellus iaculis neque</li>

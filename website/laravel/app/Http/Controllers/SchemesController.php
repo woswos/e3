@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Scheme;
 use App\Challenge;
 use App\Queue;
+use App\Implementation;
 
 class SchemesController extends Controller
 {
@@ -60,10 +61,11 @@ class SchemesController extends Controller
             'authors' => 'required',
             'abstract' => 'required',
             'institutions' => 'required',
-            'attached_files' => 'required|max:50000'
+            'attached_files' => 'required|max:50000',
+            'attached_files_implementation' => 'required'
         ]);
 
-        // Handle File Upload
+        // Handle File Upload - Theory
         if($request->hasFile('attached_files')){
             // Get filename with the extension
             $filenameWithExt = $request->file('attached_files')->getClientOriginalName();
@@ -77,6 +79,22 @@ class SchemesController extends Controller
             $path = $request->file('attached_files')->storeAs('public/attached_files', $fileNameToStore);
         } else {
             $fileNameToStore = 'none';
+        }
+
+        // Handle File Upload - Implementation
+        if($request->hasFile('attached_files_implementation')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('attached_files_implementation')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('attached_files_implementation')->getClientOriginalExtension();
+            // Filename to store
+            $implementationFileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('attached_files_implementation')->storeAs('public/attached_files_implementation', $implementationFileNameToStore);
+        } else {
+            $implementationFileNameToStore = 'none';
         }
 
         // Create a scheme
@@ -93,11 +111,23 @@ class SchemesController extends Controller
         $scheme->user_id = auth()->user()->id;
         $scheme->save();
 
-
         // Get latest submitted scheme's id
         $lastSchemes = Scheme::orderBy('id','DESC')->take(1)->get();
         $lastScheme = $lastSchemes[0];
         $lastSchemeId = $lastScheme['id'];
+
+
+        // Create a scheme implementation
+        $implementation = new Implementation;
+        $implementation->scheme_id = $lastSchemeId;
+        $implementation->programming_language = $request->input('programming_language');
+        $implementation->programming_language_other = $request->input('programming_language_other');
+
+        $implementation->supported_operations = implode(",", $request->input('supported_operations'));
+        $implementation->gate = implode(",", $request->input('gate'));
+        $implementation->arithmetic = implode(",", $request->input('arithmetic'));
+        $implementation->attached_files_implementation = $implementationFileNameToStore;
+        $implementation->save();
 
 
         // Add submitted scheme to the processing queue
@@ -106,7 +136,7 @@ class SchemesController extends Controller
         $queue->processed = 0;
         $queue->save();
 
-        return redirect()->route('scheme.show', ['id' => $lastSchemeId])->with('success', 'Encryption Scheme Submitted');
+        return redirect()->route('scheme.show', ['id' => $lastSchemeId])->with('success', 'Encryption Scheme Submitted Successfully');
 
     }
 
@@ -121,12 +151,16 @@ class SchemesController extends Controller
         //Find the scheme by id which is given in the url
         $scheme = Scheme::find($id);
 
+        //Find the corresponding implementation
+        $implementation = Implementation::where('scheme_id', $id)->get();
+
         //Find the challenges by id which is given in the url
         $challenges = Challenge::where('scheme_id', $id)->get();
 
         $data = array(
           'scheme' => $scheme,
-          'challenges' => $challenges
+          'challenges' => $challenges,
+          'implementation' => $implementation
           );
 
         return view('schemes/show')->with($data);

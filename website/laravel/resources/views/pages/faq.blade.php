@@ -1,24 +1,30 @@
 @extends('layouts/app')
 
 @section('content')
-    <section class="">
-      <div class="container">
-        <h1>FAQ</h1>
+    <body data-spy="scroll"  data-target="#faq" data-offset="0">
+        <section class="">
+          <div class="container" id="faq">
+            <h1>Frequently Asked Questions</h1>
 
-        <div class="">
-            <ul>
-              <li><h5>Submission Instructions</h5></li>
-              <li><h5>Consectetur adipiscing elit<h5></li>
+            <div class="">
                 <ul>
-                  <li>Phasellus iaculis neque</li>
-                  <li>Purus sodales ultricies</li>
-                  <li>Vestibulum laoreet porttitor sem</li>
-                  <li>Ac tristique libero volutpat at</li>
+                    <div id="submission">
+                        <li><h5>Submission Instructions</h5></li>
+                    </div>
+                    <div id="prize">
+                        <li><h5>Prize Payment Instructions</h5></li>
+                        <ul>
+                          <li>Phasellus iaculis neque</li>
+                          <li>Purus sodales ultricies</li>
+                          <li>Vestibulum laoreet porttitor sem</li>
+                          <li>Ac tristique libero volutpat at</li>
+                        </ul>
+                    </div>
                 </ul>
-            </ul>
-        </div>
+            </div>
 
-      </div>
-    </section>
+          </div>
+        </section>
+    </body>
 
 @endsection

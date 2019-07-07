@@ -4,7 +4,7 @@
     <section class="">
         <div class="container">
         <h1>Submit a new encryption scheme</h1>
-        <h6><i>Please review the <a href="{{ route('faq') }}">submission instructions</a> before submitting any scheme</i></h6>
+        <h6><i>Please review the <a href="{{ route('faq') }}#submission" target="_blank">submission instructions</a> before submitting any scheme</i></h6>
 
         {!! Form::open(['action' => 'SchemesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             <h3>Part 1: Theory</h3>
@@ -37,7 +37,7 @@
 
             <br>
             <h3>Part 2: Implementation</h3>
-            <h6><i>Please make sure you have reviewed the <a href="{{ route('faq') }}">submission instructions</a> before submitting any scheme</i></h6>
+            <h6><i>Please make sure you have reviewed the <a href="{{ route('faq') }}#submission" target="_blank">submission instructions</a> before submitting any scheme</i></h6>
             <!-- Supported operations -->
             <div class="form-group">
                 {{Form::label('programming_language', 'Select programming langue used to implement the encryption scheme')}}

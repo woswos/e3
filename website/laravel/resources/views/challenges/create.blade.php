@@ -13,15 +13,12 @@
         </div>
         <div class="form-group">
             {{Form::label('prize', 'Prize ($)')}}
+            <h6><i>Please carefully review the <a href="{{ route('faq') }}#prize" target="_blank">instructions regarding the prize payment</a> before submitting a challenge with a monetary prize</i></h6>
             {{Form::number('prize', '', ['class' => 'form-control', 'placeholder' => 'Please enter without the dollar sign'])}}
         </div>
         <div class="form-group">
             {{Form::label('difficulty', 'Pick a difficulty')}}
-            {{Form::select("difficulty",['beginner' => 'Beginner', 'easy' => 'Easy', 'normal' => 'Normal', 'hard' => 'Hard', 'very_hard' => 'Very hard'], null,
-             [
-                "class" => "form-control"
-             ])
-}}
+            {{Form::select("difficulty",['beginner' => 'Beginner', 'easy' => 'Easy', 'normal' => 'Normal', 'hard' => 'Hard', 'very_hard' => 'Very hard'], null, ["class" => "form-control"])}}
         </div>
         <div class="form-group">
             {{Form::label('explanation', 'Explanation')}}
@@ -40,4 +37,21 @@
     {!! Form::close() !!}
 
   </div>
+
+  <!--
+  <div id='text1' style='display:none; '>Examletext</div>
+  <script>
+      $(document).ready(function() {
+      $("#prize").keyup(function() {
+           if($("#prize").val() > 100){
+              if ($('#text1').is(":hidden")) {
+                  $('#text1').show(500);
+              } else {
+                  $("#text1").hide(500);
+              }
+          }
+       });
+      });
+  </script>
+-->
 @endsection

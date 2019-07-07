@@ -79,6 +79,11 @@ a:hover {
     background-color: #4169e1;
 }
 
+.list-group-item.active {
+    background-color: #4169e1;
+    border-color: #4169e1;
+}
+
 
 /* Keyword box */
 .label-info {

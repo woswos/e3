@@ -12,10 +12,17 @@
             {{Form::label('title', 'Title')}}
             {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
         </div>
+
         <div class="form-group">
-            {{Form::label('prize', 'Prize ($)')}}
+            {{Form::label('prize', 'Prize')}}
             <h6><i>Please carefully review the <a href="{{ route('faq') }}#prize" target="_blank">instructions regarding the prize payment</a> before submitting a challenge with a monetary prize</i></h6>
-            {{Form::number('prize', '', ['class' => 'form-control', 'placeholder' => 'Please enter without the dollar sign'])}}
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                {{Form::number('prize', '', ['class' => 'form-control', 'placeholder' => 'Please enter without the dollar sign'])}}
+            </div>
         </div>
         <div class="form-group">
             {{Form::label('difficulty', 'Pick a difficulty')}}

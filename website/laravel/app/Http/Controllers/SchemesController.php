@@ -120,7 +120,6 @@ class SchemesController extends Controller
         $scheme->keywords = $request->input('keywords');
         $scheme->total_prize = 0;
         $scheme->total_attempts = 0;
-        $scheme->speed = 0;
         $scheme->attached_files = $fileNameToStore;
         $scheme->user_id = auth()->user()->id;
         $scheme->save();
@@ -287,9 +286,6 @@ class SchemesController extends Controller
         $scheme->institutions = $request->input('institutions');
         $scheme->abstract = $request->input('abstract');
         $scheme->keywords = $request->input('keywords');
-        $scheme->total_prize = 0;
-        $scheme->total_attempts = 0;
-        $scheme->speed = 0;
         if($fileNameToStore != "none"){
             $scheme->attached_files = $fileNameToStore;
         }

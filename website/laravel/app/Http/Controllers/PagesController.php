@@ -9,6 +9,7 @@ use App\Scheme;
 use App\Challenge;
 use App\Solution;
 use App\User;
+use App\Benchmark;
 use Cookie;
 
 class PagesController extends Controller
@@ -24,12 +25,21 @@ class PagesController extends Controller
         }
         */
 
+        $schemes = User
+                    ::join('schemes', 'users.id', '=', 'schemes.user_id')
+                    ->join('benchmarks', 'schemes.id', '=', 'benchmarks.scheme_id')
+                    //->select('users.id', 'contacts.phone', 'orders.price')
+                    //->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+                    ->get();
+
+
         // Get all schemes
-        $schemes = Scheme::all();
+        //$schemes = Scheme::all();
         $totalSchemes = $schemes->count();
 
         // Get top 5 schemes from db
-        $topSchemes = Scheme::all()->take(5);
+        //$topSchemes = Scheme::all()->take(5);
+        $topSchemes = $schemes->take(5);
 
         // Get top 5 hackers from db
         $topHackers = Solution::all()->take(5);
@@ -66,24 +76,14 @@ class PagesController extends Controller
 
     public function ranking(){
         // Get all schemes from db
-        $schemes = Scheme::all();
+        $schemes = User
+                    ::join('schemes', 'users.id', '=', 'schemes.user_id')
+                    ->join('benchmarks', 'schemes.id', '=', 'benchmarks.scheme_id')
+                    ->get();
 
         $data = array(
             'schemes' => $schemes
         );
-
-        // Convert array to string
-        /*
-        $chart_X = json_encode($chart_schemes_X);
-        $chart_Y = json_encode($chart_schemes_Y);
-        $chart_l = json_encode($chart_labels);
-
-        $data = array(
-        'chart_X' => $chart_X,
-        'chart_Y' => $chart_Y,
-        'chart_l' => $chart_l
-        );
-        */
 
         return view('pages/ranking')->with($data);
     }

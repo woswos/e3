@@ -59,6 +59,7 @@ class SolutionsController extends Controller
           'explanation' => 'required',
           'scheme_id' => 'required',
           'challenge_id' => 'required',
+          'flag' => 'required',
           'attached_files' => 'nullable|max:50000'
       ]);
 
@@ -84,6 +85,7 @@ class SolutionsController extends Controller
       $solution->challenge_id = $request->input('challenge_id');
       $solution->title = $request->input('title');
       $solution->explanation = $request->input('explanation');
+      $solution->flag = $request->input('flag');
       $solution->attached_files = $fileNameToStore;
       $solution->user_id = auth()->user()->id;
       $solution->save();

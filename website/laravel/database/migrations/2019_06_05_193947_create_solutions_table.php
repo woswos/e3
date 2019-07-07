@@ -19,6 +19,7 @@ class CreateSolutionsTable extends Migration
             $table->string('challenge_id'); // foreign key for relating to challenges
             $table->string('title')->nullable();
             $table->mediumText('explanation')->nullable();
+            $table->string('flag')->nullable();
             $table->string('attached_files')->nullable();
             $table->timestamps();
         });

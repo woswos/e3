@@ -16,6 +16,10 @@
             {{Form::textarea('explanation', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Please copy and paste your abstract here'])}}
         </div>
         <div class="form-group">
+            {{Form::label('flag', 'Enter the secret key')}}
+            {{Form::text('flag', '', ['class' => 'form-control', 'placeholder' => 'Flag'])}}
+        </div>
+        <div class="form-group">
             {{Form::label('attached_files', 'Please attach the files here. Please only upload pdf or zip files: ')}}
             {{Form::file('attached_files', array('multiple'=>false,'class'=>'send-btn', 'accept' => '.pdf, .zip'))}}
         </div>

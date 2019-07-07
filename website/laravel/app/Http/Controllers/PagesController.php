@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 // Include the namespace from scheme and challenge for accesing to database
 use App\Scheme;
 use App\Challenge;
+use App\Solution;
+use App\User;
 use Cookie;
 
 class PagesController extends Controller
@@ -30,7 +32,7 @@ class PagesController extends Controller
         $topSchemes = Scheme::all()->take(5);
 
         // Get top 5 hackers from db
-        $topHackers = Scheme::all()->take(5);
+        $topHackers = Solution::all()->take(5);
 
         // Count number of available challenges
         $allUnsolvedChallenge = Challenge::where('solved', 'false')->get();

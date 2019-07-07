@@ -75,6 +75,11 @@ a:hover {
     border-color: #E14169;
 }
 
+.dropdown-item:active {
+    background-color: #4169e1;
+}
+
+
 /* Keyword box */
 .label-info {
   background-color: #4169e1;

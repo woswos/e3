@@ -134,7 +134,7 @@
                             @if(count($topHackers) > 0)
                               @foreach($topHackers as $hacker)
                               <tr>
-                                <th scope="row">{{ $hacker->id }}</th>
+                                <th scope="row">{{ $hacker->user_id }}</th>
                                 <td>Test Name</td> <!-- name -->
                                 <td>0</td> <!-- Institution -->
                                 <td>0</td> <!-- Number of Broken Challenges -->

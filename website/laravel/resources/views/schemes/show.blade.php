@@ -17,7 +17,6 @@
                 {{$keyword}}@if(!($loop->last)),&nbsp;@endif
                 @endforeach
             </div>
-            <br>
         @endif
 
         @if ($scheme->attached_files != "none")

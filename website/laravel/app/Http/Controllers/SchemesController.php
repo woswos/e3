@@ -55,15 +55,22 @@ class SchemesController extends Controller
     public function store(Request $request)
     {
 
-        // Check if all values are entered
-        $this->validate($request, [
+        $rules = [
             'title' => 'required',
             'authors' => 'required',
             'abstract' => 'required',
             'institutions' => 'required',
             'attached_files' => 'required|max:50000',
             'attached_files_implementation' => 'required'
-        ]);
+        ];
+
+        $customMessages = [
+            'attached_files_implementation.required' => 'You cannot leave implementation part empty'
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+
 
         // Handle File Upload - Theory
         if($request->hasFile('attached_files')){
@@ -123,9 +130,27 @@ class SchemesController extends Controller
         $implementation->programming_language = $request->input('programming_language');
         $implementation->programming_language_other = $request->input('programming_language_other');
 
-        $implementation->supported_operations = implode(",", $request->input('supported_operations'));
-        $implementation->gate = implode(",", $request->input('gate'));
-        $implementation->arithmetic = implode(",", $request->input('arithmetic'));
+        if(null !== ($request->input('supported_operations'))){
+            $operationsvalue = implode(",", $request->input('supported_operations'));
+        }else{
+            $operationsvalue = null;
+        }
+
+        if(null !== ($request->input('gate'))){
+            $gatevalue = implode(",", $request->input('gate'));
+        }else{
+            $gatevalue = null;
+        }
+
+        if(null !== ($request->input('arithmetic'))){
+            $arithmeticvalue = implode(",", $request->input('arithmetic'));
+        }else{
+            $arithmeticvalue = null;
+        }
+
+        $implementation->supported_operations = $operationsvalue;
+        $implementation->gate = $gatevalue;
+        $implementation->arithmetic = $arithmeticvalue;
         $implementation->attached_files_implementation = $implementationFileNameToStore;
         $implementation->save();
 
@@ -136,7 +161,7 @@ class SchemesController extends Controller
         $queue->processed = 0;
         $queue->save();
 
-        return redirect()->route('scheme.show', ['id' => $lastSchemeId])->with('success', 'Encryption Scheme Submitted Successfully');
+        return redirect()->route('scheme.show', ['id' => $lastSchemeId])->with('success', 'Encryption scheme submitted successfully');
 
     }
 
@@ -174,7 +199,22 @@ class SchemesController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Find the scheme by id which is given in the url
+        $scheme = Scheme::find($id);
+
+        //Find the corresponding implementation
+        $implementation = Implementation::where('scheme_id', $id)->get();
+
+        //Find the challenges by id which is given in the url
+        $challenges = Challenge::where('scheme_id', $id)->get();
+
+        $data = array(
+          'scheme' => $scheme,
+          'challenges' => $challenges,
+          'implementation' => $implementation
+          );
+
+        return view('schemes/edit')->with($data);
     }
 
     /**
@@ -201,6 +241,6 @@ class SchemesController extends Controller
         $scheme = scheme::find($id);
         $scheme->delete();
 
-        return redirect('scheme')->with('success', 'Scheme Removed');
+        return redirect('scheme')->with('success', 'Scheme removed successfully');
     }
 }

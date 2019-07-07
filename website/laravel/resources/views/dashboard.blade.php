@@ -32,6 +32,7 @@
                                             <h3><a href="{{ route('scheme.index') }}/{{$scheme->id}}">{{$scheme->title}}</a></h3>
                                             <h5>{{ $scheme->authors }}</h5>
                                             <h5>{{ $scheme->institutions }}</h5>
+                                            <h6><a href="/scheme/{{$scheme->id}}/edit">Edit this scheme</a></h6>
                                             <small class="text-muted">Submitted on {{$scheme->created_at}}</small>
                                         </div>
                                     </div>

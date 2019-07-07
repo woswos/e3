@@ -29,8 +29,8 @@ class DashboardController extends Controller
     public function index()
     {
         // Get schemes that belong to the user
-        $user_id = auth()->user('id');
-        $schemes = Scheme::find($user_id);
+        $user_id = auth()->user()->id;
+        $schemes = Scheme::where('user_id', $user_id)->get();
 
         return view('dashboard')->with('schemes', $schemes);
     }

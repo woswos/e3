@@ -88,7 +88,7 @@ class SolutionsController extends Controller
       $solution->user_id = auth()->user()->id;
       $solution->save();
 
-      return redirect()->route('challenge.show', ['id' => $request->input('challenge_id')])->with('success', 'Solution Submitted');
+      return redirect()->route('challenge.show', ['id' => $request->input('challenge_id')])->with('success', 'Solution submitted successfully');
 
     }
 

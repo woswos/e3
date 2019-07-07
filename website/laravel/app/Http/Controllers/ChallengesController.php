@@ -112,7 +112,7 @@ class ChallengesController extends Controller
         Scheme::where('id', $request->input('scheme_id'))->increment('total_prize', $request->input('prize'));
       $challenge->save();
 
-      return redirect()->route('scheme.show', ['id' => $request->input('scheme_id')])->with('success', 'Challenge Submitted');
+      return redirect()->route('scheme.show', ['id' => $request->input('scheme_id')])->with('success', 'Challenge submitted successfully');
 
     }
 

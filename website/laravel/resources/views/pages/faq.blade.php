@@ -8,16 +8,27 @@
 
             <div class="">
                 <ul>
-                    <div id="submission">
-                        <li><h5>Submission Instructions</h5></li>
+                    <div id="scheme">
+                        <li><h5>Scheme Submission Instructions</h5></li>
                     </div>
-                    <div id="prize">
-                        <li><h5>Prize Payment Instructions</h5></li>
+                    <div id="challenge">
+                        <li><h5>Challenge Submission Instructions</h5></li>
                         <ul>
-                          <li>Phasellus iaculis neque</li>
-                          <li>Purus sodales ultricies</li>
-                          <li>Vestibulum laoreet porttitor sem</li>
-                          <li>Ac tristique libero volutpat at</li>
+                            <div id="prize">
+                                <li><h5>Prize</h5></li>
+                                <ul>
+                                    <li>Some text</li>
+                                    <li>Some text</li>
+                                </ul>
+                            </div>
+
+                            <div id="flag">
+                                <li><h5>Flag</h5></li>
+                                <ul>
+                                    <li>Some text</li>
+                                    <li>Some text</li>
+                                </ul>
+                            </div>
                         </ul>
                     </div>
                 </ul>

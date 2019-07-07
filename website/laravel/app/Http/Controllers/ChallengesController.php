@@ -79,6 +79,7 @@ class ChallengesController extends Controller
           'prize' => 'required',
           'explanation' => 'required',
           'scheme_id' => 'required',
+          'flag' => 'required',
           'attached_files' => 'nullable|max:50000'
       ]);
 
@@ -105,6 +106,7 @@ class ChallengesController extends Controller
       $challenge->prize = $request->input('prize');
       $challenge->explanation = $request->input('explanation');
       $challenge->difficulty = $request->input('difficulty');
+      $challenge->flag = $request->input('flag');
       $challenge->attempts = 0;
       $challenge->solved = false;
       $challenge->attached_files = $fileNameToStore;

@@ -21,6 +21,7 @@ class CreateChallengesTable extends Migration
             $table->mediumText('explanation')->nullable();
             $table->mediumText('difficulty')->nullable();
             $table->mediumText('attempts')->nullable();
+            $table->string('flag')->nullable();
             $table->boolean('solved')->nullable();
             $table->string('attached_files')->nullable();
             $table->timestamps();

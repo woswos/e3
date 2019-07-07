@@ -4,6 +4,7 @@
   <div class="container">
     <h1>Submit a new challenge</h1>
     <h5>Please submit ony one challenge per form</h5>
+    <h6><i>Please review the <a href="{{ route('faq') }}#challenge" target="_blank">submission instructions</a> before submitting any challenge</i></h6>
 
     {!! Form::open(['action' => 'ChallengesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
@@ -23,6 +24,11 @@
         <div class="form-group">
             {{Form::label('explanation', 'Explanation')}}
             {{Form::textarea('explanation', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Please copy and paste your abstract here'])}}
+        </div>
+        <div class="form-group">
+            {{Form::label('flag', 'Enter the secret key')}}
+            <h6><i>You can review <a href="{{ route('faq') }}#flag" target="_blank">submission instructions</a> for more details about the secret key</i></h6>
+            {{Form::text('flag', '', ['class' => 'form-control', 'placeholder' => 'Flag'])}}
         </div>
         <div class="form-group">
             {{Form::label('attached_files', 'Please attach the files here. Please only upload pdf or zip files: ')}}

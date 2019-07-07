@@ -3,6 +3,10 @@
 #include <vector>
 #include "timer.h"
 
+#include "oleg.h"
+
+using Bit = CiphertextBit;
+
 using namespace std;
 
 enum Gate { NOT = 0, AND, OR, XOR, NAND, NOR, XNOR, MUX };
@@ -12,59 +16,61 @@ string names[] = { "NOT...", "AND...", "OR....", "XOR...", "NAND..", "NOR...", "
 template<class Bit> inline void cycle_not (Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
     Bit t = a0;
-    a0 = Bit::gate_not(b1);
-    b1 = Bit::gate_not(b0);
-    b0 = Bit::gate_not(a1);
-    a1 = Bit::gate_not(t);
+    a0 = gate_not(b1);
+    b1 = gate_not(b0);
+    b0 = gate_not(a1);
+    a1 = gate_not(t);
 }
 template<class Bit> inline void cycle_and (Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
-    a1 = Bit::gate_and(a1, b1);
-    b1 = Bit::gate_and(b1, a1);
-    a0 = Bit::gate_and(b0, a1);
-    b0 = Bit::gate_and(a0, b0);
+    a1 = gate_and(a1, b1);
+    b1 = gate_and(b1, a1);
+    a0 = gate_and(b0, a1);
+    b0 = gate_and(a0, b0);
 }
 template<class Bit> inline void cycle_or  (Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
-    a0 = Bit::gate_or(a0, b0);
-    b0 = Bit::gate_or(b0, a0);
-    a1 = Bit::gate_or(b1, a0);
-    b1 = Bit::gate_or(a1, b1);
+    a0 = gate_or(a0, b0);
+    b0 = gate_or(b0, a0);
+    a1 = gate_or(b1, a0);
+    b1 = gate_or(a1, b1);
 }
 template<class Bit> inline void cycle_xor (Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
-    a0 = Bit::gate_xor(a0, b0);
-    b0 = Bit::gate_xor(b1, a1);
-    a1 = Bit::gate_xor(a0, b1);
-    b1 = Bit::gate_xor(a1, b0);
+    a0 = gate_xor(a0, b0);
+    b0 = gate_xor(b1, a1);
+    a1 = gate_xor(a0, b1);
+    b1 = gate_xor(a1, b0);
 }
 template<class Bit> inline void cycle_nand(Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
-    a0 = Bit::gate_nand(a1, b1);
-    a1 = Bit::gate_nand(a0, b1); // (b0, a0);
-    b1 = Bit::gate_nand(b0, a1);
-    b0 = Bit::gate_nand(b1, a1);
+    a0 = gate_nand(a1, b1);
+    a1 = gate_nand(a0, b1); // (b0, a0);
+    b1 = gate_nand(b0, a1);
+    b0 = gate_nand(b1, a1);
 }
 template<class Bit> inline void cycle_nor (Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
-    a1 = Bit::gate_nor(a0, b0);
-    a0 = Bit::gate_nor(b0, a1);
-    b0 = Bit::gate_nor(a1, a0); // was a1 b1
-    b1 = Bit::gate_nor(a0, b0);
+    a1 = gate_nor(a0, b0);
+    a0 = gate_nor(b0, a1);
+    b0 = gate_nor(a1, a0); // was a1 b1
+    b1 = gate_nor(a0, b0);
 }
 template<class Bit> inline void cycle_xnor(Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
-    a0 = Bit::gate_xnor(b0, b1);
-    b0 = Bit::gate_xnor(b1, a0);
-    a1 = Bit::gate_xnor(a0, b0);
-    b1 = Bit::gate_xnor(a1, b1);
+    a0 = gate_xnor(b0, b1);
+    b0 = gate_xnor(b1, a0);
+    a1 = gate_xnor(a0, b0);
+    b1 = gate_xnor(a1, b1);
 }
 template<class Bit> inline void cycle_mux (Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
-    a0 = Bit::gate_mux(a0, b1, b0);
-    a1 = Bit::gate_mux(b1, a1, a0);
-    b0 = Bit::gate_mux(a1, a0, b1);
-    b1 = Bit::gate_mux(b0, a0, a1);
+    /*
+    a0 = gate_mux(a0, b1, b0);
+    a1 = gate_mux(b1, a1, a0);
+    b0 = gate_mux(a1, a0, b1);
+    b1 = gate_mux(b0, a0, a1);
+    */
 }
 
 template<class Bit>

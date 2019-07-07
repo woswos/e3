@@ -19,6 +19,8 @@ vector
 -
 timer.h
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/timer.h
+oleg.h
+/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/oleg.h
 
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/main.cpp
 iostream
@@ -29,8 +31,6 @@ vector
 -
 benchmark.h
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/benchmark.h
-oleg.h
-/home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/oleg.h
 
 /home/woswos/e3-obfuscation-wars/benchmark-server/benchy/src/timer.h
 iostream

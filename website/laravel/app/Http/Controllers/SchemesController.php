@@ -32,7 +32,14 @@ class SchemesController extends Controller
         // Get all schemes from db
         $schemes = Scheme::orderBy('id','DESC')->get();
 
-        return view('schemes/index')->with('schemes', $schemes);
+        //$user_id = auth()->user()->id;
+        //$user_schemes = Scheme::where('user_id', $user_id)->get();
+
+        $data = array(
+          'schemes' => $schemes
+          );
+
+        return view('schemes/index')->with($data);
     }
 
     /**
@@ -226,7 +233,109 @@ class SchemesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'title' => 'required',
+            'authors' => 'required',
+            'abstract' => 'required',
+            'institutions' => 'required'
+        ];
+
+        $customMessages = [
+            'attached_files_implementation.required' => 'You cannot leave implementation part empty'
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+
+
+        // Handle File Upload - Theory
+        if($request->hasFile('attached_files')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('attached_files')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('attached_files')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('attached_files')->storeAs('public/attached_files', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'none';
+        }
+
+        // Handle File Upload - Implementation
+        if($request->hasFile('attached_files_implementation')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('attached_files_implementation')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('attached_files_implementation')->getClientOriginalExtension();
+            // Filename to store
+            $implementationFileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('attached_files_implementation')->storeAs('public/attached_files_implementation', $implementationFileNameToStore);
+        } else {
+            $implementationFileNameToStore = 'none';
+        }
+
+        // Create a scheme
+        $scheme = Scheme::find($id);
+        $scheme->title = $request->input('title');
+        $scheme->authors = $request->input('authors');
+        $scheme->institutions = $request->input('institutions');
+        $scheme->abstract = $request->input('abstract');
+        $scheme->keywords = $request->input('keywords');
+        $scheme->total_prize = 0;
+        $scheme->total_attempts = 0;
+        $scheme->speed = 0;
+        if($fileNameToStore != "none"){
+            $scheme->attached_files = $fileNameToStore;
+        }
+        $scheme->user_id = auth()->user()->id;
+        $scheme->save();
+
+        // Create a scheme implementation
+        $implementation = Implementation::where('scheme_id', $id)->first();
+        $implementation->scheme_id = $id;
+        $implementation->programming_language = $request->input('programming_language');
+        $implementation->programming_language_other = $request->input('programming_language_other');
+
+        if(null !== ($request->input('supported_operations'))){
+            $operationsvalue = implode(",", $request->input('supported_operations'));
+        }else{
+            $operationsvalue = null;
+        }
+
+        if(null !== ($request->input('gate'))){
+            $gatevalue = implode(",", $request->input('gate'));
+        }else{
+            $gatevalue = null;
+        }
+
+        if(null !== ($request->input('arithmetic'))){
+            $arithmeticvalue = implode(",", $request->input('arithmetic'));
+        }else{
+            $arithmeticvalue = null;
+        }
+
+        $implementation->supported_operations = $operationsvalue;
+        $implementation->gate = $gatevalue;
+        $implementation->arithmetic = $arithmeticvalue;
+        if($implementationFileNameToStore != "none"){
+            $implementation->attached_files_implementation = $implementationFileNameToStore;
+        }
+        $implementation->save();
+
+
+        // Add submitted scheme to the processing queue
+        $queue = new Queue;
+        $queue->scheme_id = $id;
+        $queue->processed = 0;
+        $queue->save();
+
+        return redirect()->route('scheme.show', ['id' => $id])->with('success', 'Encryption scheme updated successfully');
     }
 
     /**

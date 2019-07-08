@@ -205,22 +205,33 @@ class SchemesController extends Controller
      */
     public function edit($id)
     {
+
         //Find the scheme by id which is given in the url
         $scheme = Scheme::find($id);
 
-        //Find the corresponding implementation
-        $implementation = Implementation::where('scheme_id', $id)->get();
 
-        //Find the challenges by id which is given in the url
-        $challenges = Challenge::where('scheme_id', $id)->get();
+        // Check if user is the scheme author
+        if (auth()->user()->id === $scheme->user_id) {
+            //Find the corresponding implementation
+            $implementation = Implementation::where('scheme_id', $id)->get();
 
-        $data = array(
-          'scheme' => $scheme,
-          'challenges' => $challenges,
-          'implementation' => $implementation
-          );
+            //Find the challenges by id which is given in the url
+            $challenges = Challenge::where('scheme_id', $id)->get();
 
-        return view('schemes/edit')->with($data);
+            $data = array(
+              'scheme' => $scheme,
+              'challenges' => $challenges,
+              'implementation' => $implementation
+              );
+
+            return view('schemes/edit')->with($data);
+
+        } else {
+
+            return redirect()->route('scheme.show', ['id' => $id]);
+        }
+
+
     }
 
     /**

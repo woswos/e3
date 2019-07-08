@@ -36,6 +36,7 @@
                 @endif
           </div>
         @endforeach
+        
         @foreach($implementation as $row)
             @if ($row->gate != "")
               <div>
@@ -46,11 +47,13 @@
               </div>
             @endif
         @endforeach
+
         @foreach($implementation as $row)
             @if ($row->arithmetic != "")
               <div>
                     Natively supported arithmetic operations:
                     @foreach(explode(",", $row->arithmetic) as $arithmetic)
+                    @if($arithmetic == "sroot") @php $arithmetic="Square root"; @endphp @endif
                     {{ucfirst($arithmetic)}}@if(!($loop->last)),&nbsp;@endif
                     @endforeach
               </div>
@@ -60,6 +63,13 @@
         @foreach($implementation as $row)
             @if ($row->attached_files_implementation != "none")
               <a href="{{ route('index') }}/storage/attached_files/{{ $row->attached_files_implementation }}" target="_blank">Download code</a>
+              <br>
+            @endif
+        @endforeach
+
+        @foreach($implementation as $row)
+            @if ($row->link != "none")
+              <a href="{{ $row->link }}" target="_blank">Visit website</a>
             @endif
         @endforeach
       </div>

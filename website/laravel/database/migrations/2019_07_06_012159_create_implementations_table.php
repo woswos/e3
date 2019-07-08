@@ -23,6 +23,8 @@ class CreateImplementationsTable extends Migration
             $table->string('gate')->nullable();
             $table->string('arithmetic')->nullable();
 
+            $table->string('link')->nullable();
+
             $table->string('attached_files_implementation')->nullable();
             $table->timestamps();
         });

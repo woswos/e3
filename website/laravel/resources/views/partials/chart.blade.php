@@ -1,20 +1,6 @@
 <script>
-//var chart_labels = ['yarrak'];
-//var benchmark_data = [{ x: 100, y: 200 }];
-
-var chart_labels = [
-    @foreach($schemes as $scheme)
-       "{{ $scheme->title }}",
-    @endforeach
-];
-
-var benchmark_data = [
-    @foreach($schemes as $scheme)
-     @if($scheme->speed != NULL)
-       { x: {{ $scheme->total_prize }}, y: {{ $scheme->nand }} },
-     @endif
-    @endforeach
-];
+var chart_labels = [''];
+var benchmark_data = [{ x: 0, y: 0 }];
 
 var ctx = document.getElementById("ranking_chart").getContext('2d');
 var config = {
@@ -64,79 +50,63 @@ var config = {
 
 var ranking_chart = new Chart(ctx, config);
 
+////////////////////////////////////////////////////////////////////////////////
 
-$("#and").click(function() {
-    var chart_labels = [
-        @foreach($schemes as $scheme)
-           "{{ $scheme->title }}",
-        @endforeach
-    ];
+@php
 
-    var benchmark_data = [
-        @foreach($schemes as $scheme)
-         @if($scheme->speed != NULL)
-           { x: {{ $scheme->total_prize }}, y: {{ $scheme->nand }} },
-         @endif
-        @endforeach
-    ];
+    foreach ($chart_values as $key => $scheme) {
 
-    var data = ranking_chart.config.data;
-    data.datasets[0].data = benchmark_data;
-    data.labels = chart_labels;
-    ranking_chart.update();
-});
+        echo "$(document).ready(function() {";
+            echo " var chart_labels = [";
+                    foreach ($scheme as $scheme_title => $speed_and_prize) {
+                        echo "'".$scheme_title."',";
+                    }
+            echo "]; ";
 
+            echo "var benchmark_data = [";
+                    foreach ($scheme as $scheme_title => $speed_and_prize) {
+                        echo "{ x:".$speed_and_prize['prize']." , y:".$speed_and_prize['speed']." },";
+                    }
+            echo "]; ";
 
-$("#not").click(function() {
-    var chart_labels = ['test'];
-    var benchmark_data = [{ x: 400, y: 800 }];
-
-    var data = ranking_chart.config.data;
-    data.datasets[0].data = benchmark_data;
-    data.labels = chart_labels;
-    ranking_chart.update();
-});
-
-$("#nand").click(function() {
-    var chart_labels = ['test'];
-    var benchmark_data = [{ x: 470, y: 870 }];
-
-    var data = ranking_chart.config.data;
-    data.datasets[0].data = benchmark_data;
-    data.labels = chart_labels;
-    ranking_chart.update();
-});
+            echo "
+                  var data = ranking_chart.config.data;
+                  data.datasets[0].data = benchmark_data;
+                  data.labels = chart_labels;
+                  ranking_chart.update();
+                 ";
+        echo "
+              });
+             ";
+        // Apply $(document).ready(function() for the first value only
+        break;
+    }
 
 
-$("#division_8").click(function() {
-    var chart_labels = ['test'];
-    var benchmark_data = [{ x: 100, y: 400 }];
+    foreach ($chart_values as $key => $scheme) {
 
-    var data = ranking_chart.config.data;
-    data.datasets[0].data = benchmark_data;
-    data.labels = chart_labels;
-    ranking_chart.update();
-});
+        echo " $('#".$key."').click(function() { ";
+        echo " var chart_labels = [";
+                foreach ($scheme as $scheme_title => $speed_and_prize) {
+                    echo "'".$scheme_title."',";
+                }
+        echo "]; ";
 
+        echo "var benchmark_data = [";
+                foreach ($scheme as $scheme_title => $speed_and_prize) {
+                    echo "{ x: ".$speed_and_prize['prize']." , y: ".$speed_and_prize['speed']." },";
+                }
+        echo "]; ";
 
-$("#division_32").click(function() {
-    var chart_labels = ['test'];
-    var benchmark_data = [{ x: 4000, y: 100 }];
+        echo "
+              var data = ranking_chart.config.data;
+              data.datasets[0].data = benchmark_data;
+              data.labels = chart_labels;
+              ranking_chart.update();
+              });
+             ";
+    }
 
-    var data = ranking_chart.config.data;
-    data.datasets[0].data = benchmark_data;
-    data.labels = chart_labels;
-    ranking_chart.update();
-});
-
-$("#or").click(function() {
-    var chart_labels = ['test'];
-    var benchmark_data = [{ x: 4000, y: 100 }];
-
-    var data = ranking_chart.config.data;
-    data.datasets[0].data = benchmark_data;
-    data.labels = chart_labels;
-    ranking_chart.update();
-});
+@endphp
 
 </script>

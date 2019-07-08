@@ -37,6 +37,7 @@
 
             <br>
             <h3>Part 2: Implementation</h3>
+            <h6>Software implementation is not mandatory but it is good way to demonstrate theory in real life. This is <i>not</i> the section for submitting code for speed benchmarking. Information and code submitted here will be publicly visible.</h6>
             @foreach($implementation as $row)
             <!-- Supported operations -->
             <div class="form-group">
@@ -127,6 +128,14 @@
                     <button type="button" class="btn">CUBE</button>
                     <input type="checkbox" class="hidden" value="cube" name="arithmetic[]" style="display:none;" @if(strpos($row->arithmetic, 'cube') !== false){{ "checked='checked'" }}@endif/>
                 </span>
+                <span class="button-checkbox" style="padding-left: 5px;">
+                    <button type="button" class="btn">SQUARE ROOT</button>
+                    <input type="checkbox" class="hidden" value="sroot" name="arithmetic[]" style="display:none;" @if(strpos($row->arithmetic, 'sroot') !== false){{ "checked='checked'" }}@endif/>
+                </span>
+            </div>
+            <div class="form-group">
+                {{Form::label('link', 'Website or GitHub link:')}}
+                {{Form::text('link', $row->link, ['class' => 'form-control', 'placeholder' => ''])}}
             </div>
             <!-- Attachments -->
             <div class="form-group">

@@ -16,10 +16,17 @@ class CreateBenchmarksTable extends Migration
         Schema::create('benchmarks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('scheme_id'); // foreign key for relating to schemes
-            $table->string('and');
-            $table->string('not');
-            $table->string('nand');
-            $table->string('division');
+
+            $table->string('speed')->nullable();
+
+            $table->string('programming_language')->nullable();
+            $table->string('programming_language_other')->nullable();
+
+            $table->string('supported_operations')->nullable();
+            $table->string('gate')->nullable();
+            $table->string('arithmetic')->nullable();
+            
+            $table->string('attached_files')->nullable();
             $table->timestamps();
         });
     }

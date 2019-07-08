@@ -68,11 +68,13 @@ class SchemesController extends Controller
             'abstract' => 'required',
             'institutions' => 'required',
             'attached_files' => 'required|max:50000',
-            'attached_files_implementation' => 'required'
+            'link' => 'nullable | url'
         ];
 
         $customMessages = [
-            'attached_files_implementation.required' => 'You cannot leave implementation part empty'
+            //'attached_files_implementation.required' => 'You cannot leave implementation part empty'
+            'attached_files.required' => 'You need to attach the paper.',
+            'link.url' => 'Link needs to be an URL.'
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -157,6 +159,7 @@ class SchemesController extends Controller
         $implementation->supported_operations = $operationsvalue;
         $implementation->gate = $gatevalue;
         $implementation->arithmetic = $arithmeticvalue;
+        $implementation->link = $request->input('link');
         $implementation->attached_files_implementation = $implementationFileNameToStore;
         $implementation->save();
 
@@ -247,11 +250,14 @@ class SchemesController extends Controller
             'title' => 'required',
             'authors' => 'required',
             'abstract' => 'required',
-            'institutions' => 'required'
+            'institutions' => 'required',
+            'link' => 'nullable | url'
         ];
 
         $customMessages = [
-            'attached_files_implementation.required' => 'You cannot leave implementation part empty'
+            //'attached_files_implementation.required' => 'You cannot leave implementation part empty'
+            'attached_files.required' => 'You need to attach the paper.',
+            'link.url' => 'Link needs to be an URL.'
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -330,6 +336,7 @@ class SchemesController extends Controller
         $implementation->supported_operations = $operationsvalue;
         $implementation->gate = $gatevalue;
         $implementation->arithmetic = $arithmeticvalue;
+        $implementation->link = $request->input('link');
         if($implementationFileNameToStore != "none"){
             $implementation->attached_files_implementation = $implementationFileNameToStore;
         }

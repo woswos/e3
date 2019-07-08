@@ -10,12 +10,9 @@
             <tr>
                 <td style="vertical-align: top;">
                     <div class="list-group" id="graph_group">
-                      <a href="javascript:;" id="and" class="list-group-item list-group-item-action active">And</a>
-                      <a href="javascript:;" id="not" class="list-group-item list-group-item-action">Not</a>
-                      <a href="javascript:;" id="nand" class="list-group-item list-group-item-action">Nand</a>
-                      <a href="javascript:;" id="or" class="list-group-item list-group-item-action">Or</a>
-                      <a href="javascript:;" id="division_8" class="list-group-item list-group-item-action">8 Bit Division</a>
-                      <a href="javascript:;" id="division_32" class="list-group-item list-group-item-action">32 Bit Division</a>
+                        @foreach ($chart_values as $key => $value)
+                            <a href="javascript:;" id="{{ $key }}" class="list-group-item list-group-item-action @if(($loop->first)) active @endif">{{ucfirst( $key )}}</a>
+                        @endforeach
                     </div>
                 </td>
                 <td style="padding-left:10px; vertical-align: top">

@@ -3,14 +3,12 @@ cmake_minimum_required (VERSION 3.1)
 project (benchy LANGUAGES CXX)
 
 # Bring the headers into the project
-include_directories(src src/base scheme/oleg)
-
-#For the shared library:
-include_directories(${libraryLocation})
+include_directories(src src/base src/base/gate scheme/oleg)
 
 # Include gate or arithmetic api based on the selection
 file(GLOB SOURCES
-    "src/*.cpp"
+    "src/*.cpp",
+    "src/gate/*.cpp"
 )
 
 # Generate executable file

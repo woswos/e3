@@ -123,6 +123,33 @@ benchy/fast:
 	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/build
 .PHONY : benchy/fast
 
+src/gate/timer.o: src/gate/timer.cpp.o
+
+.PHONY : src/gate/timer.o
+
+# target to build an object file
+src/gate/timer.cpp.o:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/timer.cpp.o
+.PHONY : src/gate/timer.cpp.o
+
+src/gate/timer.i: src/gate/timer.cpp.i
+
+.PHONY : src/gate/timer.i
+
+# target to preprocess a source file
+src/gate/timer.cpp.i:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/timer.cpp.i
+.PHONY : src/gate/timer.cpp.i
+
+src/gate/timer.s: src/gate/timer.cpp.s
+
+.PHONY : src/gate/timer.s
+
+# target to generate assembly for a file
+src/gate/timer.cpp.s:
+	$(MAKE) -f CMakeFiles/benchy.dir/build.make CMakeFiles/benchy.dir/src/gate/timer.cpp.s
+.PHONY : src/gate/timer.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... benchy"
 	@echo "... edit_cache"
+	@echo "... src/gate/timer.o"
+	@echo "... src/gate/timer.i"
+	@echo "... src/gate/timer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

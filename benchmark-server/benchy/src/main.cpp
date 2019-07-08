@@ -1,15 +1,20 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "benchmark.h"
 
+//#include "circuits/circuit.h"
 
+#include "oleg.h"
+
+#include "gate/gate_benchmark.h"
+
+using std::string;
 
 using Bit = CiphertextBit;
 
-int main(int argc, char const *argv[]) {
+//string f2s(string n) { string r; std::ifstream(n) >> r; return r; }
 
-    //auto c = gate_nand(a, b);
+int main(int argc, char const *argv[]) {
 
     try
     {
@@ -18,11 +23,10 @@ int main(int argc, char const *argv[]) {
         unsigned time = 100; // ms
 
         for ( auto g : gates ){
+
+            // in microseconds
             cout << names[g] << " " << test<Bit>( g, bitOne, bitZero, time ) << '\n';
         }
-
-
-        //cout << "N... "; validateGates<BNUint<1>, BNBit>(_0_En, _1_En);
 
     }
     catch (string e)

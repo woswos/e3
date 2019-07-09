@@ -61,12 +61,10 @@ template<class Bit> inline void cycle_xnor(Bit & a0, Bit & a1, Bit & b0, Bit & b
 }
 template<class Bit> inline void cycle_mux (Bit & a0, Bit & a1, Bit & b0, Bit & b1)
 {
-    /* remove_before_flight
     a0 = gate_mux(a0, b1, b0);
     a1 = gate_mux(b1, a1, a0);
     b0 = gate_mux(a1, a0, b1);
     b1 = gate_mux(b0, a0, a1);
-    */
 }
 
 template<class Bit>

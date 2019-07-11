@@ -6,15 +6,20 @@ var xLabel = "";
 
 var ctx = document.getElementById("ranking_chart").getContext('2d');
 var config = {
-    type: 'scatter',
+    type: '{{ $chart_type }}',
     data: {
       labels: chart_labels,
        datasets: [{
           data: benchmark_data,
           borderColor: '#4169e1',
-          backgroundColor: '#4169e1',
+          @php
+                if($chart_mode == "index"){
+                  echo "backgroundColor: '#4169e1',";
+                }
+          @endphp
           pointRadius: 4,
-          pointHoverRadius: 8
+          pointHoverRadius: 8,
+          cubicInterpolationMode: 'monotone'
        }]
     },
     options: {
@@ -43,7 +48,13 @@ var config = {
          callbacks: {
             label: function(tooltipItem, data) {
                var label = data.labels[tooltipItem.index];
-               return label + ': (Total Prize: $' + tooltipItem.xLabel + ', Speed: ' + tooltipItem.yLabel + ' ns)';
+               @php
+                    if($chart_mode == "index"){
+                       echo "return label + ': (Total Prize: $' + tooltipItem.xLabel + ', Speed: ' + tooltipItem.yLabel + ' us)';";
+                   } else if($chart_mode == "benchmark"){
+                       echo "return label + ': (Operation: ' + tooltipItem.xLabel + ', Speed: ' + tooltipItem.yLabel + ' us)';";
+                   }
+               @endphp
             }
          }
       },
@@ -61,7 +72,7 @@ var ranking_chart = new Chart(ctx, config);
         foreach ($chart_values as $key => $scheme) {
 
             echo "$(document).ready(function() {";
-                echo "var yLabel = '".ucfirst($key)." Speed (ms)';
+                echo "var yLabel = '".ucfirst($key)." Speed (us)';
                       var xLabel = 'Prize ($)';
                      ";
 
@@ -95,7 +106,7 @@ var ranking_chart = new Chart(ctx, config);
         foreach ($chart_values as $key => $scheme) {
 
             echo " $('#".$key."').click(function() { ";
-                echo "var yLabel = '".ucfirst($key)." Speed (ms)';
+                echo "var yLabel = '".ucfirst($key)." Speed (us)';
                       var xLabel = 'Prize ($)';
                      ";
 
@@ -121,7 +132,36 @@ var ranking_chart = new Chart(ctx, config);
                      ";
         }
 
-    } else if($chart_mode == "index"){
+    } else if($chart_mode == "benchmark"){
+
+        $i = 0;
+
+        echo "$(document).ready(function() {";
+            echo "var yLabel = 'Speed (us)';
+                  var xLabel = 'Operation';
+                 ";
+
+             echo " var chart_labels = [";
+                     foreach ($chart_values['operation'] as $operation) {
+                         echo "'".$operation."',";
+                     }
+             echo "]; ";
+
+             echo "var benchmark_data = [";
+                     foreach ($chart_values['speed'] as $speed) {
+                         echo "'".$speed."',";
+                     }
+             echo "]; ";
+
+            echo "
+                  ranking_chart.config.data.datasets[0].data = benchmark_data;
+                  ranking_chart.config.data.labels = chart_labels;
+                  ranking_chart.config.options.scales.yAxes[0].scaleLabel.labelString = yLabel;
+                  ranking_chart.config.options.scales.xAxes[0].scaleLabel.labelString = xLabel;
+                  ranking_chart.update();
+            });
+             ";
+
 
 
     }

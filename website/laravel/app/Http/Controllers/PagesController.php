@@ -98,7 +98,8 @@ class PagesController extends Controller
             'topHackers' => $topHackers,
             'recentlySubmittedSchemes' => $recentlySubmittedSchemes,
             'chart_values' => $ordered_chart_values,
-            "chart_mode" => "index"
+            "chart_mode" => "index",
+            "chart_type" => "scatter"
         );
 
         return view('pages/index')->with($data);
@@ -151,7 +152,9 @@ class PagesController extends Controller
 
         $data = array(
             'schemes' => $schemes,
-            'chart_values' => $ordered_chart_values
+            'chart_values' => $ordered_chart_values,
+            "chart_mode" => "index",
+            "chart_type" => "scatter"
         );
 
         return view('pages/ranking')->with($data);

@@ -3,12 +3,9 @@
 @section('content')
     <section class="">
         <div class="container">
-            <h3>{{ "dsfdsds" }}</h3>
-            <h5 class="text-muted">{{ "dsfsd" }}</h5>
-            <h5 class="text-muted">{{ "dsfdsds" }}</h5>
-            <div>
-                {{ "dsfdsds" }}
-            </div>
+            <h3>{{ $scheme->title }}</h3>
+            <h5 class="text-muted">{{ $scheme->authors }}</h5>
+            <h4>Benchmark Results:</h4>
 
             <br>
 

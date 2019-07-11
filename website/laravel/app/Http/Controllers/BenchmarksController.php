@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Include the namespace from scheme and challenge for accesing to database
+use App\Scheme;
+use App\Challenge;
+use App\Solution;
 use App\User;
+use App\Benchmark;
 
 class BenchmarksController extends Controller
 {
@@ -49,14 +54,14 @@ class BenchmarksController extends Controller
      */
     public function show($id)
     {
-        $schemes = User
+        $scheme = User
                     ::join('schemes', 'users.id', '=', 'schemes.user_id')
                     ->join('benchmarks', 'schemes.id', '=', 'benchmarks.scheme_id')
                     ->where('schemes.id', $id)
                     //->select('users.id', 'contacts.phone', 'orders.price')
-                    //->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+                    ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
                     //->toSql();
-                    ->get();
+                    ->first();
         //dd($schemes);
 
 
@@ -67,18 +72,22 @@ class BenchmarksController extends Controller
         );
 
         // Create an array that has a unique entry
-        foreach($schemes as $scheme){
-            $speed_array = json_decode($scheme->speed, true);
-            foreach ($speed_array as $key => $value) {
-                $chart_values["operation"][] = $key;
-                $chart_values["speed"][] = $value;
-            }
+        $speed_array = json_decode($scheme->speed, true);
+        foreach ($speed_array as $key => $value) {
+            $chart_values["operation"][] = $key;
+            $chart_values["speed"][] = $value;
         }
+
 
         //dd($chart_values);
 
+        /*
+        $test = '{"nand":"'.mt_rand(1,100).'","and":"'.mt_rand(1,100).'","not":"'.mt_rand(1,100).'","xor":"'.mt_rand(1,100).'","xnor":"'.mt_rand(1,100).'","mux":"'.mt_rand(1,100).'","nor":"'.mt_rand(1,100).'","or":"'.mt_rand(1,100).'","add_8":"'.mt_rand(1,100).'","add_32":"'.mt_rand(1,100).'","div_8":"'.mt_rand(1,100).'","div_32":"'.mt_rand(1,100).'","mul_8":"'.mt_rand(1,100).'","mul_32":"'.mt_rand(1,100).'"}';
+        dd($test);
+        */
+
         $data = array(
-            'schemes' => $schemes,
+            'scheme' => $scheme,
             'chart_values' => $chart_values,
             "chart_mode" => "benchmark",
             "chart_type" => "line"

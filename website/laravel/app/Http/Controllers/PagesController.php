@@ -97,7 +97,8 @@ class PagesController extends Controller
             'topSchemes' => $topSchemes,
             'topHackers' => $topHackers,
             'recentlySubmittedSchemes' => $recentlySubmittedSchemes,
-            'chart_values' => $ordered_chart_values
+            'chart_values' => $ordered_chart_values,
+            "chart_mode" => "index"
         );
 
         return view('pages/index')->with($data);

@@ -14,6 +14,7 @@
         <div class="container">
           <a class="btn btn-outline-primary btn-lg" role="button" href='{{ route('scheme.create') }}'>Submit another scheme!</a>
           <a class="btn btn-outline-primary btn-lg" role="button" href='{{ route('challenge.index') }}'>Break a scheme!</a>
+          <a class="btn btn-outline-primary btn-lg" role="button" href='{{ route('benchmark.create') }}'>benchmark</a>
         </div>
     </section>
 
@@ -32,7 +33,7 @@
                                             <h3><a href="{{ route('scheme.index') }}/{{$scheme->id}}">{{$scheme->title}}</a></h3>
                                             <h5>{{ $scheme->authors }}</h5>
                                             <h5>{{ $scheme->institutions }}</h5>
-                                            <h6><a href="/scheme/{{$scheme->id}}/edit">Edit this scheme</a></h6>
+                                            <h6><a href="/scheme/{{$scheme->id}}/edit">Edit</a>&nbsp;/&nbsp;<a href="/benchmark/{{$scheme->id}}">Benchmark Results</a></h6>
                                             <small class="text-muted">Submitted on {{$scheme->created_at}}</small>
                                         </div>
                                     </div>

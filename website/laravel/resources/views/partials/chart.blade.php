@@ -15,7 +15,9 @@ var config = {
           @php
                 if($chart_mode == "index"){
                   echo "backgroundColor: '#4169e1',";
-                }
+              } else {
+                  //echo "backgroundColor: 'rgba(225, 65, 105, 0.25)',";
+              }
           @endphp
           pointRadius: 4,
           pointHoverRadius: 8,

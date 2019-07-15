@@ -3,15 +3,15 @@
 @section('content')
     <section class="">
       <div class="container">
-        <h3>{{ $scheme->title }}</h3>
-        <h5 class="text-muted">{{ $scheme->authors }}</h5>
-        <h5 class="text-muted">{{ $scheme->institutions }}</h5>
-        <div>
+        <h3 class="no-mathjax">{{ $scheme->title }}</h3>
+        <h5 class="text-muted no-mathjax">{{ $scheme->authors }}</h5>
+        <h5 class="text-muted no-mathjax">{{ $scheme->institutions }}</h5>
+        <div class="mathjax">
             {{ $scheme->abstract }}
         </div>
         <br>
         @if ($scheme->keywords != "")
-            <div>
+            <div class="no-mathjax">
                 Keywords:
                 @foreach(explode(",", $scheme->keywords) as $keyword)
                 {{$keyword}}@if(!($loop->last)),&nbsp;@endif
@@ -36,7 +36,7 @@
                 @endif
           </div>
         @endforeach
-        
+
         @foreach($implementation as $row)
             @if ($row->gate != "")
               <div>
@@ -62,7 +62,7 @@
 
         @foreach($implementation as $row)
             @if ($row->attached_files_implementation != "none")
-              <a href="{{ route('index') }}/storage/attached_files/{{ $row->attached_files_implementation }}" target="_blank">Download code</a>
+              <a href="{{ route('index') }}/storage/attached_files_implementation/{{ $row->attached_files_implementation }}" target="_blank">Download code</a>
               <br>
             @endif
         @endforeach
@@ -105,5 +105,23 @@
 
         </div>
     </section>
+
+
+    <section class="">
+        <div class="container mt-4">
+            <h4>Benchmark Results:</h4>
+            @if ($chart_values != "none")
+                <table style="width:100%;">
+                    <tr>
+                        <td style="padding-left:10px; vertical-align: top">
+                            <canvas id="ranking_chart" width="%100" height="105px"></canvas>
+                            @include('partials/chart')
+                        </td>
+                    </tr>
+                </table>
+            @endif
+        </div>
+    </section>
+
 
 @endsection

@@ -9,6 +9,7 @@ use App\Scheme;
 use App\Challenge;
 use App\Queue;
 use App\Implementation;
+use App\User;
 
 class SchemesController extends Controller
 {
@@ -182,8 +183,25 @@ class SchemesController extends Controller
      */
     public function show($id)
     {
-        //Find the scheme by id which is given in the url
-        $scheme = Scheme::find($id);
+
+        $scheme = User
+                    ::join('schemes', 'users.id', '=', 'schemes.user_id')
+                    ->where('schemes.id', $id)
+                    //->select('users.id', 'contacts.phone', 'orders.price')
+                    ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+                    //->toSql();
+                    ->first();
+
+        $schemeWithBenchmark = User
+                                ::join('schemes', 'users.id', '=', 'schemes.user_id')
+                                ->join('benchmarks', 'schemes.id', '=', 'benchmarks.scheme_id')
+                                ->where('schemes.id', $id)
+                                //->select('users.id', 'contacts.phone', 'orders.price')
+                                ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+                                //->toSql();
+                                ->first();
+        //dd($scheme);
+
 
         //Find the corresponding implementation
         $implementation = Implementation::where('scheme_id', $id)->get();
@@ -191,11 +209,39 @@ class SchemesController extends Controller
         //Find the challenges by id which is given in the url
         $challenges = Challenge::where('scheme_id', $id)->get();
 
+        // Prepare chart data
+        $chart_values = array(
+          "operation" => array(),
+          "speed" => array()
+        );
+
+        if($schemeWithBenchmark != null){
+            // Create an array that has a unique entry
+            $speed_array = json_decode($schemeWithBenchmark['speed'], true);
+            foreach ($speed_array as $key => $value) {
+              $chart_values["operation"][] = $key;
+              $chart_values["speed"][] = $value;
+            }
+        } else {
+            $chart_values = "none";
+        }
+
+        //dd($chart_values);
+
+        /*
+        $test = '{"nand":"'.mt_rand(1,100).'","and":"'.mt_rand(1,100).'","not":"'.mt_rand(1,100).'","xor":"'.mt_rand(1,100).'","xnor":"'.mt_rand(1,100).'","mux":"'.mt_rand(1,100).'","nor":"'.mt_rand(1,100).'","or":"'.mt_rand(1,100).'","add_8":"'.mt_rand(1,100).'","add_32":"'.mt_rand(1,100).'","div_8":"'.mt_rand(1,100).'","div_32":"'.mt_rand(1,100).'","mul_8":"'.mt_rand(1,100).'","mul_32":"'.mt_rand(1,100).'"}';
+        dd($test);
+        */
+
         $data = array(
           'scheme' => $scheme,
           'challenges' => $challenges,
-          'implementation' => $implementation
-          );
+          'implementation' => $implementation,
+          'chart_values' => $chart_values,
+          "chart_mode" => "benchmark",
+          "chart_type" => "line"
+        );
+
 
         return view('schemes/show')->with($data);
     }

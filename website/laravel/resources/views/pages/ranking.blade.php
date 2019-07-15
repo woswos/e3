@@ -16,7 +16,7 @@
                     </div>
                 </td>
                 <td style="padding-left:10px; vertical-align: top">
-                    <canvas id="ranking_chart" width="%100" ></canvas>
+                    <canvas id="ranking_chart" width="%100" height="205px"></canvas>
                     @include('partials/chart')
                 </td>
             </tr>

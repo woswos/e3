@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/benchy.dir/src/main.cpp.o CMakeFiles/benchy.dir/src/gate/timer.cpp.o  -o benchy 

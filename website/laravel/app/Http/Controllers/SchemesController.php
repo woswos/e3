@@ -164,12 +164,13 @@ class SchemesController extends Controller
         $implementation->attached_files_implementation = $implementationFileNameToStore;
         $implementation->save();
 
-
+        /*
         // Add submitted scheme to the processing queue
         $queue = new Queue;
         $queue->scheme_id = $lastSchemeId;
         $queue->processed = 0;
         $queue->save();
+        */
 
         return redirect()->route('scheme.show', ['id' => $lastSchemeId])->with('success', 'Encryption scheme submitted successfully');
 
@@ -215,9 +216,9 @@ class SchemesController extends Controller
           "speed" => array()
         );
 
-        if($schemeWithBenchmark != null){
+        if(($schemeWithBenchmark != null) && ($schemeWithBenchmark->speed != null)){
             // Create an array that has a unique entry
-            $speed_array = json_decode($schemeWithBenchmark['speed'], true);
+            $speed_array = json_decode($schemeWithBenchmark->speed, true);
             foreach ($speed_array as $key => $value) {
               $chart_values["operation"][] = $key;
               $chart_values["speed"][] = $value;
@@ -388,12 +389,13 @@ class SchemesController extends Controller
         }
         $implementation->save();
 
-
+        /*
         // Add submitted scheme to the processing queue
         $queue = new Queue;
         $queue->scheme_id = $id;
         $queue->processed = 0;
         $queue->save();
+        */
 
         return redirect()->route('scheme.show', ['id' => $id])->with('success', 'Encryption scheme updated successfully');
     }

@@ -72,6 +72,7 @@ class PagesController extends Controller
             "prize" => array()
         );
 
+
         // Create an array that has a unique entry
         foreach($schemesWithBenchmark as $scheme){
             $speed_array = json_decode($scheme->speed, true);

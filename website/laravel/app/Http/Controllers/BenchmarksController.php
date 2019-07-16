@@ -9,6 +9,7 @@ use App\Scheme;
 use App\Challenge;
 use App\Solution;
 use App\User;
+use App\Queue;
 use App\Benchmark;
 
 class BenchmarksController extends Controller
@@ -29,10 +30,16 @@ class BenchmarksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($scheme_id = 0)
     {
-        //
-        return view('benchmarks/create');
+        // If url was manually changed, redirect to scheme listing page
+        if($scheme_id == 0){
+          return redirect('scheme');
+        } else {
+          $scheme = Scheme::find($scheme_id);
+          return view('benchmarks/create')->with('scheme', $scheme);
+        }
+
     }
 
     /**
@@ -43,7 +50,76 @@ class BenchmarksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'attached_files_benchmark' => 'required',
+            'supported_operations.0' =>'required_without:supported_operations.1',
+            //'supported_operations.1' =>'required_without:supported_operations.0'
+        ];
+
+        $customMessages = [
+            //'attached_files_implementation.required' => 'You cannot leave implementation part empty'
+            'attached_files_benchmark.required' => 'You need to attach the code.',
+            'supported_operations.0.required_without' => 'You need to select whether you implemented gate or arithmetic operations.',
+            //'supported_operations.1.required_without' => null
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+
+        // Handle File Upload - Benchmark
+        if($request->hasFile('attached_files_benchmark')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('attached_files_benchmark')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('attached_files_benchmark')->getClientOriginalExtension();
+            // Filename to store
+            $benchmarkFileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('attached_files_benchmark')->storeAs('public/attached_files_benchmark', $benchmarkFileNameToStore);
+        } else {
+            $benchmarkFileNameToStore = 'none';
+        }
+
+        // Create a new benchmark
+        $benchmark = new Benchmark;
+        $benchmark->scheme_id = $request->input('scheme_id');
+        $benchmark->programming_language = $request->input('programming_language');
+        $benchmark->programming_language_other = $request->input('programming_language_other');
+
+        if(null !== ($request->input('supported_operations'))){
+            $operationsvalue = implode(",", $request->input('supported_operations'));
+        }else{
+            $operationsvalue = null;
+        }
+
+        if(null !== ($request->input('gate'))){
+            $gatevalue = implode(",", $request->input('gate'));
+        }else{
+            $gatevalue = null;
+        }
+
+        if(null !== ($request->input('arithmetic'))){
+            $arithmeticvalue = implode(",", $request->input('arithmetic'));
+        }else{
+            $arithmeticvalue = null;
+        }
+
+        $benchmark->supported_operations = $operationsvalue;
+        $benchmark->gate = $gatevalue;
+        $benchmark->arithmetic = $arithmeticvalue;
+        $benchmark->attached_files = $benchmarkFileNameToStore;
+        $benchmark->save();
+
+        // Add submitted scheme to the processing queue
+        $queue = new Queue;
+        $queue->scheme_id = $request->input('scheme_id');
+        $queue->processed = 0;
+        $queue->save();
+
+        return redirect()->route('scheme.show', ['id' => $request->input('scheme_id')])->with('success', 'Benchmark submitted successfully');
+
     }
 
     /**

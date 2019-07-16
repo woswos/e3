@@ -81,7 +81,7 @@
 
             @if(!Auth::guest())
                 @if(Auth::user()->id == $scheme->user_id)
-                    <h5><a href='{{ route('challenge.create') }}/{{ $scheme->id }}'>Create a challenge!</a></h5>
+                    <h5><a href='{{ route('challenge.create') }}/{{ $scheme->id }}'>Click me to create a challenge!</a></h5>
                 @endif
             @endif
 
@@ -109,7 +109,7 @@
 
     <section class="">
         <div class="container mt-4">
-            <h4>Benchmark Results:</h4>
+            <h4>Benchmark Results</h4>
             @if ($chart_values != "none")
                 <table style="width:100%;">
                     <tr>
@@ -119,6 +119,13 @@
                         </td>
                     </tr>
                 </table>
+            @else
+                @if(!Auth::guest())
+                    @if(Auth::user()->id == $scheme->user_id)
+                        <h5><a href='{{ route('benchmark.create') }}/{{ $scheme->id }}'>Click me to submit your scheme for benchmarking if you haven't already done so!</a></h5>
+                    @endif
+                @endif
+                <h6>This scheme doesn't have benchmark results yet</h6>
             @endif
         </div>
     </section>

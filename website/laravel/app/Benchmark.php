@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Benchmarks extends Model
+class Benchmark extends Model
 {
     //
 }

@@ -22,6 +22,7 @@ Route::get('/faq', 'PagesController@faq')->name('faq');
 Route::resource('scheme', 'SchemesController');
 
 // Schemes
+Route::get('/benchmark/create/{scheme_id}', 'BenchmarksController@create')->name('benchmark.create.id');
 Route::resource('benchmark', 'BenchmarksController');
 
 // Challenges

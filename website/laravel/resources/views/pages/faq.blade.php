@@ -11,6 +11,9 @@
                     <div id="scheme">
                         <li><h5>Scheme Submission Instructions</h5></li>
                     </div>
+                    <div id="benchmark">
+                        <li><h5>Benchmark Submission Instructions</h5></li>
+                    </div>
                     <div id="challenge">
                         <li><h5>Challenge Submission Instructions</h5></li>
                         <ul>

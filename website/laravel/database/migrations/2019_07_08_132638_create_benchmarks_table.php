@@ -17,7 +17,7 @@ class CreateBenchmarksTable extends Migration
             $table->bigIncrements('id');
             $table->string('scheme_id'); // foreign key for relating to schemes
 
-            $table->string('speed')->nullable();
+            $table->mediumText('speed')->nullable();
 
             $table->string('programming_language')->nullable();
             $table->string('programming_language_other')->nullable();
@@ -25,7 +25,7 @@ class CreateBenchmarksTable extends Migration
             $table->string('supported_operations')->nullable();
             $table->string('gate')->nullable();
             $table->string('arithmetic')->nullable();
-            
+
             $table->string('attached_files')->nullable();
             $table->timestamps();
         });

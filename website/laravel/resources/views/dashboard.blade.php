@@ -14,7 +14,6 @@
         <div class="container">
           <a class="btn btn-outline-primary btn-lg" role="button" href='{{ route('scheme.create') }}'>Submit another scheme!</a>
           <a class="btn btn-outline-primary btn-lg" role="button" href='{{ route('challenge.index') }}'>Break a scheme!</a>
-          <a class="btn btn-outline-primary btn-lg" role="button" href='{{ route('benchmark.create') }}'>benchmark</a>
         </div>
     </section>
 

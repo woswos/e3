@@ -29,10 +29,16 @@ class BenchmarksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($scheme_id = 0)
     {
-        //
-        return view('benchmarks/create');
+        // If url was manually changed, redirect to scheme listing page
+        if($scheme_id == 0){
+            return redirect('scheme');
+        } else {
+            $scheme = Scheme::find($scheme_id);
+            return view('benchmarks/create')->with('scheme', $scheme);
+        }
+
     }
 
     /**

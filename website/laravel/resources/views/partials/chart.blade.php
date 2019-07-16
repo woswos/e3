@@ -50,9 +50,9 @@ var config = {
                var label = data.labels[tooltipItem.index];
                @php
                     if($chart_mode == "index"){
-                       echo "return label + ': (Total Prize: $' + tooltipItem.xLabel + ', Speed: ' + tooltipItem.yLabel + ' us)';";
+                       echo "return label + ': (Total Prize: $' + tooltipItem.xLabel + ', Time: ' + tooltipItem.yLabel + ' us)';";
                    } else if($chart_mode == "benchmark"){
-                       echo "return label + ': (Operation: ' + tooltipItem.xLabel + ', Speed: ' + tooltipItem.yLabel + ' us)';";
+                       echo "return label + ': (Operation: ' + tooltipItem.xLabel + ', Time: ' + tooltipItem.yLabel + ' us)';";
                    }
                @endphp
             }
@@ -72,7 +72,7 @@ var ranking_chart = new Chart(ctx, config);
         foreach ($chart_values as $key => $scheme) {
 
             echo "$(document).ready(function() {";
-                echo "var yLabel = '".ucfirst($key)." Speed (us)';
+                echo "var yLabel = '".ucfirst($key)." Time (us)';
                       var xLabel = 'Prize ($)';
                      ";
 
@@ -106,7 +106,7 @@ var ranking_chart = new Chart(ctx, config);
         foreach ($chart_values as $key => $scheme) {
 
             echo " $('#".$key."').click(function() { ";
-                echo "var yLabel = '".ucfirst($key)." Speed (us)';
+                echo "var yLabel = '".ucfirst($key)." Time (us)';
                       var xLabel = 'Prize ($)';
                      ";
 
@@ -137,7 +137,7 @@ var ranking_chart = new Chart(ctx, config);
         $i = 0;
 
         echo "$(document).ready(function() {";
-            echo "var yLabel = 'Speed (us)';
+            echo "var yLabel = 'Time (us)';
                   var xLabel = 'Operation';
                  ";
 

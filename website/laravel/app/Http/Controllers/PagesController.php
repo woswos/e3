@@ -26,17 +26,17 @@ class PagesController extends Controller
         */
 
 
-        $schemes = User
-                    ::join('schemes', 'users.id', '=', 'schemes.user_id')
-                    ->join('benchmarks', 'schemes.id', '=', 'benchmarks.scheme_id')
-                    //->select('users.id', 'contacts.phone', 'orders.price')
-                    //->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
-                    //->toSql();
-                    ->get();
+        $schemesCombined = User
+                        ::join('schemes', 'users.id', '=', 'schemes.user_id')
+                        ->join('benchmarks', 'schemes.id', '=', 'benchmarks.scheme_id')
+                        //->select('users.id', 'contacts.phone', 'orders.price')
+                        //->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+                        //->toSql();
+                        ->get();
         //dd($schemes);
 
         // Get all schemes
-        //$schemes = Scheme::all();
+        $schemes = Scheme::all();
         $totalSchemes = $schemes->count();
 
         // Get top 5 schemes from db
@@ -65,7 +65,7 @@ class PagesController extends Controller
         );
 
         // Create an array that has a unique entry
-        foreach($schemes as $scheme){
+        foreach($schemesCombined as $scheme){
             $speed_array = json_decode($scheme->speed, true);
             foreach ($speed_array as $key => $value) {
                 $chart_values["scheme_title"][] = $scheme->title;

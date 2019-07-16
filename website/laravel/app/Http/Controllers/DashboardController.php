@@ -30,7 +30,7 @@ class DashboardController extends Controller
     {
         // Get schemes that belong to the user
         $user_id = auth()->user()->id;
-        $schemes = Scheme::where('user_id', $user_id)->get();
+        $schemes = Scheme::where('user_id', $user_id)->orderBy('id','DESC')->get();
 
         return view('dashboard')->with('schemes', $schemes);
     }

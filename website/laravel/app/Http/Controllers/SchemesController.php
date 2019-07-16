@@ -207,10 +207,15 @@ class SchemesController extends Controller
             // Create an array that has a unique entry
             $speed_array = json_decode($benchmark->speed, true);
 
-            foreach ($speed_array as $key => $value) {
-              $chart_values["operation"][] = $key;
-              $chart_values["speed"][] = $value;
+            if($speed_array != null){
+                foreach ($speed_array as $key => $value) {
+                  $chart_values["operation"][] = $key;
+                  $chart_values["speed"][] = $value;
+                }
+            } else {
+                $chart_values = "inQueue";
             }
+
         } else {
             $chart_values = "none";
         }

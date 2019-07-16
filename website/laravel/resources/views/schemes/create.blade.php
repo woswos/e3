@@ -22,6 +22,7 @@
             </div>
             <div class="form-group">
                 {{Form::label('abstract', 'Abstract')}}
+                <h6>(LaTeX encoding is supported, check <a  href="{{ route('faq') }}#latex" target="_blank" >FAQ</a> for more information)</h6>
                 {{Form::textarea('abstract', '', ['id' => '', 'class' => 'form-control', 'placeholder' => 'Please copy and paste your abstract here'])}}
             </div>
             <!-- Keywords -->

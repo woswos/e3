@@ -29,11 +29,12 @@ class PagesController extends Controller
         $schemesCombined = User
                         ::join('schemes', 'users.id', '=', 'schemes.user_id')
                         ->join('benchmarks', 'schemes.id', '=', 'benchmarks.scheme_id')
+                        //->whereNotNull('benchmarks.speed')
                         //->select('users.id', 'contacts.phone', 'orders.price')
                         //->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
                         //->toSql();
                         ->get();
-        //dd($schemes);
+        //dd($schemesCombined);
 
         // Get all schemes
         $schemes = Scheme::all();
@@ -67,11 +68,13 @@ class PagesController extends Controller
         // Create an array that has a unique entry
         foreach($schemesCombined as $scheme){
             $speed_array = json_decode($scheme->speed, true);
-            foreach ($speed_array as $key => $value) {
-                $chart_values["scheme_title"][] = $scheme->title;
-                $chart_values["operation"][] = $key;
-                $chart_values["speed"][] = $value;
-                $chart_values["prize"][] = $scheme->total_prize;
+            if($speed_array != null){
+                foreach ($speed_array as $key => $value) {
+                    $chart_values["scheme_title"][] = $scheme->title;
+                    $chart_values["operation"][] = $key;
+                    $chart_values["speed"][] = $value;
+                    $chart_values["prize"][] = $scheme->total_prize;
+                }
             }
         }
 
@@ -130,11 +133,13 @@ class PagesController extends Controller
         // Create an array that has a unique entry
         foreach($schemes as $scheme){
             $speed_array = json_decode($scheme->speed, true);
-            foreach ($speed_array as $key => $value) {
-                $chart_values["scheme_title"][] = $scheme->title;
-                $chart_values["operation"][] = $key;
-                $chart_values["speed"][] = $value;
-                $chart_values["prize"][] = $scheme->total_prize;
+            if($speed_array != null){
+                foreach ($speed_array as $key => $value) {
+                    $chart_values["scheme_title"][] = $scheme->title;
+                    $chart_values["operation"][] = $key;
+                    $chart_values["speed"][] = $value;
+                    $chart_values["prize"][] = $scheme->total_prize;
+                }
             }
         }
 

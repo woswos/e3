@@ -111,14 +111,24 @@
         <div class="container mt-4">
             <h4>Benchmark Results</h4>
             @if ($chart_values != "none")
-                <table style="width:100%;">
-                    <tr>
-                        <td style="padding-left:10px; vertical-align: top">
-                            <canvas id="ranking_chart" width="%100" height="105px"></canvas>
-                            @include('partials/chart')
-                        </td>
-                    </tr>
-                </table>
+                @if ($chart_values == "inQueue")
+                    @if(!Auth::guest())
+                        @if(Auth::user()->id == $scheme->user_id)
+                            <h5>Your submission is waiting in the queue for processing</h5>
+                        @endif
+                    @else
+                        <h6>This scheme doesn't have benchmark results yet</h6>
+                    @endif
+                @else
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="padding-left:10px; vertical-align: top">
+                                <canvas id="ranking_chart" width="%100" height="105px"></canvas>
+                                @include('partials/chart')
+                            </td>
+                        </tr>
+                    </table>
+                @endif
             @else
                 @if(!Auth::guest())
                     @if(Auth::user()->id == $scheme->user_id)

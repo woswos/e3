@@ -30,7 +30,8 @@
         </div>
         <div class="form-group">
             {{Form::label('explanation', 'Explanation')}}
-            {{Form::textarea('explanation', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Please copy and paste your abstract here'])}}
+            <h6>(LaTeX encoding is supported, check <a  href="{{ route('faq') }}#latex" target="_blank" >FAQ</a> for more information)</h6>
+            {{Form::textarea('explanation', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Please write your explanation here'])}}
         </div>
         <div class="form-group">
             {{Form::label('flag', 'Enter the secret key')}}

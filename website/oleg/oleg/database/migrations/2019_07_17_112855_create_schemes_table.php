@@ -15,9 +15,11 @@ class CreateSchemesTable extends Migration
     {
         Schema::create('schemes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
             $table->string('attached_files')->nullable();
             $table->string('money')->nullable();
-            $table->string('speed')->nullable();
+            $table->mediumText('speed')->nullable();
             $table->timestamps();
         });
     }

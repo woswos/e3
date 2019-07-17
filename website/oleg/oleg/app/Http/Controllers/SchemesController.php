@@ -25,9 +25,39 @@ class SchemesController extends Controller
      */
     public function create()
     {
-        //
-        $data = array(
+        //Find the corresponding benchmark
+        $benchmark = Scheme::where('id', '2')->first();
 
+//dd($benchmark);
+
+        // Prepare chart data
+        $chart_values = array(
+          "operation" => array(),
+          "speed" => array()
+        );
+
+        if($benchmark != null){
+            // Create an array that has a unique entry
+            $speed_array = json_decode($benchmark->speed, true);
+
+            if($speed_array != null){
+                foreach ($speed_array as $key => $value) {
+                  $chart_values["operation"][] = $key;
+                  $chart_values["speed"][] = $value;
+                }
+            } else {
+                $chart_values = "inQueue";
+            }
+
+        } else {
+            $chart_values = "none";
+        }
+
+
+        $data = array(
+            'chart_values' => $chart_values,
+            "chart_mode" => "benchmark",
+            "chart_type" => "line"
           );
 
         return view('schemes/create')->with($data);
@@ -68,6 +98,8 @@ class SchemesController extends Controller
 
         // Create a scheme
         $scheme = new Scheme;
+        $scheme->name = $request->input('name');
+        $scheme->email = $request->input('email');
         $scheme->money = 0;
         $scheme->attached_files = $fileNameToStore;
         $scheme->save();

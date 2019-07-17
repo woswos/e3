@@ -55,6 +55,7 @@ class SchemesController extends Controller
 
 
         $data = array(
+            'name' => $benchmark->name,
             'chart_values' => $chart_values,
             "chart_mode" => "benchmark",
             "chart_type" => "line"

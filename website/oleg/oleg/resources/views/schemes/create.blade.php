@@ -32,7 +32,8 @@
 
     <section class="">
         <div class="container mt-5">
-        <h1>Graph</h1>
+        <h1>Graphs</h1>
+        <h5>{{ $name }}'s Scheme</h5>
         <canvas id="ranking_chart" width="%100" height="105px"></canvas>
     </section>
 

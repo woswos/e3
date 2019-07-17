@@ -70,8 +70,9 @@
     -->
 
     <section class="bg-fade">
+
         <div class="container mt-5">
-            <h3>[A title for the graph]</h3>
+            <h3>All schemes</h3>
         </div>
 
         <div class="container mt-3">

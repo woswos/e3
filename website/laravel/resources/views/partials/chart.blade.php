@@ -19,7 +19,7 @@ var config = {
     data: { datasets: data },
     options: {
             responsive: true,
-            legend: { position: 'right' },
+            legend: { position: 'right', "maxSize" : { "length" : 50 },},
             scales: {
                     yAxes: [{ scaleLabel: { display: true, labelString: yLabel } }],
                     xAxes: [{ scaleLabel: { display: true, labelString: xLabel } }]
@@ -43,6 +43,16 @@ var config = {
 
 var ranking_chart = new Chart(ctx, config);
 
+/*
+$("#js-legend > ul > li").on("click",function(e){
+        var index = $(this).index();
+        $(this).toggleClass("strike")
+        var ci = e.view.myChart;
+        var curr = ci.data.datasets[0]._meta[0].data[index];
+        curr.hidden = !curr.hidden
+        ci.update();
+})
+*/
 ////////////////////////////////////////////////////////////////////////////////
 
 function getRandomColor() {

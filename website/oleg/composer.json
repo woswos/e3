@@ -1,7 +1,0 @@
-{
-    "require": {
-        "laravel/installer": "^2.1",
-        "laravelcollective/html": "^5.8",
-        "kris/laravel-form-builder": "^1.20"
-    }
-}

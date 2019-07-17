@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,11 +26,6 @@
     <!-- chart.js script, needs to be loaded before the chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
-    <!-- Text editor script -->
-    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
-
-    <!-- Stat counter script -->
-    <script src="{{ asset('js/countUp.js') }}"></script>
 
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -38,44 +33,13 @@
     <!-- bootstrap-tagsinput -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js" integrity="sha256-tQ3x4V2JW+L0ew/P3v2xzL46XDjEWUExFkCDY0Rflqc=" crossorigin="anonymous"></script>
 
-    <!-- LaTeX support -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            processEscapes: true,
-            processClass: "mathjax",
-            ignoreClass: "no-mathjax"
-        }
-      });
-    </script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23475938-15"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-23475938-15');
-    </script>
 </head>
 <body>
-
-        @include('partials/navbar')
-
         <div class="py-4" style="min-height: 75%;">
             <div class="container">
                 @include('partials/messages')
             </div>
             @yield('content')
         </div>
-
-        @include('partials/footer')
-
-        <script>
-            CKEDITOR.replace( 'article-ckeditor' );
-        </script>
 </body>
 </html>

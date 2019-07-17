@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Scheme;
+
 class SchemesController extends Controller
 {
     /**
@@ -24,6 +26,11 @@ class SchemesController extends Controller
     public function create()
     {
         //
+        $data = array(
+
+          );
+
+        return view('schemes/create')->with($data);
     }
 
     /**
@@ -34,7 +41,38 @@ class SchemesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'attached_files' => 'required'
+        ];
+
+        $customMessages = [
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        // Handle File Upload - Theory
+        if($request->hasFile('attached_files')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('attached_files')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('attached_files')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('attached_files')->storeAs('public/attached_files', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'none';
+        }
+
+        // Create a scheme
+        $scheme = new Scheme;
+        $scheme->money = 0;
+        $scheme->attached_files = $fileNameToStore;
+        $scheme->save();
+
+        return redirect()->route('scheme.create')->with('success', 'Encryption scheme submitted successfully');
     }
 
     /**

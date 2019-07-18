@@ -42,25 +42,28 @@ int gettimeofday(struct timeval * tv, struct timezone *)
 #include <sys/time.h>
 #endif
 
-void Timer::addTiming(string key, double value) {
-	Timer::timings.insert({key, value});
+void Timer::addTiming(string key, double value)
+{
+    Timer::timings.insert({key, value});
 }
 
-string Timer::jsonify() {
+string Timer::jsonify()
+{
 
-	string json = "{";
+    string json = "{";
 
-	for (auto& t : Timer::timings){
-	    json = json + "'";
-	    json = json + t.first;
-            json = json + "':'";
-	    json = json + std::to_string(t.second);
-            json = json + "',";
-	}
+    for (auto & t : Timer::timings)
+    {
+        json = json + "'";
+        json = json + t.first;
+        json = json + "':'";
+        json = json + std::to_string(t.second);
+        json = json + "',";
+    }
 
-	json = json + "}";
+    json = json + "}";
 
-	return json;
+    return json;
 }
 
 void Timer::init()

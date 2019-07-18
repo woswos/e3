@@ -1,22 +1,15 @@
 import os
 import mysql.connector
+import json
 
 def main():
 
-    queue = queryNextScheme()
-    schemeID    = queue[0][0]
-    schemeTitle = queue[0][1]
-    schemeZip   = queue[0][2]
+    # In microseconds
+    # 10000000 microseconds = 1 seconds
+    gateTestDuration = 100
+    circuitTestDuration = 100
 
-    schemeZip = "bootstrap-tagsinput-latest_1563099663.zip"
-
-    #prepareNextScheme(schemeZip)
-
-    runBenchmark()
-
-    showResults()
-
-def queryNextScheme():
+    # MySQL DB details
     mydb = mysql.connector.connect(
       host="204.152.211.39",
       user="bsimsekc_obw",
@@ -24,23 +17,68 @@ def queryNextScheme():
       database="bsimsekc_obw"
     )
 
+    queue = queryNextScheme(mydb)
+
+    if(queue):
+        schemeID  = queue[0][0]
+        schemeZip = queue[0][1]
+        queueID   = queue[0][3]
+
+        prepareNextScheme(schemeZip)
+
+        runBenchmark(gateTestDuration, circuitTestDuration)
+
+        results = getResults()
+
+        uploadResults(mydb, queueID, schemeID, results)
+
+    else:
+        print("There is no scheme waiting in the queue")
+
+
+
+def queryNextScheme(mydb):
     mycursor = mydb.cursor()
 
-    mycursor.execute("""SELECT DISTINCT schemes.id,
-                        schemes.title, schemes.attached_files,
-                        queue.processed FROM schemes
-                        INNER JOIN queue on schemes.id = queue.scheme_id
-                        WHERE queue.processed = '0' ORDER BY queue.updated_at ASC""")
+    try:
+        query = """SELECT DISTINCT benchmarks.scheme_id, benchmarks.attached_files,
+                            queue.processed, queue.id FROM benchmarks
+                            INNER JOIN queue on benchmarks.scheme_id = queue.scheme_id
+                            WHERE queue.processed = '0' ORDER BY queue.updated_at ASC"""
 
-    myresult = mycursor.fetchall()
+        mycursor.execute(query)
 
-    return myresult
+        myresult = mycursor.fetchall()
+
+        return myresult
+
+    except:
+        print("Database connection error")
+
+
+def uploadResults(mydb, queueID, schemeID, results):
+
+    try:
+        mycursor = mydb.cursor()
+
+        query = "UPDATE benchmarks SET speed = '" + results + "' where scheme_id = '" + schemeID + "'"
+        mycursor.execute(query)
+
+        query = "UPDATE queue SET processed = '1' where id = '" + str(queueID) + "'"
+        mycursor.execute(query)
+
+        print("Updated database...")
+
+    except:
+        print("Database connection error")
+
 
 def prepareNextScheme(schemeZip):
     removeTempFolder()
     fetchNextScheme(schemeZip)
     unZip(schemeZip)
     fixNestedFolders()
+    moveCipherbit()
 
 
 def removeTempFolder():
@@ -49,7 +87,7 @@ def removeTempFolder():
 
 
 def fetchNextScheme(schemeZip):
-    command = 'wget http://obw.barkin.io/storage/attached_files_implementation/' + schemeZip
+    command = 'wget http://obw.barkin.io/storage/attached_files_benchmark/' + schemeZip
     os.system(command)
 
 
@@ -69,17 +107,46 @@ def fixNestedFolders():
         print('Moved contents of ' + directory[0] + ' to temp')
 
 
-def runBenchmark():
-    command = 'cd ../../.. && cd src && make USER=../tests/user/extern && ./bob.exe'
+def createEvalKey():
+    command = 'cd ../../.. && cd src && rm eval.key'
+    os.system(command)
+
+    command = 'cd ../../.. && cd src && touch eval.key'
     os.system(command)
 
 
-def showResults():
-    print('Reading file...')
-    f = open('benchmark_result.txt', 'r')
+def moveCipherbit():
+    command = 'rm cipherbit.h && rm cipherbit.cpp && cd temp && mv cipherbit.h .. && mv cipherbit.cpp ..'
+    os.system(command)
 
+
+def runBenchmark(gate_time, circuit_time):
+    createEvalKey()
+    # add make clean remove_before_flight
+    command = 'cd ../../.. && cd src && make USER=../tests/user/extern && ./bob.exe ' + str(gate_time) + ' ' + str(circuit_time)
+    os.system(command)
+    fixStrings()
+
+
+def fixStrings():
+    f = open("benchmark_result.txt")
+    s = f.read()
+    s = s.replace("'", '"')
+    s = s.replace(",}", "}")
+    f.close()
+
+    f = open("benchmark_result.txt","w")
+    f.write(s)
+    f.close()
+
+
+def getResults():
+    print('Reading file...\n')
+    f = open('benchmark_result.txt', 'r')
     print('Results...')
-    print(f.read())
+    reading = f.read()
+    print(reading + '\n')
+    return reading
 
 
 if __name__ == '__main__':

@@ -41,14 +41,14 @@ template<class SI> inline void cycle_mux_eq (SI & a, SI & b, SI & c, SI & d)
     for (int i = 0; i < MAX_IT; i++) (a==b)*c+(!(a==b))*d;
 }
 
-template<class SI>
+template<class SI, class SI_1>
 double test(Operator op, unsigned time)
 {
-    SI a = SI(_1_En);
-    SI b = SI(_2_Ef);
+    SI_1 x; x[0] = *FBit::zero;
+    SI_1 y; y[0] = *FBit::unit;
 
-    SI c = SI(_1_En);
-    SI d = SI(_2_Ef);
+    SI a(x);
+    SI b(x);
 
     unsigned long long elapsed;
     unsigned cycleSize = MAX_IT, counter = 0;
@@ -60,8 +60,8 @@ double test(Operator op, unsigned time)
             case ADD : cycle_add (a, b); break;
             case DIV : cycle_div (a, b); break;
             case MUL : cycle_mul (a, b); break;
-            case MUXLESS : cycle_mux_less (a, b, c, d); break;
-            case MUXEQ : cycle_mux_eq (a, b, c, d);
+            case MUXLESS : cycle_mux_less (a, b, a, b); break;
+            case MUXEQ : cycle_mux_eq (a, b, a, b);
         }
         counter++;
     }

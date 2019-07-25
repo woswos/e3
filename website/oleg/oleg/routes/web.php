@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', 'SchemesController@create')->name('create');
+Route::get('/', 'SchemesController@create')->name('index');
 
 Route::resource('scheme', 'SchemesController');
+Route::post('schemestore', 'SchemesController@solutionStore');

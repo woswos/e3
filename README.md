@@ -9,6 +9,8 @@ The system consists of two parts: website and backend server. The website runs o
 
 Live demo: https://obw.barkin.io
 
+`deploy.sh` can be used to download and setup everything required to run the system
+
 Here, workflow of the system is explained with a scheme:
 
 ![Workflow Scheme](workflow.jpg)

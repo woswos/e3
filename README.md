@@ -1,5 +1,5 @@
 # Obfuscation Wars
-## Creating Incentives Towards Crowdsourcing Cryptanalysis of State-of-the-art Academic Cryptosystems
+## Creating Incentives Towards Crowdsourcing Cryptanalysis of State-of-the-art Academic Homomorphic Cryptosystems
 
 Many researchers are coming up with cryptosystems, but no one is really trying to break them. Can we develop an ecosystem crowdsourcing this? If you think your cryptosystem is secure enough, you put money on it. The more you put, the more you trust. Is this working? History taught us yes, the [RSA Factoring challenge](https://en.wikipedia.org/wiki/RSA_Factoring_Challenge). By creating a web platform that researchers can submit various challenges based on their cryptosystems and schemes, we can let cryptography enthusiasts all around the world try to break them. As a result, we can create an objective security & performance ranking for state-of-the-art academic cryptosystems based on the crowdsourced attempts to break challenges, which are incentivized by monetary prizes.
 

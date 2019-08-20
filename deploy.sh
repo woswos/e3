@@ -5,12 +5,12 @@ SERVERIP=82.165.163.56
 # don't add / at the end
 ROOTDIR=/var/www/html/e3-obfuscation-wars/website/laravel
 GITHUBURL=https://github.com/woswos/e3-obfuscation-wars
-E3GITHUBURL=https://github.com/momalab/e3work
+E3GITHUBURL=https://github.com/momalab/e3
 
 MAINDB=obw
 # create random password
-#PASSWDDB="$(openssl rand -base64 12)"
-PASSWDDB=eFguxkQKKobpXPfv
+PASSWDDB="$(openssl rand -base64 12)"
+#PASSWDDB=eFguxkQKKobpXPfv
 PORTDB=3306
 
 echo "*************************"

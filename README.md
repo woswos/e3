@@ -7,7 +7,7 @@ The web site automatically evaluates the submitted scheme and measures the speed
 
 The system consists of two parts: website and backend server. The website runs on a public web server that anybody can reach with a computer. The backend server does all evaluations and sends data back to the public web server. The backend server utilizes the [Encrypt-Everything-Everywhere (E3)](https://github.com/momalab/e3) homomorphic encryption framework to perform benchmarks.
 
-Live demo: https://obw.barkin.io
+Live demo: https://obw.barkin.io (offline due to maintenance)
 
 `deploy.sh` can be used to download and setup everything required to run the system
 
